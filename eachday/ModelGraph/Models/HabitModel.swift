@@ -1,0 +1,236 @@
+import Foundation
+import SwiftUI
+
+@Observable
+class HabitModel: Model<HabitRecord>, Habit {
+    var id: UUID
+    var name: String
+    var icon: HabitIcon
+    var color: HabitColor
+    var archived: Bool
+    var frequency: Frequency
+    var habitTasks: [HabitTaskModel] = []
+    var habitGroupItems: [HabitGroupItemModel] = []
+    var habitTasksSorted: [HabitTaskModel] {
+        habitTasks.sorted { $0.sortOrder < $1.sortOrder }.filter { $0.showInUI }
+    }
+    var completionsByDay: [Day: [TaskCompletionModel]] {
+        habitTasksSorted.reduce(into: [Day: [TaskCompletionModel]]()) { res, habitTask in
+            habitTask.completionsByDay.forEach {(day, completions) in
+                res[day] = (res[day] ?? []) + completions
+            }
+        }
+    }
+    
+    init(_ modelGraph: ModelGraph, fromRecord: HabitRecord) {
+        self.id = fromRecord.id
+        self.name = fromRecord.name
+        self.icon = fromRecord.icon
+        self.color = fromRecord.color
+        self.archived = fromRecord.archived
+        self.frequency = fromRecord.frequency
+        super.init(modelGraph, fromRecord: fromRecord, markForDeletion: false)
+    }
+    
+    init(_ modelGraph: ModelGraph, markForDeletion: Bool = false) {
+        self.id = UUID()
+        self.name = ""
+        self.icon = HabitIcon.circle
+        self.color = HabitColor.blue
+        self.archived = false
+        self.frequency = Frequency.daily(times: 1)
+        super.init(modelGraph, fromRecord: nil, markForDeletion: markForDeletion)
+    }
+    
+    //
+    // MARK - FOR UI
+    //
+    var nonDefaultGroup: HabitGroup? {
+        habitGroupItems
+            .filter { $0.habitGroup != nil && !$0.habitGroup!.isDefault }
+            .first?.habitGroup
+    }
+    
+    func belongsToGroup(group: HabitGroupModel) -> Bool {
+        return habitGroupItems.contains { $0.groupId == group.id }
+    }
+    
+    @discardableResult
+    func addToDefaultGroup() -> HabitGroupItemModel? {
+        let defaultGroup = modelGraph.habitGroups.first { $0.isDefault }
+        return defaultGroup != nil  ? addToGroup(group: defaultGroup!) : nil
+    }
+    
+    @discardableResult
+    func addToGroup(group: HabitGroupModel) -> HabitGroupItemModel {
+        let lastItem = group.habitGroupItemsSorted.last
+        let sortOrder = lastItem == nil ? SortOrder.new() : lastItem!.sortOrder.next()
+        habitGroupItems
+            .filter { $0.habitGroup != nil && !$0.habitGroup!.isDefault }
+            .forEach { $0.markForDeletion() }
+        return HabitGroupItemModel(
+            modelGraph, habitId: id,
+            groupId: group.id, sortOrder: sortOrder
+        )
+    }
+    
+    func isCompleted(day: Day) -> Bool {
+        dayStatus(day: day) == HabitDayStatus.completed
+    }
+    
+    func repetitionsToGo(day: Day) -> Int {
+        frequency.repetitionsPerDay() - repetitionsCompleted(day: day)
+    }
+    
+    func dayStatus(day: Day) -> HabitDayStatus {
+        let completions = completionsByDay[day] ?? []
+        let repetitionsDone = repetitionsCompleted(day: day)
+        let repetitionsTotal = frequency.repetitionsPerDay()
+        
+        if completions.isEmpty || repetitionsDone == 0 {
+            return HabitDayStatus.notCompleted
+        } else if repetitionsDone < repetitionsTotal {
+            let value = Double(repetitionsDone) / Double(repetitionsTotal)
+            return HabitDayStatus.partiallyCompleted(value: value)
+        } else {
+            return HabitDayStatus.completed
+        }
+    }
+    
+    func dayCalendarColor(day: Day) -> Color {
+        switch dayStatus(day: day) {
+            case .completed:
+                return color.shade5
+            case .partiallyCompleted(let value) where value > 0.75:
+                return color.shade4
+            case .partiallyCompleted(let value) where value > 0.5:
+                return color.shade3
+            case .partiallyCompleted(let value) where value > 0.25:
+                return color.shade2
+            case .partiallyCompleted(_):
+                return color.shade1
+            default:
+                return .white.opacity(0)
+        }
+    }
+    
+    func repetitionsCompleted(day: Day) -> Int {
+        let totalTasks = habitTasksSorted.count
+        let totalCompletions = (completionsByDay[day] ?? []).count
+        return totalCompletions / totalTasks
+    }
+    
+    func repetitionCompletedTasks(day: Day) -> [HabitTaskModel] {
+        let totalTasks = habitTasksSorted.count
+        let totalCompletions = (completionsByDay[day] ?? []).count
+        return Array(habitTasksSorted[..<(totalCompletions % totalTasks)])
+    }
+    
+    func nextTaskToComplete(day: Day) -> HabitTaskModel? {
+        let totalTasks = habitTasksSorted.count
+        let totalCompletions = (completionsByDay[day] ?? []).count
+        let nextTaskIndex = totalCompletions % totalTasks
+        return !isCompleted(day: day) ? habitTasksSorted[nextTaskIndex] : nil
+    }
+
+    func markNextTask(day: Day) {
+        let nextTask = nextTaskToComplete(day: day)
+        if nextTask != nil {
+            _ = TaskCompletionModel(modelGraph, taskId: nextTask!.id, day: day)
+        }
+    }
+    
+    func markNextRepetition(day: Day) {
+        var nextTask = nextTaskToComplete(day: day)
+        let repetition = repetitionsCompleted(day: day)
+        while (nextTask != nil && repetitionsCompleted(day: day) < repetition + 1) {
+            _ = TaskCompletionModel(modelGraph, taskId: nextTask!.id, day: day)
+            nextTask = nextTaskToComplete(day: day)
+        }
+    }
+    
+    func unmarkDay(day: Day) {
+        if isCompleted(day: day) {
+            habitTasks.forEach { task in
+                task.completions.forEach { completion in
+                    if completion.day == day { completion.markForDeletion() }
+                }
+            }
+        }
+    }
+    
+    @discardableResult
+    func addEmptyTask() -> HabitTaskModel {
+        let lastTask = habitTasksSorted.last
+        let sortOrder = lastTask == nil ? SortOrder.new() : lastTask!.sortOrder.next()
+        let task = HabitTaskModel(
+            modelGraph, habitId: id,
+            sortOrder: sortOrder, markForDeletion: true
+        )
+        
+        completionsByDay.forEach { (day, _) in
+            let repetitionsDone = repetitionsCompleted(day: day)
+            for _ in 0..<repetitionsDone {
+                _ = TaskCompletionModel(
+                    modelGraph, taskId: task.id,
+                    day: day, markForDeletion: true
+                )
+            }
+        }
+        task.graphUmarkForDeletion()
+        return task
+    }
+
+    func moveTask(offsets: IndexSet, to: Int) {
+        var copy = self.habitTasksSorted
+        let count = copy.count
+        let from = Array(offsets).first
+        
+        if from != nil {
+            copy.move(fromOffsets: offsets, toOffset: to)
+            // inserted at array start
+            if to == 0 && count >= 2 {
+                copy[0].sortOrder = copy[1].sortOrder.prev()
+            // inserted at array end
+            } else if to == count && count >= 2 {
+                copy[count - 1].sortOrder = copy[count - 2].sortOrder.next()
+            // moved from bottom to top and inserted in between array
+            } else if from! > to && 0 < to && to < count - 1 && count >= 3  {
+                copy[to].sortOrder = SortOrder.middle(
+                    r1: copy[to - 1].sortOrder,
+                    r2: copy[to + 1].sortOrder
+                )
+            // moved from top to bottom and inserted in between array
+            } else if from! < to && 0 < to - 1 && to - 1 < count - 1 && count >= 3 {
+                copy[to - 1].sortOrder = SortOrder.middle(
+                    r1: copy[to - 2].sortOrder,
+                    r2: copy[to].sortOrder
+                )
+            }
+        }
+    }
+
+
+//
+// MARK - OVERRIDES
+//
+    override var children: [ModelNode] { habitTasks + habitGroupItems }
+    override var isModified: Bool { record != nil && !equals(record!) }
+    override var isValid: Bool { validate() }
+
+    override func toRecord() -> HabitRecord { HabitRecord(fromModel: self) }
+    override func addToGraph() {
+        habitTasks = modelGraph.habitTasks.filter { $0.habitId == id }
+        habitGroupItems = modelGraph.habitGroupItems.filter { $0.habitId == id }
+        
+        habitTasks.forEach { $0.habit = self }
+        habitGroupItems.forEach { $0.habit = self }
+        modelGraph.habits.append(self)
+    }
+    override func removeFromGraph() {
+        habitTasks.forEach { $0.habit = nil }
+        habitGroupItems.forEach { $0.habit = nil }
+        modelGraph.habits.removeAll { $0.id == id }
+    }
+    override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
+}
