@@ -1,28 +1,13 @@
 import SwiftUI
 
-struct EdithabitGroupOrderList: View {
+struct EditHabitOrderGroups: View {
     @Environment(\.colorScheme) var colorScheme
-    @Environment(ModelGraph.self) var modelGraph: ModelGraph
+    @Environment(ModelGraph.self) var modelGraph
     
     var body: some View {
         Section {
             ForEach(modelGraph.habitGroupsSorted, id: \.id) { group in
                 HStack {
-                    Image(systemName: "minus.circle.fill")
-                        .resizable()
-                        .frame(width: 22, height: 22)
-                        .aspectRatio(contentMode: .fit)
-                        .symbolRenderingMode(.monochrome)
-                        .foregroundStyle(group.isDefault ? .gray : .red)
-                        .frame(alignment: .leading)
-                        .padding(.leading, 2)
-                        .onTapGesture {
-                            if !group.isDefault {
-                                group.markForDeletion()
-                                group.save()
-                            }
-                        }
-                    
                     Text(group.name)
                         .foregroundColor(colorScheme == .light ? .black : .white)
                         .padding(.leading, 10)

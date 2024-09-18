@@ -5,7 +5,6 @@ class HabitGroupRecord: Record, HabitGroup {
     var id: UUID
     var name: String
     var sortOrder: SortOrder
-    var isDefault: Bool
     
     override class var databaseTableName: String { "habitGroup" }
     
@@ -13,14 +12,12 @@ class HabitGroupRecord: Record, HabitGroup {
         case id
         case name
         case sortOrder
-        case isDefault
     }
     
     init(fromModel: HabitGroup) {
         self.id = fromModel.id
         self.name = fromModel.name
         self.sortOrder = fromModel.sortOrder
-        self.isDefault = fromModel.isDefault
         super.init()
     }
     
@@ -28,7 +25,6 @@ class HabitGroupRecord: Record, HabitGroup {
         self.id = UUID(uuidString: row[Columns.id])!
         self.name = row[Columns.name]
         self.sortOrder = SortOrder(rank: row[Columns.sortOrder])
-        self.isDefault = row[Columns.isDefault]
         try super.init(row: row)
     }
     
@@ -36,6 +32,5 @@ class HabitGroupRecord: Record, HabitGroup {
         container[Columns.id] = id.uuidString.lowercased()
         container[Columns.name] = name
         container[Columns.sortOrder] = sortOrder.rank
-        container[Columns.isDefault] = isDefault
     }
 }

@@ -16,8 +16,8 @@ class ModelGraph {
     var habitGroupItems: [HabitGroupItemModel] = []
     var completions: [TaskCompletionModel] = []
     
-    var defaultHabitGroup: HabitGroupModel {
-        habitGroups.first { $0.isDefault }!
+    var habitsSorted: [HabitModel] {
+        habits.filter { $0.showInUI }.sorted { $0.sortOrder < $1.sortOrder }
     }
     var habitGroupsSorted: [HabitGroupModel] {
         habitGroups.filter { $0.showInUI }.sorted { $0.sortOrder < $1.sortOrder }

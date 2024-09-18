@@ -9,6 +9,7 @@ class HabitModel: Model<HabitRecord>, Habit {
     var color: HabitColor
     var archived: Bool
     var frequency: Frequency
+    var sortOrder: SortOrder
     var habitTasks: [HabitTaskModel] = []
     var habitGroupItems: [HabitGroupItemModel] = []
     var habitTasksSorted: [HabitTaskModel] {
@@ -29,6 +30,7 @@ class HabitModel: Model<HabitRecord>, Habit {
         self.color = fromRecord.color
         self.archived = fromRecord.archived
         self.frequency = fromRecord.frequency
+        self.sortOrder = fromRecord.sortOrder
         super.init(modelGraph, fromRecord: fromRecord, markForDeletion: false)
     }
     
@@ -39,6 +41,7 @@ class HabitModel: Model<HabitRecord>, Habit {
         self.color = HabitColor.blue
         self.archived = false
         self.frequency = Frequency.daily(times: 1)
+        self.sortOrder = SortOrder.new()
         super.init(modelGraph, fromRecord: nil, markForDeletion: markForDeletion)
     }
     
@@ -48,21 +51,10 @@ class HabitModel: Model<HabitRecord>, Habit {
     func belongsToGroup(group: HabitGroupModel) -> Bool {
         return habitGroupItems.contains { $0.groupId == group.id }
     }
-    
-    @discardableResult
-    func addToDefaultGroup() -> HabitGroupItemModel? {
-        let defaultGroup = modelGraph.habitGroups.first { $0.isDefault }
-        return defaultGroup != nil  ? addToGroup(group: defaultGroup!) : nil
-    }
-    
+
     @discardableResult
     func addToGroup(group: HabitGroupModel) -> HabitGroupItemModel {
-        let lastItem = group.habitGroupItemsSorted.last
-        let sortOrder = lastItem == nil ? SortOrder.new() : lastItem!.sortOrder.next()
-        return HabitGroupItemModel(
-            modelGraph, habitId: id,
-            groupId: group.id, sortOrder: sortOrder
-        )
+        return HabitGroupItemModel( modelGraph, habitId: id, groupId: group.id)
     }
     
     func removeFromGroup(group: HabitGroupModel) {

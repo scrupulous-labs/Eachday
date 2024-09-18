@@ -1,22 +1,20 @@
 import SwiftUI
 
-struct ProfileApp: View {
+struct ProfileSectionApp: View {
+    var onReorderHabits: () -> Void
+    var onArchivedHabits: () -> Void
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         Section {
-            Button {
-                
-            } label: {
+            Button { onReorderHabits() } label: {
                 HStack {
                     Text("Reorder Habits")
                         .foregroundColor(colorScheme == .light ? .black : .white)
                 }
             }
             
-            Button {
-                
-            } label: {
+            Button { onArchivedHabits() } label: {
                 HStack {
                     Text("Archived Habits")
                         .foregroundColor(colorScheme == .light ? .black : .white)

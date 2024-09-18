@@ -51,12 +51,6 @@
 		B3D3C85D2C9720AA005D28E1 /* EditHabitSetReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8302C9720AA005D28E1 /* EditHabitSetReminders.swift */; };
 		B3D3C85E2C9720AA005D28E1 /* EditHabitUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8312C9720AA005D28E1 /* EditHabitUtils.swift */; };
 		B3D3C85F2C9720AA005D28E1 /* EditHabitGroupUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8332C9720AA005D28E1 /* EditHabitGroupUtils.swift */; };
-		B3D3C8602C9720AA005D28E1 /* EdithabitGroupOrderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8352C9720AA005D28E1 /* EdithabitGroupOrderList.swift */; };
-		B3D3C8612C9720AA005D28E1 /* EditHabitGroupOrderUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8362C9720AA005D28E1 /* EditHabitGroupOrderUtils.swift */; };
-		B3D3C8622C9720AA005D28E1 /* EditHabitOrderHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8382C9720AA005D28E1 /* EditHabitOrderHeader.swift */; };
-		B3D3C8632C9720AA005D28E1 /* EditHabitOrderInGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8392C9720AA005D28E1 /* EditHabitOrderInGroup.swift */; };
-		B3D3C8642C9720AA005D28E1 /* EditHabitOrderUngrouped.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C83A2C9720AA005D28E1 /* EditHabitOrderUngrouped.swift */; };
-		B3D3C8652C9720AA005D28E1 /* EditHabitOrderUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C83B2C9720AA005D28E1 /* EditHabitOrderUtils.swift */; };
 		B3D3C8662C9720AA005D28E1 /* HabitDetailsCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C83D2C9720AA005D28E1 /* HabitDetailsCalendar.swift */; };
 		B3D3C8672C9720AA005D28E1 /* HabitDetailsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C83E2C9720AA005D28E1 /* HabitDetailsCard.swift */; };
 		B3D3C8682C9720AA005D28E1 /* HabitDetailsCompletionCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C83F2C9720AA005D28E1 /* HabitDetailsCompletionCount.swift */; };
@@ -67,7 +61,6 @@
 		B3D3C86D2C9720AA005D28E1 /* HabitMonthGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8452C9720AA005D28E1 /* HabitMonthGrid.swift */; };
 		B3D3C86E2C9720AA005D28E1 /* MarkHabitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8462C9720AA005D28E1 /* MarkHabitButton.swift */; };
 		B3D3C86F2C9720AA005D28E1 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8482C9720AA005D28E1 /* AppView.swift */; };
-		B3D3C8702C9720AA005D28E1 /* EditHabitGroupOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8492C9720AA005D28E1 /* EditHabitGroupOrderView.swift */; };
 		B3D3C8712C9720AA005D28E1 /* EditHabitGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C84A2C9720AA005D28E1 /* EditHabitGroupView.swift */; };
 		B3D3C8722C9720AA005D28E1 /* EditHabitOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C84B2C9720AA005D28E1 /* EditHabitOrderView.swift */; };
 		B3D3C8732C9720AA005D28E1 /* EditHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C84C2C9720AA005D28E1 /* EditHabitView.swift */; };
@@ -75,9 +68,12 @@
 		B3D3C8752C9720AA005D28E1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C84E2C9720AA005D28E1 /* ProfileView.swift */; };
 		B3D3C8782C9721B6005D28E1 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = B3D3C8772C9721B6005D28E1 /* GRDB */; };
 		B3D3C87B2C9721CB005D28E1 /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = B3D3C87A2C9721CB005D28E1 /* HorizonCalendar */; };
-		B3D3C8802C9A9D3B005D28E1 /* ProfileGeneral.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C87F2C9A9D3B005D28E1 /* ProfileGeneral.swift */; };
-		B3D3C8822C9A9DAB005D28E1 /* ProfileSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8812C9A9DAB005D28E1 /* ProfileSettings.swift */; };
-		B3D3C8842C9A9DED005D28E1 /* ProfileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8832C9A9DED005D28E1 /* ProfileApp.swift */; };
+		B3D3C8802C9A9D3B005D28E1 /* ProfileSectionGeneral.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C87F2C9A9D3B005D28E1 /* ProfileSectionGeneral.swift */; };
+		B3D3C8822C9A9DAB005D28E1 /* ProfileSectionSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8812C9A9DAB005D28E1 /* ProfileSectionSettings.swift */; };
+		B3D3C8842C9A9DED005D28E1 /* ProfileSectionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8832C9A9DED005D28E1 /* ProfileSectionApp.swift */; };
+		B3D3C8872C9ACC8C005D28E1 /* ProfileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8862C9ACC8C005D28E1 /* ProfileUtils.swift */; };
+		B3D3C8892C9AF6D8005D28E1 /* EditHabitOrderHabits.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8882C9AF6D8005D28E1 /* EditHabitOrderHabits.swift */; };
+		B3D3C88B2C9AF6EA005D28E1 /* EditHabitOrderGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C88A2C9AF6EA005D28E1 /* EditHabitOrderGroups.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,12 +122,6 @@
 		B3D3C8302C9720AA005D28E1 /* EditHabitSetReminders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitSetReminders.swift; sourceTree = "<group>"; };
 		B3D3C8312C9720AA005D28E1 /* EditHabitUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitUtils.swift; sourceTree = "<group>"; };
 		B3D3C8332C9720AA005D28E1 /* EditHabitGroupUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitGroupUtils.swift; sourceTree = "<group>"; };
-		B3D3C8352C9720AA005D28E1 /* EdithabitGroupOrderList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdithabitGroupOrderList.swift; sourceTree = "<group>"; };
-		B3D3C8362C9720AA005D28E1 /* EditHabitGroupOrderUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitGroupOrderUtils.swift; sourceTree = "<group>"; };
-		B3D3C8382C9720AA005D28E1 /* EditHabitOrderHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitOrderHeader.swift; sourceTree = "<group>"; };
-		B3D3C8392C9720AA005D28E1 /* EditHabitOrderInGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitOrderInGroup.swift; sourceTree = "<group>"; };
-		B3D3C83A2C9720AA005D28E1 /* EditHabitOrderUngrouped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitOrderUngrouped.swift; sourceTree = "<group>"; };
-		B3D3C83B2C9720AA005D28E1 /* EditHabitOrderUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitOrderUtils.swift; sourceTree = "<group>"; };
 		B3D3C83D2C9720AA005D28E1 /* HabitDetailsCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitDetailsCalendar.swift; sourceTree = "<group>"; };
 		B3D3C83E2C9720AA005D28E1 /* HabitDetailsCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitDetailsCard.swift; sourceTree = "<group>"; };
 		B3D3C83F2C9720AA005D28E1 /* HabitDetailsCompletionCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitDetailsCompletionCount.swift; sourceTree = "<group>"; };
@@ -142,15 +132,17 @@
 		B3D3C8452C9720AA005D28E1 /* HabitMonthGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitMonthGrid.swift; sourceTree = "<group>"; };
 		B3D3C8462C9720AA005D28E1 /* MarkHabitButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkHabitButton.swift; sourceTree = "<group>"; };
 		B3D3C8482C9720AA005D28E1 /* AppView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
-		B3D3C8492C9720AA005D28E1 /* EditHabitGroupOrderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitGroupOrderView.swift; sourceTree = "<group>"; };
 		B3D3C84A2C9720AA005D28E1 /* EditHabitGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitGroupView.swift; sourceTree = "<group>"; };
 		B3D3C84B2C9720AA005D28E1 /* EditHabitOrderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitOrderView.swift; sourceTree = "<group>"; };
 		B3D3C84C2C9720AA005D28E1 /* EditHabitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitView.swift; sourceTree = "<group>"; };
 		B3D3C84D2C9720AA005D28E1 /* HabitDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitDetailsView.swift; sourceTree = "<group>"; };
 		B3D3C84E2C9720AA005D28E1 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		B3D3C87F2C9A9D3B005D28E1 /* ProfileGeneral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGeneral.swift; sourceTree = "<group>"; };
-		B3D3C8812C9A9DAB005D28E1 /* ProfileSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettings.swift; sourceTree = "<group>"; };
-		B3D3C8832C9A9DED005D28E1 /* ProfileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileApp.swift; sourceTree = "<group>"; };
+		B3D3C87F2C9A9D3B005D28E1 /* ProfileSectionGeneral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionGeneral.swift; sourceTree = "<group>"; };
+		B3D3C8812C9A9DAB005D28E1 /* ProfileSectionSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionSettings.swift; sourceTree = "<group>"; };
+		B3D3C8832C9A9DED005D28E1 /* ProfileSectionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionApp.swift; sourceTree = "<group>"; };
+		B3D3C8862C9ACC8C005D28E1 /* ProfileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUtils.swift; sourceTree = "<group>"; };
+		B3D3C8882C9AF6D8005D28E1 /* EditHabitOrderHabits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitOrderHabits.swift; sourceTree = "<group>"; };
+		B3D3C88A2C9AF6EA005D28E1 /* EditHabitOrderGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitOrderGroups.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,9 +222,9 @@
 			isa = PBXGroup;
 			children = (
 				B3D3C7F42C9720A4005D28E1 /* Habit.swift */,
+				B3D3C7F72C9720A4005D28E1 /* HabitTask.swift */,
 				B3D3C7F52C9720A4005D28E1 /* HabitGroup.swift */,
 				B3D3C7F62C9720A4005D28E1 /* HabitGroupItem.swift */,
-				B3D3C7F72C9720A4005D28E1 /* HabitTask.swift */,
 				B3D3C7F82C9720A4005D28E1 /* TaskCompletion.swift */,
 			);
 			path = Protocols;
@@ -241,10 +233,10 @@
 		B3D3C7FF2C9720A4005D28E1 /* Records */ = {
 			isa = PBXGroup;
 			children = (
-				B3D3C7FA2C9720A4005D28E1 /* HabitGroupItemRecord.swift */,
-				B3D3C7FB2C9720A4005D28E1 /* HabitGroupRecord.swift */,
 				B3D3C7FC2C9720A4005D28E1 /* HabitRecord.swift */,
 				B3D3C7FD2C9720A4005D28E1 /* HabitTaskRecord.swift */,
+				B3D3C7FB2C9720A4005D28E1 /* HabitGroupRecord.swift */,
+				B3D3C7FA2C9720A4005D28E1 /* HabitGroupItemRecord.swift */,
 				B3D3C7FE2C9720A4005D28E1 /* TaskCompletionRecord.swift */,
 			);
 			path = Records;
@@ -327,22 +319,11 @@
 			path = EditHabitGroup;
 			sourceTree = "<group>";
 		};
-		B3D3C8372C9720AA005D28E1 /* EditHabitGroupOrder */ = {
-			isa = PBXGroup;
-			children = (
-				B3D3C8352C9720AA005D28E1 /* EdithabitGroupOrderList.swift */,
-				B3D3C8362C9720AA005D28E1 /* EditHabitGroupOrderUtils.swift */,
-			);
-			path = EditHabitGroupOrder;
-			sourceTree = "<group>";
-		};
 		B3D3C83C2C9720AA005D28E1 /* EditHabitOrder */ = {
 			isa = PBXGroup;
 			children = (
-				B3D3C8382C9720AA005D28E1 /* EditHabitOrderHeader.swift */,
-				B3D3C8392C9720AA005D28E1 /* EditHabitOrderInGroup.swift */,
-				B3D3C83A2C9720AA005D28E1 /* EditHabitOrderUngrouped.swift */,
-				B3D3C83B2C9720AA005D28E1 /* EditHabitOrderUtils.swift */,
+				B3D3C8882C9AF6D8005D28E1 /* EditHabitOrderHabits.swift */,
+				B3D3C88A2C9AF6EA005D28E1 /* EditHabitOrderGroups.swift */,
 			);
 			path = EditHabitOrder;
 			sourceTree = "<group>";
@@ -379,8 +360,6 @@
 				B3D3C84C2C9720AA005D28E1 /* EditHabitView.swift */,
 				B3D3C8342C9720AA005D28E1 /* EditHabitGroup */,
 				B3D3C84A2C9720AA005D28E1 /* EditHabitGroupView.swift */,
-				B3D3C8372C9720AA005D28E1 /* EditHabitGroupOrder */,
-				B3D3C8492C9720AA005D28E1 /* EditHabitGroupOrderView.swift */,
 				B3D3C83C2C9720AA005D28E1 /* EditHabitOrder */,
 				B3D3C84B2C9720AA005D28E1 /* EditHabitOrderView.swift */,
 				B3D3C8422C9720AA005D28E1 /* HabitDetails */,
@@ -395,11 +374,20 @@
 		B3D3C87E2C9A9CE3005D28E1 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				B3D3C8832C9A9DED005D28E1 /* ProfileApp.swift */,
-				B3D3C8812C9A9DAB005D28E1 /* ProfileSettings.swift */,
-				B3D3C87F2C9A9D3B005D28E1 /* ProfileGeneral.swift */,
+				B3D3C8852C9AC5C7005D28E1 /* ProfileSection */,
+				B3D3C8862C9ACC8C005D28E1 /* ProfileUtils.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		B3D3C8852C9AC5C7005D28E1 /* ProfileSection */ = {
+			isa = PBXGroup;
+			children = (
+				B3D3C8832C9A9DED005D28E1 /* ProfileSectionApp.swift */,
+				B3D3C8812C9A9DAB005D28E1 /* ProfileSectionSettings.swift */,
+				B3D3C87F2C9A9D3B005D28E1 /* ProfileSectionGeneral.swift */,
+			);
+			path = ProfileSection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,7 +468,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3D3C8642C9720AA005D28E1 /* EditHabitOrderUngrouped.swift in Sources */,
 				B3D3C85C2C9720AA005D28E1 /* EditHabitSelectIcon.swift in Sources */,
 				B3D3C7EA2C97209D005D28E1 /* Database.swift in Sources */,
 				B3D3C8092C9720A4005D28E1 /* HabitGroupItemModel.swift in Sources */,
@@ -494,7 +481,7 @@
 				B3D3C86E2C9720AA005D28E1 /* MarkHabitButton.swift in Sources */,
 				B3D3C80D2C9720A4005D28E1 /* Model.swift in Sources */,
 				B3D3C8522C9720AA005D28E1 /* AppHabitCardHeader.swift in Sources */,
-				B3D3C8822C9A9DAB005D28E1 /* ProfileSettings.swift in Sources */,
+				B3D3C8822C9A9DAB005D28E1 /* ProfileSectionSettings.swift in Sources */,
 				B3D3C8722C9720AA005D28E1 /* EditHabitOrderView.swift in Sources */,
 				B3D3C80F2C9720A4005D28E1 /* Habit.swift in Sources */,
 				B3D3C8152C9720A4005D28E1 /* HabitGroupRecord.swift in Sources */,
@@ -503,24 +490,22 @@
 				B3D3C86B2C9720AA005D28E1 /* EditHabitHistory.swift in Sources */,
 				B3D3C8752C9720AA005D28E1 /* ProfileView.swift in Sources */,
 				B3D3C85D2C9720AA005D28E1 /* EditHabitSetReminders.swift in Sources */,
-				B3D3C8622C9720AA005D28E1 /* EditHabitOrderHeader.swift in Sources */,
 				B3D3C8102C9720A4005D28E1 /* HabitGroup.swift in Sources */,
 				B3D3C8502C9720AA005D28E1 /* AppHabitCardCalendar.swift in Sources */,
-				B3D3C8702C9720AA005D28E1 /* EditHabitGroupOrderView.swift in Sources */,
 				B3D3C8672C9720AA005D28E1 /* HabitDetailsCard.swift in Sources */,
-				B3D3C8632C9720AA005D28E1 /* EditHabitOrderInGroup.swift in Sources */,
 				B3D3C8562C9720AA005D28E1 /* EditHabitSectionChecklist.swift in Sources */,
-				B3D3C8842C9A9DED005D28E1 /* ProfileApp.swift in Sources */,
+				B3D3C8842C9A9DED005D28E1 /* ProfileSectionApp.swift in Sources */,
 				B3D3C8192C9720A4005D28E1 /* Calendar.swift in Sources */,
 				B3D3C8182C9720A4005D28E1 /* TaskCompletionRecord.swift in Sources */,
+				B3D3C88B2C9AF6EA005D28E1 /* EditHabitOrderGroups.swift in Sources */,
 				B3D3C8532C9720AA005D28E1 /* AppHabitCard.swift in Sources */,
 				B3D3C8662C9720AA005D28E1 /* HabitDetailsCalendar.swift in Sources */,
+				B3D3C8892C9AF6D8005D28E1 /* EditHabitOrderHabits.swift in Sources */,
 				B3D3C81F2C9720A4005D28E1 /* ModelGraph.swift in Sources */,
 				B3D3C8142C9720A4005D28E1 /* HabitGroupItemRecord.swift in Sources */,
 				B3D3C7D92C972089005D28E1 /* eachdayApp.swift in Sources */,
 				B3D3C8742C9720AA005D28E1 /* HabitDetailsView.swift in Sources */,
 				B3D3C8582C9720AA005D28E1 /* EditHabitSectionGoal.swift in Sources */,
-				B3D3C8612C9720AA005D28E1 /* EditHabitGroupOrderUtils.swift in Sources */,
 				B3D3C8682C9720AA005D28E1 /* HabitDetailsCompletionCount.swift in Sources */,
 				B3D3C80A2C9720A4005D28E1 /* HabitGroupModel.swift in Sources */,
 				B3D3C80E2C9720A4005D28E1 /* TaskCompletionModel.swift in Sources */,
@@ -528,10 +513,8 @@
 				B3D3C8712C9720AA005D28E1 /* EditHabitGroupView.swift in Sources */,
 				B3D3C86C2C9720AA005D28E1 /* HabitGroupBar.swift in Sources */,
 				B3D3C8552C9720AA005D28E1 /* AppUtils.swift in Sources */,
-				B3D3C8652C9720AA005D28E1 /* EditHabitOrderUtils.swift in Sources */,
 				B3D3C8162C9720A4005D28E1 /* HabitRecord.swift in Sources */,
 				B3D3C8132C9720A4005D28E1 /* TaskCompletion.swift in Sources */,
-				B3D3C8602C9720AA005D28E1 /* EdithabitGroupOrderList.swift in Sources */,
 				B3D3C86D2C9720AA005D28E1 /* HabitMonthGrid.swift in Sources */,
 				B3D3C7EB2C97209D005D28E1 /* Database+Migrator.swift in Sources */,
 				B3D3C8572C9720AA005D28E1 /* EditHabitSectionColor.swift in Sources */,
@@ -539,7 +522,7 @@
 				B3D3C8122C9720A4005D28E1 /* HabitTask.swift in Sources */,
 				B3D3C8732C9720AA005D28E1 /* EditHabitView.swift in Sources */,
 				B3D3C8112C9720A4005D28E1 /* HabitGroupItem.swift in Sources */,
-				B3D3C8802C9A9D3B005D28E1 /* ProfileGeneral.swift in Sources */,
+				B3D3C8802C9A9D3B005D28E1 /* ProfileSectionGeneral.swift in Sources */,
 				B3D3C8692C9720AA005D28E1 /* HabitDetailsStreaks.swift in Sources */,
 				B3D3C81C2C9720A4005D28E1 /* FP.swift in Sources */,
 				B3D3C85E2C9720AA005D28E1 /* EditHabitUtils.swift in Sources */,
@@ -547,6 +530,7 @@
 				B3D3C81B2C9720A4005D28E1 /* Customization.swift in Sources */,
 				B3D3C8542C9720AA005D28E1 /* AppHeader.swift in Sources */,
 				B3D3C8512C9720AA005D28E1 /* AppHabitCardContextMenu.swift in Sources */,
+				B3D3C8872C9ACC8C005D28E1 /* ProfileUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

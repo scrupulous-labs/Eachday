@@ -4,7 +4,6 @@ protocol HabitGroupItem: AnyObject {
     var id: UUID { get set }
     var habitId: UUID { get set }
     var groupId: UUID { get set }
-    var sortOrder: SortOrder { get set }
     
     func validate() -> Bool
     func equals(_ habitGroupItem: HabitGroupItem) -> Bool
@@ -19,14 +18,12 @@ extension HabitGroupItem {
     func equals(_ habitGroupItem: HabitGroupItem) -> Bool {
         id == habitGroupItem.id &&
         habitId == habitGroupItem.habitId &&
-        groupId == habitGroupItem.groupId &&
-        sortOrder == habitGroupItem.sortOrder
+        groupId == habitGroupItem.groupId
     }
     
     func copyFrom(_ habitGroupItem: HabitGroupItem) {
         self.id = habitGroupItem.id
         self.habitId = habitGroupItem.habitId
         self.groupId = habitGroupItem.groupId
-        self.sortOrder = habitGroupItem.sortOrder
     }
 }

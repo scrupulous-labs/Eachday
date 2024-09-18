@@ -13,6 +13,7 @@ protocol Habit: AnyObject {
     var color: HabitColor { get set }
     var archived: Bool { get set }
     var frequency: Frequency { get set }
+    var sortOrder: SortOrder { get set }
     
     func validate() -> Bool
     func equals(_ habit: Habit) -> Bool
@@ -30,7 +31,8 @@ extension Habit {
         icon == habit.icon &&
         color == habit.color &&
         archived == habit.archived &&
-        frequency == habit.frequency
+        frequency == habit.frequency &&
+        sortOrder == habit.sortOrder
     }
     
     func copyFrom(_ habit: Habit) {
@@ -40,5 +42,6 @@ extension Habit {
         self.color = habit.color
         self.archived = habit.archived
         self.frequency = habit.frequency
+        self.sortOrder = habit.sortOrder
     }
 }

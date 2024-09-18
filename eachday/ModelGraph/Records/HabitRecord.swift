@@ -8,6 +8,7 @@ class HabitRecord: Record, Habit {
     var color: HabitColor
     var archived: Bool
     var frequency: Frequency
+    var sortOrder: SortOrder
     
     override class var databaseTableName: String { "habit" }
     
@@ -18,6 +19,7 @@ class HabitRecord: Record, Habit {
         case color
         case archived
         case frequency
+        case sortOrder
     }
     
     init(fromModel: Habit) {
@@ -27,6 +29,7 @@ class HabitRecord: Record, Habit {
         self.color = fromModel.color
         self.archived = fromModel.archived
         self.frequency = fromModel.frequency
+        self.sortOrder = fromModel.sortOrder
         super.init()
     }
     
@@ -37,6 +40,7 @@ class HabitRecord: Record, Habit {
         self.color = HabitColor(rawValue: row[Columns.color])!
         self.archived = row[Columns.archived]
         self.frequency = Frequency.fromJson(json: row[Columns.frequency])!
+        self.sortOrder = SortOrder(rank: row[Columns.sortOrder])
         try super.init(row: row)
     }
     
@@ -47,5 +51,6 @@ class HabitRecord: Record, Habit {
         container[Columns.color] = color.rawValue
         container[Columns.archived] = archived
         container[Columns.frequency] = frequency.toJson()
+        container[Columns.sortOrder] = sortOrder.rank
     }
 }

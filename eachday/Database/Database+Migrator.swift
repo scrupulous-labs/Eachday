@@ -17,6 +17,7 @@ extension Database {
                 t.column("color", .text).notNull()
                 t.column("archived", .boolean).notNull()
                 t.column("frequency", .text).notNull()
+                t.column("sortOrder", .real).notNull()
             }
             
             try db.create(table: "habitTask") { t in
@@ -36,21 +37,24 @@ extension Database {
                 t.column("id", .text).primaryKey()
                 t.column("name", .text).notNull()
                 t.column("sortOrder", .real).notNull()
-                t.column("isDefault", .boolean).notNull()
             }
             
             try db.create(table: "habitGroupItem") { t in
                 t.column("id", .text).primaryKey()
                 t.column("habitId", .text).references("habit", column: "id", onDelete: .cascade).notNull()
                 t.column("groupId", .text).references("habitGroup", column: "id", onDelete: .cascade).notNull()
-                t.column("sortOrder", .real).notNull()
                 t.uniqueKey(["habitId", "groupId"], onConflict: .replace)
             }
             
-            try db.execute(
-                sql: "INSERT INTO habitGroup (id, name, sortOrder, isDefault) VALUES (?, ?, ?, ?)",
-                arguments: [UUID().uuidString.lowercased(), "All", 0.0, true]
-            )
+            let groups = [ "Morning", "Evening", "Fitness", "Work", "Money"]
+            var sortOrder = SortOrder.new()
+            for group in groups {
+                try db.execute(
+                    sql: "INSERT INTO habitGroup (id, name, sortOrder) VALUES (?, ?, ?)",
+                    arguments: [UUID().uuidString.lowercased(), group, sortOrder.rank]
+                )
+                sortOrder = sortOrder.next()
+            }
         }
         
         return migrator

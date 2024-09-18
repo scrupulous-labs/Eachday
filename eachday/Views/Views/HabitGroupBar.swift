@@ -15,7 +15,7 @@ struct HabitGroupBar: View {
             HStack(spacing: 6) {
                 if leadingGap != nil { Spacer().frame(width: leadingGap! - 6) }
                 ForEach(
-                    modelGraph.habitGroupsSorted.filter { !$0.habitGroupItemsSorted.isEmpty },
+                    modelGraph.habitGroupsSorted.filter { !$0.habitGroupItems.isEmpty },
                     id: \.id
                 ) { habitGroup in
                     let isActive = activeGroupIds.contains(habitGroup.id)

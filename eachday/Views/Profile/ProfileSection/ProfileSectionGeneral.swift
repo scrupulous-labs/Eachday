@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ProfileGeneral: View {
+struct ProfileSectionGeneral: View {
     @Environment(\.colorScheme) var colorScheme
     
     let iconHeight = 28.0

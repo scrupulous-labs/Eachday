@@ -18,16 +18,15 @@ struct AppView: View {
                     }
                     .frame(maxWidth: .infinity)
                 } else {
-                    HabitGroupBar(
-                        leadingGap: 16, trailingGap: 16,
-                        activeGroupIds: ui.activeGroupIds,
-                        onTapGroup: ui.toggleGroupId,
-                        onEditGroup: ui.openEditHabitGroup
-                    )
-                    .padding(.top, 16)
-                    .padding(.bottom, 6)
-                    
                     LazyVStack(spacing: 0) {
+                        HabitGroupBar(
+                            leadingGap: 16, trailingGap: 16,
+                            activeGroupIds: ui.activeGroupIds,
+                            onTapGroup: ui.toggleGroupId,
+                            onEditGroup: ui.openEditHabitGroup
+                        )
+                        .padding(.vertical, 14)
+                        
                         ForEach(
                             modelGraph.habits.filter { habit in
                                 let groupIds = habit.habitGroupItems.map { $0.groupId }
