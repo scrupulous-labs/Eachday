@@ -18,49 +18,63 @@ struct AppView: View {
                     }
                     .frame(maxWidth: .infinity)
                 } else {
-                    AppViewHeader(
-                        activeGroup: getActiveGroup(),
-                        onEditGroup: ui.openEditHabitGroup,
-                        onSelectGroup: ui.setActiveGroup,
-                        onEditHabitOrder: ui.openEditHabitOrderSheet
+                    HabitGroupBar(
+                        leadingGap: 16, trailingGap: 16,
+                        activeGroupIds: ui.activeGroupIds,
+                        onTapGroup: ui.toggleGroupId,
+                        onEditGroup: ui.openEditHabitGroup
                     )
-                    .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 16))
+                    .padding(.top, 16)
+                    .padding(.bottom, 6)
                     
                     LazyVStack(spacing: 0) {
-                        ForEach(getActiveGroup().habitGroupItemsSorted, id: \.id) { item in
-                            let habit = item.habit
-                            if habit != nil && habit!.showInUI {
-                                HabitCard(
-                                    habit: habit!,
-                                    editHabit: { ui.openEditHabitSheet(modelGraph, habit: habit!) },
-                                    editHabitHistory: { ui.openEditHabitHistorySheet(habit: habit!) }
-                                )
-                                .padding([.bottom, .horizontal])
-                                .onTapGesture { ui.openHabitDetailsScreen(habit: habit!) }
-                            }
+                        ForEach(
+                            modelGraph.habits.filter { habit in
+                                let groupIds = habit.habitGroupItems.map { $0.groupId }
+                                let inActiveGroups = groupIds.contains { ui.activeGroupIds.contains($0) }
+                                return habit.showInUI && (ui.activeGroupIds.isEmpty || inActiveGroups)
+                            }, id: \.id
+                        ) { habit in
+                            HabitCard(
+                                habit: habit,
+                                editHabit: { ui.openEditHabitSheet(modelGraph, habit: habit) },
+                                editHabitHistory: { ui.openEditHabitHistorySheet(habit: habit) }
+                            )
+                            .padding([.bottom, .horizontal])
+                            .onTapGesture { ui.openHabitDetailsScreen(habit: habit) }
                         }
                     }
                 }
             }
             .scrollIndicators(.hidden)
             .background(Color(hex: colorScheme == .light ? "#F2F2F7" : "#000000"))
-            .navigationTitle("My Habits")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem {
+                ToolbarItem(placement: .topBarLeading) {
+                    Text("Each Day")
+                        .font(Font.system(size: 24))
+                        .fontWeight(.semibold)
+                }
+                
+                
+                ToolbarItem(placement: .topBarTrailing) {
                     HStack(spacing: 16) {
                         Button { ui.openNewHabitSheet(modelGraph) } label: {
                             Image(systemName: "plus")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 22, height: 22)
-                                .fontWeight(.bold)
+                                .fontWeight(.regular)
+                                .foregroundColor(.blue)
                         }
-//                        Button { ui.openSettingsSheet() } label: {
-//                            Image(systemName: "person.circle")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 24, height: 24)
-//                        }
+                        Button { ui.openProfileSheet() } label: {
+                            Image(systemName: "person.circle")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                                .fontWeight(.regular)
+                                .foregroundColor(.blue)
+                        }
                     }
                 }
             }
@@ -69,8 +83,8 @@ struct AppView: View {
                 modelGraph.habitGroups.forEach { $0.graphResetToDb() }
             }) { item in
                 switch item {
-                case AppViewSheet.settingsSheet:
-                    SettingsView()
+                case AppViewSheet.profileSheet:
+                    ProfileView()
                     
                 case AppViewSheet.editHabitOrderSheet:
                     EditHabitOrderView()
@@ -151,37 +165,30 @@ struct AppView: View {
             }
         }
     }
-    
-    func getActiveGroup() -> HabitGroupModel {
-        ui.activeGroup ?? getFirstNonDefaultGroup() ?? modelGraph.defaultHabitGroup
-    }
-    func getFirstNonDefaultGroup() -> HabitGroupModel? {
-        modelGraph.habitGroupsSorted.first { !$0.isDefault }
-    }
 }
 
 @Observable
 class AppViewModel {
     static let instance: AppViewModel = AppViewModel()
-    
-    var activeGroup: HabitGroupModel? = nil
+
     var activeSheet: AppViewSheet? = nil
     var currentSheetDent: PresentationDetent = PresentationDetent.large
     var userAttemptedToDismissSheet: Bool = false
     var canInteractivelyDismissSheet: Bool = true
     var navigationPath: NavigationPath = NavigationPath()
+    var activeGroupIds: Set<UUID> = Set<UUID>()
     
-    func setActiveGroup(_ habitGroup: HabitGroupModel) { activeGroup = habitGroup }
-    func openSettingsSheet() { activeSheet = AppViewSheet.settingsSheet }
-    func openEditHabitOrderSheet() { activeSheet = AppViewSheet.editHabitOrderSheet }
+    func openProfileSheet() {
+        activeSheet = AppViewSheet.profileSheet
+    }
+
+    func openEditHabitOrderSheet() {
+        activeSheet = AppViewSheet.editHabitOrderSheet
+    }
     
     func openNewHabitSheet(_ modelGraph: ModelGraph) {
         let habitToEdit = HabitModel(modelGraph, markForDeletion: true)
         habitToEdit.addEmptyTask()
-        habitToEdit.addToDefaultGroup()
-        if activeGroup != nil && !activeGroup!.isDefault {
-            habitToEdit.addToGroup(group: activeGroup!)
-        }
         openEditHabitSheet(modelGraph, habit: habitToEdit)
     }
     
@@ -210,5 +217,13 @@ class AppViewModel {
         navigationPath.append(
             AppViewScreen.habitDetailsScreen(habitId: habit.id)
         )
+    }
+    
+    func toggleGroupId(habitGroup: HabitGroupModel) {
+        if activeGroupIds.contains(habitGroup.id) {
+            activeGroupIds.remove(habitGroup.id)
+        } else {
+            activeGroupIds.insert(habitGroup.id)
+        }
     }
 }

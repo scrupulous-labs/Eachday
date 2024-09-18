@@ -8,25 +8,28 @@ struct EditHabitSelectGroup: View {
     var body: some View {
         List {
             Section {
-                ForEach(
-                    modelGraph.habitGroupsSorted.filter { !$0.isDefault },
-                    id: \.id
-                ) { group in
+                ForEach(modelGraph.habitGroupsSorted, id: \.id) { group in
                     let habitInGroup = habit.belongsToGroup(group: group)
-                    let iconName: String = habitInGroup  ? "checkmark.circle.fill" : "circle"
+                    let iconName: String = habitInGroup ? "checkmark.circle.fill" : "circle"
                     let iconColor: Color = habitInGroup ? .green : .gray
-                    
-                    HStack {
-                        Text(group.name)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        Image(systemName: iconName)
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(iconColor)
-                    }
-                    .onTapGesture {
-                        habit.addToGroup(group: group)
+                    Button {
+                        if habitInGroup {
+                            habit.removeFromGroup(group: group)
+                        } else {
+                            habit.addToGroup(group: group)
+                        }
+                    } label: {
+                        HStack {
+                            Image(systemName: iconName)
+                                .resizable()
+                                .frame(width: 22, height: 22)
+                                .foregroundColor(iconColor)
+                                .padding(.trailing, 8)
+                            Text(group.name)
+                                .font(Font.headline.weight(.regular))
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
                     }
                 }
             } header: {
@@ -35,6 +38,7 @@ struct EditHabitSelectGroup: View {
             
             Button { onNewGroup() } label: {
                 Text("New Group")
+                    .frame(maxWidth: .infinity, alignment: .center)
             }
         }
     }

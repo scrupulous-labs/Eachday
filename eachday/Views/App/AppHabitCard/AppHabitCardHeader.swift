@@ -44,15 +44,15 @@ struct AppViewHabitCardHeader: View {
                 if !habit.isCompleted(day: today) && !habit.habitTasks.isEmpty && nextTask != nil {
                     Text("\(nextTask!.description)")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(Font.caption.weight(.medium))
+                        .font(Font.caption.weight(.regular))
                         .lineLimit(1)
-                        .truncationMode(.tail)                        
+                        .truncationMode(.tail)
                         .offset(CGSize(width: 0, height: -2))
                 }
                 if habit.isCompleted(day: today) {
                     Text("✓ Done for today")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(Font.caption.weight(.medium))
+                        .font(Font.caption.weight(.regular))
                         .lineLimit(1)
                         .truncationMode(.tail)
                         .foregroundColor(.green)

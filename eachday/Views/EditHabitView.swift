@@ -36,7 +36,7 @@ struct EditHabitView: View {
                 )
             }
             .padding(.top, 0)
-            .navigationTitle(habit.isMarkedForDeletion ? "New Habit" : "")
+            .navigationTitle(habit.isMarkedForDeletion ? "New Habit" : "Edit Habit")
             .navigationBarTitleDisplayMode(.inline)
             .background(Color(hex: "#1C1C1E"))
             .toolbar {

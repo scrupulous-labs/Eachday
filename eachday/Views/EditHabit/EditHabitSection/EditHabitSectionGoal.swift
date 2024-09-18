@@ -7,69 +7,74 @@ struct EditHabitSectionGoal: View {
     var onChangeFrequency: () -> Void
     var onChangeReminders: () -> Void
     var onChangeGroup: () -> Void
+    
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         Section {
-            HStack {
-                Text("Frequency")
-                    .font(Font.subheadline.weight(.regular))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                HStack {
-                    Text(habit.frequency.uiText())
-                        .font(Font.subheadline.weight(.regular))
-                }
-                Image(systemName: "chevron.right")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 12, height: 12)
-                    .foregroundColor(Color(hex: "#9CA3AF"))
-                    .padding(.trailing, -2)
-            }
-            .onTapGesture {
+            Button {
                 focusedField = nil
                 onChangeFrequency()
-            }
-            
-//            HStack {
-//                Text("Reminders")
-//                    .font(Font.subheadline.weight(.regular))
-//                    .frame(maxWidth: .infinity, alignment: .leading)
-//                HStack {
-//                    Text("2")
-//                        .font(Font.subheadline.weight(.regular))
-//                }
-//                Image(systemName: "chevron.right")
-//                    .resizable()
-//                    .scaledToFit()
-//                    .frame(width: 12, height: 12)
-//                    .foregroundColor(Color(hex: "#9CA3AF"))
-//                    .padding(.trailing, -2)
-//            }
-//            .onTapGesture {
-//                focusedField = nil
-//                onChangeReminders()
-//            }
-            
-            HStack {
-                Text("Group")
-                    .font(Font.subheadline.weight(.regular))
-                    .frame(maxWidth: .infinity, alignment: .leading)
+            } label: {
                 HStack {
-                    Text(habit.nonDefaultGroup?.name ?? "None" )
+                    Text("Frequency")
                         .font(Font.subheadline.weight(.regular))
+                        .foregroundColor(colorScheme == .light ? .black : .white)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text(habit.frequency.uiText())
+                        .font(Font.subheadline.weight(.regular))
+                        .foregroundColor(colorScheme == .light ? .black : .white)
+                    Image(systemName: "chevron.right")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 12, height: 12)
+                        .foregroundColor(Color(hex: "#9CA3AF"))
+                        .padding(.trailing, -2)
                 }
-                Image(systemName: "chevron.right")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 12, height: 12)
-                    .foregroundColor(Color(hex: "#9CA3AF"))
-                    .padding(.trailing, -2)
             }
-            .onTapGesture {
+            
+            Button { 
+                focusedField = nil
+                onChangeReminders()
+            } label: {
+                HStack {
+                    Text("Reminders")
+                        .font(Font.subheadline.weight(.regular))
+                        .foregroundColor(colorScheme == .light ? .black : .white)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text("2")
+                        .font(Font.subheadline.weight(.regular))
+                        .foregroundColor(colorScheme == .light ? .black : .white)
+                    Image(systemName: "chevron.right")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 12, height: 12)
+                        .foregroundColor(Color(hex: "#9CA3AF"))
+                        .padding(.trailing, -2)
+                }
+            }
+            
+            Button {
                 focusedField = nil
                 onChangeGroup()
+            } label: {
+                let text = habit.habitGroupItems.isEmpty ? "None" : "\(habit.habitGroupItems.count)"
+                HStack {
+                    Text("Groups")
+                        .font(Font.subheadline.weight(.regular))
+                        .foregroundColor(colorScheme == .light ? .black : .white)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text(text)
+                        .font(Font.subheadline.weight(.regular))
+                        .foregroundColor(colorScheme == .light ? .black : .white)
+                    Image(systemName: "chevron.right")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 12, height: 12)
+                        .foregroundColor(Color(hex: "#9CA3AF"))
+                        .padding(.trailing, -2)
+                }
             }
-            
         } header: {
             Text("YOUR GOAL").padding(.leading, -8)
         } footer: {

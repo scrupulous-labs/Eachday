@@ -45,12 +45,6 @@ class HabitModel: Model<HabitRecord>, Habit {
     //
     // MARK - FOR UI
     //
-    var nonDefaultGroup: HabitGroup? {
-        habitGroupItems
-            .filter { $0.habitGroup != nil && !$0.habitGroup!.isDefault }
-            .first?.habitGroup
-    }
-    
     func belongsToGroup(group: HabitGroupModel) -> Bool {
         return habitGroupItems.contains { $0.groupId == group.id }
     }
@@ -65,13 +59,16 @@ class HabitModel: Model<HabitRecord>, Habit {
     func addToGroup(group: HabitGroupModel) -> HabitGroupItemModel {
         let lastItem = group.habitGroupItemsSorted.last
         let sortOrder = lastItem == nil ? SortOrder.new() : lastItem!.sortOrder.next()
-        habitGroupItems
-            .filter { $0.habitGroup != nil && !$0.habitGroup!.isDefault }
-            .forEach { $0.markForDeletion() }
         return HabitGroupItemModel(
             modelGraph, habitId: id,
             groupId: group.id, sortOrder: sortOrder
         )
+    }
+    
+    func removeFromGroup(group: HabitGroupModel) {
+        habitGroupItems
+            .filter { $0.groupId == group.id}
+            .forEach { $0.markForDeletion() }
     }
     
     func isCompleted(day: Day) -> Bool {

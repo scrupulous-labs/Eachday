@@ -1,7 +1,7 @@
 import Foundation
 
 enum AppViewSheet: Identifiable {
-    case settingsSheet
+    case profileSheet
     case editHabitOrderSheet
     case editHabitSheet(HabitModel)
     case editHabitHistorySheet(HabitModel)
@@ -9,8 +9,8 @@ enum AppViewSheet: Identifiable {
     
     var id: String {
         switch self {
-        case .settingsSheet:
-            return "settingsSheet"
+        case .profileSheet:
+            return "profileSheet"
         case .editHabitOrderSheet:
             return "editHabitOrderSheet"
         case .editHabitSheet(let habit):

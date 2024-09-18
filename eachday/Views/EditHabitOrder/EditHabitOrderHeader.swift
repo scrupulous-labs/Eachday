@@ -9,11 +9,11 @@ struct EditHabitOrderHeader: View {
     
     var body: some View {
         HStack {
-            HabitGroupBar(
-                leadingGap: 20, trailingGap: 20,
-                activeGroup: activeGroup, onTapGroup: onSelectGroup
-            )
-            .frame(maxWidth: .infinity)
+//            HabitGroupBar(
+//                leadingGap: 20, trailingGap: 20,
+//                activeGroup: activeGroup, onTapGroup: onSelectGroup
+//            )
+//            .frame(maxWidth: .infinity)
             
             Divider().padding(.leading, -8)
 

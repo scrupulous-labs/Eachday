@@ -1,15 +1,21 @@
 import SwiftUI
 
-struct SettingsView: View {
+struct ProfileView: View {
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         NavigationStack {
-            ScrollView {            }
-            .navigationTitle("Settings")
+            List {
+                ProfileApp()
+                ProfileSettings()
+                ProfileGeneral()
+            }
+            .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") {
-                        
+                        dismiss()
                     }
                 }
             }

@@ -22,10 +22,12 @@ struct HabitDetailsCard: View {
             }
             .padding(.all, 16)
             
-            if !habit.habitTasksSorted.isEmpty {
+            let tasks = habit.habitTasksSorted
+            let showTasks = !tasks.isEmpty && tasks[0].description.trimmingCharacters(in: .whitespaces) != ""
+            let completedTasks = habit.repetitionCompletedTasks(day: Day.today())
+            if showTasks {
                 VStack(spacing: 10) {
-                    let completedTasks = habit.repetitionCompletedTasks(day: Day.today())
-                    ForEach(habit.habitTasksSorted, id: \.id) { task in
+                    ForEach(tasks, id: \.id) { task in
                         let isTaskCompleted = completedTasks.contains { $0.id == task.id }
                         HStack(alignment: .center, spacing: 4) {
                             Image(systemName: isTaskCompleted ? "checkmark" : "circle")
