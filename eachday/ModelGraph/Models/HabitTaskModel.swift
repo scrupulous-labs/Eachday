@@ -8,8 +8,12 @@ class HabitTaskModel: Model<HabitTaskRecord>, HabitTask {
     var sortOrder: SortOrder
     var habit: HabitModel? = nil
     var completions: [TaskCompletionModel] = []
+    
+    var completionsUI: [TaskCompletionModel] {
+        completions.filter { $0.showInUI }
+    }
     var completionsByDay: [Day: [TaskCompletionModel]] {
-        completions
+        completionsUI
             .filter { $0.showInUI }
             .reduce(into: [Day: [TaskCompletionModel]]()) { res, completion in
                 res[completion.day] = (res[completion.day] ?? []) + [completion]
@@ -40,7 +44,7 @@ class HabitTaskModel: Model<HabitTaskRecord>, HabitTask {
     override var isModified: Bool { record != nil && !equals(record!) }
     override var isValid: Bool {
         let isValid = validate()
-        let isSingleTask = habit != nil && habit!.habitTasksSorted.count == 1
+        let isSingleTask = habit != nil && habit!.habitTasksUI.count == 1
         return isValid || isSingleTask
     }
 

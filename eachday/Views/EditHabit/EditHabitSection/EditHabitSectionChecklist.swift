@@ -11,7 +11,7 @@ struct EditHabitSectionChecklist: View {
     
     var body: some View {
         Section {
-            ForEach(habit.habitTasksSorted.filter { $0.showInUI }, id: \.id) { task in
+            ForEach(habit.habitTasksUI, id: \.id) { task in
                 @Bindable var task = task
                 
                 HStack {
@@ -20,11 +20,11 @@ struct EditHabitSectionChecklist: View {
                         .frame(width: 22, height: 22)
                         .aspectRatio(contentMode: .fit)
                         .symbolRenderingMode(.monochrome)
-                        .foregroundStyle(habit.habitTasksSorted.count > 1 ? .red : .gray)
+                        .foregroundStyle(habit.habitTasksUI.count > 1 ? .red : .gray)
                         .frame(alignment: .leading)
                         .padding(.leading, 2)
                         .onTapGesture {
-                            if habit.habitTasksSorted.count > 1 {
+                            if habit.habitTasksUI.count > 1 {
                                 task.markForDeletion()
                                 onFieldChange()
                             }

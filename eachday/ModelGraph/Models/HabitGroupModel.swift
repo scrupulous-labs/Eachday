@@ -6,6 +6,10 @@ class HabitGroupModel: Model<HabitGroupRecord>, HabitGroup {
     var name: String
     var sortOrder: SortOrder
     var habitGroupItems: [HabitGroupItemModel] = []
+    
+    var habitGroupItemsUI: [HabitGroupItemModel] {
+        habitGroupItems.filter { $0.showInUI }
+    }
 
     init(_ modelGraph: ModelGraph, fromRecord: HabitGroupRecord) {
         self.id = fromRecord.id

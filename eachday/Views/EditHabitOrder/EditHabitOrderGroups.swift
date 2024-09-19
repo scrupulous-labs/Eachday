@@ -6,7 +6,7 @@ struct EditHabitOrderGroups: View {
     
     var body: some View {
         Section {
-            ForEach(modelGraph.habitGroupsSorted, id: \.id) { group in
+            ForEach(modelGraph.habitGroupsUI, id: \.id) { group in
                 HStack {
                     Text(group.name)
                         .foregroundColor(colorScheme == .light ? .black : .white)
@@ -29,7 +29,7 @@ struct EditHabitOrderGroups: View {
     }
     
     func moveGroup(offsets: IndexSet, to: Int) {
-        var copy = modelGraph.habitGroupsSorted
+        var copy = modelGraph.habitGroupsUI
         let count = copy.count
         let from = Array(offsets).first
         

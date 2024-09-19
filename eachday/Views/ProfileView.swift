@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @Bindable var ui: ProfileViewModel = ProfileViewModel()
+    @Bindable var ui: ProfileViewModel = ProfileViewModel.instance
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -38,7 +38,14 @@ struct ProfileView: View {
 
 @Observable
 class ProfileViewModel {
+    static var instance: ProfileViewModel = ProfileViewModel()
+    
     var navigationPath: NavigationPath = NavigationPath()
+    
+    func reset() {
+        navigationPath = NavigationPath()
+        EditHabitOrderViewModel.instance.reset()
+    }
     
     func openEditHabitOrder() {
         navigationPath.append(ProfileViewScreen.editHabitOrder)

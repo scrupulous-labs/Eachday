@@ -6,7 +6,7 @@ struct EditHabitOrderHabits: View {
     
     var body: some View {
         Section {
-            ForEach(modelGraph.habitsSorted, id: \.id) { habit in
+            ForEach(modelGraph.habitsUI, id: \.id) { habit in
                 HStack {
                     Text(habit.name)
                         .foregroundColor(colorScheme == .light ? .black : .white)
@@ -23,13 +23,14 @@ struct EditHabitOrderHabits: View {
                         .frame(alignment: .trailing)
                         .padding(.trailing, 2)
                 }
+                
             }
             .onMove { offsets, to in moveHabit(offsets: offsets, to: to) }
         }
     }
     
     func moveHabit(offsets: IndexSet, to: Int) {
-        var copy = modelGraph.habitsSorted
+        var copy = modelGraph.habitsUI
         let count = copy.count
         let from = Array(offsets).first
         

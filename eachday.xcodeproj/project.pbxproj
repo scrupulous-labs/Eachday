@@ -74,6 +74,9 @@
 		B3D3C8872C9ACC8C005D28E1 /* ProfileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8862C9ACC8C005D28E1 /* ProfileUtils.swift */; };
 		B3D3C8892C9AF6D8005D28E1 /* EditHabitOrderHabits.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8882C9AF6D8005D28E1 /* EditHabitOrderHabits.swift */; };
 		B3D3C88B2C9AF6EA005D28E1 /* EditHabitOrderGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C88A2C9AF6EA005D28E1 /* EditHabitOrderGroups.swift */; };
+		B3D3C88D2C9B2E24005D28E1 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C88C2C9B2E24005D28E1 /* Settings.swift */; };
+		B3D3C88F2C9C6C04005D28E1 /* SettingsRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C88E2C9C6C04005D28E1 /* SettingsRecord.swift */; };
+		B3D3C8912C9C79ED005D28E1 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8902C9C79ED005D28E1 /* SettingsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +146,9 @@
 		B3D3C8862C9ACC8C005D28E1 /* ProfileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUtils.swift; sourceTree = "<group>"; };
 		B3D3C8882C9AF6D8005D28E1 /* EditHabitOrderHabits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitOrderHabits.swift; sourceTree = "<group>"; };
 		B3D3C88A2C9AF6EA005D28E1 /* EditHabitOrderGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitOrderGroups.swift; sourceTree = "<group>"; };
+		B3D3C88C2C9B2E24005D28E1 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		B3D3C88E2C9C6C04005D28E1 /* SettingsRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRecord.swift; sourceTree = "<group>"; };
+		B3D3C8902C9C79ED005D28E1 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +220,7 @@
 				B3D3C7EE2C9720A4005D28E1 /* HabitGroupModel.swift */,
 				B3D3C7ED2C9720A4005D28E1 /* HabitGroupItemModel.swift */,
 				B3D3C7F22C9720A4005D28E1 /* TaskCompletionModel.swift */,
+				B3D3C8902C9C79ED005D28E1 /* SettingsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -226,6 +233,7 @@
 				B3D3C7F52C9720A4005D28E1 /* HabitGroup.swift */,
 				B3D3C7F62C9720A4005D28E1 /* HabitGroupItem.swift */,
 				B3D3C7F82C9720A4005D28E1 /* TaskCompletion.swift */,
+				B3D3C88C2C9B2E24005D28E1 /* Settings.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -238,6 +246,7 @@
 				B3D3C7FB2C9720A4005D28E1 /* HabitGroupRecord.swift */,
 				B3D3C7FA2C9720A4005D28E1 /* HabitGroupItemRecord.swift */,
 				B3D3C7FE2C9720A4005D28E1 /* TaskCompletionRecord.swift */,
+				B3D3C88E2C9C6C04005D28E1 /* SettingsRecord.swift */,
 			);
 			path = Records;
 			sourceTree = "<group>";
@@ -492,6 +501,7 @@
 				B3D3C85D2C9720AA005D28E1 /* EditHabitSetReminders.swift in Sources */,
 				B3D3C8102C9720A4005D28E1 /* HabitGroup.swift in Sources */,
 				B3D3C8502C9720AA005D28E1 /* AppHabitCardCalendar.swift in Sources */,
+				B3D3C8912C9C79ED005D28E1 /* SettingsModel.swift in Sources */,
 				B3D3C8672C9720AA005D28E1 /* HabitDetailsCard.swift in Sources */,
 				B3D3C8562C9720AA005D28E1 /* EditHabitSectionChecklist.swift in Sources */,
 				B3D3C8842C9A9DED005D28E1 /* ProfileSectionApp.swift in Sources */,
@@ -510,6 +520,7 @@
 				B3D3C80A2C9720A4005D28E1 /* HabitGroupModel.swift in Sources */,
 				B3D3C80E2C9720A4005D28E1 /* TaskCompletionModel.swift in Sources */,
 				B3D3C86A2C9720AA005D28E1 /* HabitDetailsUtils.swift in Sources */,
+				B3D3C88F2C9C6C04005D28E1 /* SettingsRecord.swift in Sources */,
 				B3D3C8712C9720AA005D28E1 /* EditHabitGroupView.swift in Sources */,
 				B3D3C86C2C9720AA005D28E1 /* HabitGroupBar.swift in Sources */,
 				B3D3C8552C9720AA005D28E1 /* AppUtils.swift in Sources */,
@@ -526,6 +537,7 @@
 				B3D3C8692C9720AA005D28E1 /* HabitDetailsStreaks.swift in Sources */,
 				B3D3C81C2C9720A4005D28E1 /* FP.swift in Sources */,
 				B3D3C85E2C9720AA005D28E1 /* EditHabitUtils.swift in Sources */,
+				B3D3C88D2C9B2E24005D28E1 /* Settings.swift in Sources */,
 				B3D3C81D2C9720A4005D28E1 /* Frequency.swift in Sources */,
 				B3D3C81B2C9720A4005D28E1 /* Customization.swift in Sources */,
 				B3D3C8542C9720AA005D28E1 /* AppHeader.swift in Sources */,

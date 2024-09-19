@@ -46,9 +46,14 @@ extension Database {
                 t.uniqueKey(["habitId", "groupId"], onConflict: .replace)
             }
             
-            let groups = [ "Morning", "Evening", "Fitness", "Work", "Money"]
+            try db.create(table: "settings") { t in
+                t.column("id", .integer).primaryKey(onConflict: .replace).check { $0 == 1 }
+                t.column("savedTheme", .integer)
+                t.column("savedStartOfWeek", .integer)
+            }
+            
             var sortOrder = SortOrder.new()
-            for group in groups {
+            for group in [ "Morning", "Evening", "Fitness", "Work", "Money"] {
                 try db.execute(
                     sql: "INSERT INTO habitGroup (id, name, sortOrder) VALUES (?, ?, ?)",
                     arguments: [UUID().uuidString.lowercased(), group, sortOrder.rank]

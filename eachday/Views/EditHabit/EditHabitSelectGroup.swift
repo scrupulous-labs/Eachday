@@ -8,7 +8,7 @@ struct EditHabitSelectGroup: View {
     var body: some View {
         List {
             Section {
-                ForEach(modelGraph.habitGroupsSorted, id: \.id) { group in
+                ForEach(modelGraph.habitGroupsUI, id: \.id) { group in
                     let habitInGroup = habit.belongsToGroup(group: group)
                     let iconName: String = habitInGroup ? "checkmark.circle.fill" : "circle"
                     let iconColor: Color = habitInGroup ? .green : .gray

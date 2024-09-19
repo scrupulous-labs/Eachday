@@ -129,7 +129,7 @@ class EditHabitViewModel {
     }
     
     func openNewGroupSheet(_ modelGraph: ModelGraph) {
-        let lastGroup = modelGraph.habitGroupsSorted.first
+        let lastGroup = modelGraph.habitGroupsUI.first
         let sortOrder = lastGroup?.sortOrder.next() ?? SortOrder.new()
         let groupToEdit = HabitGroupModel(modelGraph, sortOrder: sortOrder, markForDeletion: true)
         

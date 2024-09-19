@@ -22,7 +22,7 @@ struct HabitDetailsCard: View {
             }
             .padding(.all, 16)
             
-            let tasks = habit.habitTasksSorted
+            let tasks = habit.habitTasksUI
             let showTasks = !tasks.isEmpty && tasks[0].description.trimmingCharacters(in: .whitespaces) != ""
             let completedTasks = habit.repetitionCompletedTasks(day: Day.today())
             if showTasks {

@@ -15,12 +15,16 @@ class ModelGraph {
     var habitGroups: [HabitGroupModel] = []
     var habitGroupItems: [HabitGroupItemModel] = []
     var completions: [TaskCompletionModel] = []
+    var settings: SettingsModel? = nil
     
-    var habitsSorted: [HabitModel] {
+    var habitsUI: [HabitModel] {
         habits.filter { $0.showInUI }.sorted { $0.sortOrder < $1.sortOrder }
     }
-    var habitGroupsSorted: [HabitGroupModel] {
+    var habitGroupsUI: [HabitGroupModel] {
         habitGroups.filter { $0.showInUI }.sorted { $0.sortOrder < $1.sortOrder }
+    }
+    var settingsUI: SettingsModel {
+        settings ?? SettingsModel(self)
     }
 
     init(database: Database) {
@@ -32,8 +36,9 @@ class ModelGraph {
             _ = try HabitRecord.fetchAll(db).map { HabitModel(self, fromRecord: $0) }
             _ = try HabitTaskRecord.fetchAll(db).map { HabitTaskModel(self, fromRecord: $0) }
             _ = try HabitGroupRecord.fetchAll(db).map { HabitGroupModel(self, fromRecord: $0) }
-            _ = try HabitGroupItemRecord.fetchAll(db).map { HabitGroupItemModel(self, fromRecord: $0)}
+            _ = try HabitGroupItemRecord.fetchAll(db).map { HabitGroupItemModel(self, fromRecord: $0) }
             _ = try TaskCompletionRecord.fetchAll(db).map { TaskCompletionModel(self, fromRecord: $0) }
+            _ = try SettingsRecord.fetchAll(db).map { SettingsModel(self, fromRecord: $0) }
         }
     }
 }

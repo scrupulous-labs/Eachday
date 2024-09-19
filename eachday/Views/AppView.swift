@@ -28,7 +28,7 @@ struct AppView: View {
                         .padding(.vertical, 14)
                         
                         ForEach(
-                            modelGraph.habits.filter { habit in
+                            modelGraph.habitsUI.filter { habit in
                                 let groupIds = habit.habitGroupItems.map { $0.groupId }
                                 let inActiveGroups = groupIds.contains { ui.activeGroupIds.contains($0) }
                                 return habit.showInUI && (ui.activeGroupIds.isEmpty || inActiveGroups)
@@ -55,7 +55,6 @@ struct AppView: View {
                         .fontWeight(.semibold)
                 }
                 
-                
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack(spacing: 16) {
                         Button { ui.openNewHabitSheet(modelGraph) } label: {
@@ -80,6 +79,7 @@ struct AppView: View {
             .sheet(item: $ui.activeSheet, onDismiss: {
                 modelGraph.habits.forEach { $0.graphResetToDb() }
                 modelGraph.habitGroups.forEach { $0.graphResetToDb() }
+                ProfileViewModel.instance.reset()
             }) { item in
                 switch item {
                 case AppViewSheet.profileSheet:

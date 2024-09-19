@@ -12,11 +12,15 @@ class HabitModel: Model<HabitRecord>, Habit {
     var sortOrder: SortOrder
     var habitTasks: [HabitTaskModel] = []
     var habitGroupItems: [HabitGroupItemModel] = []
-    var habitTasksSorted: [HabitTaskModel] {
+    
+    var habitTasksUI: [HabitTaskModel] {
         habitTasks.sorted { $0.sortOrder < $1.sortOrder }.filter { $0.showInUI }
     }
+    var habitGroupItemsUI: [HabitGroupItemModel] {
+        habitGroupItems.filter { $0.showInUI }
+    }
     var completionsByDay: [Day: [TaskCompletionModel]] {
-        habitTasksSorted.reduce(into: [Day: [TaskCompletionModel]]()) { res, habitTask in
+        habitTasksUI.reduce(into: [Day: [TaskCompletionModel]]()) { res, habitTask in
             habitTask.completionsByDay.forEach {(day, completions) in
                 res[day] = (res[day] ?? []) + completions
             }
@@ -104,22 +108,22 @@ class HabitModel: Model<HabitRecord>, Habit {
     }
     
     func repetitionsCompleted(day: Day) -> Int {
-        let totalTasks = habitTasksSorted.count
+        let totalTasks = habitTasksUI.count
         let totalCompletions = (completionsByDay[day] ?? []).count
         return totalCompletions / totalTasks
     }
     
     func repetitionCompletedTasks(day: Day) -> [HabitTaskModel] {
-        let totalTasks = habitTasksSorted.count
+        let totalTasks = habitTasksUI.count
         let totalCompletions = (completionsByDay[day] ?? []).count
-        return Array(habitTasksSorted[..<(totalCompletions % totalTasks)])
+        return Array(habitTasksUI[..<(totalCompletions % totalTasks)])
     }
     
     func nextTaskToComplete(day: Day) -> HabitTaskModel? {
-        let totalTasks = habitTasksSorted.count
+        let totalTasks = habitTasksUI.count
         let totalCompletions = (completionsByDay[day] ?? []).count
         let nextTaskIndex = totalCompletions % totalTasks
-        return !isCompleted(day: day) ? habitTasksSorted[nextTaskIndex] : nil
+        return !isCompleted(day: day) ? habitTasksUI[nextTaskIndex] : nil
     }
 
     func markNextTask(day: Day) {
@@ -150,7 +154,7 @@ class HabitModel: Model<HabitRecord>, Habit {
     
     @discardableResult
     func addEmptyTask() -> HabitTaskModel {
-        let lastTask = habitTasksSorted.last
+        let lastTask = habitTasksUI.last
         let sortOrder = lastTask == nil ? SortOrder.new() : lastTask!.sortOrder.next()
         let task = HabitTaskModel(
             modelGraph, habitId: id,
@@ -171,7 +175,7 @@ class HabitModel: Model<HabitRecord>, Habit {
     }
 
     func moveTask(offsets: IndexSet, to: Int) {
-        var copy = self.habitTasksSorted
+        var copy = self.habitTasksUI
         let count = copy.count
         let from = Array(offsets).first
         
