@@ -10,12 +10,12 @@ class ModelGraph {
     }
     
     let database: Database
-    var habits: [HabitModel] = []
-    var habitTasks: [HabitTaskModel] = []
-    var habitGroups: [HabitGroupModel] = []
-    var habitGroupItems: [HabitGroupItemModel] = []
-    var completions: [TaskCompletionModel] = []
-    var settings: SettingsModel? = nil
+    var habits: [HabitModel]
+    var habitTasks: [HabitTaskModel]
+    var habitGroups: [HabitGroupModel]
+    var habitGroupItems: [HabitGroupItemModel]
+    var completions: [TaskCompletionModel]
+    var settings: SettingsModel?
     
     var habitsUI: [HabitModel] {
         habits.filter { $0.showInUI }.sorted { $0.sortOrder < $1.sortOrder }
@@ -29,6 +29,12 @@ class ModelGraph {
 
     init(database: Database) {
         self.database = database
+        self.habits = []
+        self.habitTasks = []
+        self.habitGroups = []
+        self.habitGroupItems = []
+        self.completions = []
+        self.settings = nil
     }
     
     func loadFromDb() throws {

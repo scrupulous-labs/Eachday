@@ -3,6 +3,7 @@ import SwiftUI
 struct ProfileView: View {
     @Bindable var ui: ProfileViewModel = ProfileViewModel.instance
     @Environment(\.dismiss) var dismiss
+    @Environment(ModelGraph.self) var modelGraph
     
     var body: some View {
         NavigationStack(path: $ui.navigationPath) {
@@ -14,12 +15,13 @@ struct ProfileView: View {
                 ProfileSectionSettings()
                 ProfileSectionGeneral()
             }
+            .preferredColorScheme(modelGraph.settingsUI.prefferedColorScheme)
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") {
-                        dismiss()
+                    Button { dismiss() } label: {
+                        Text("Done")
                     }
                 }
             }

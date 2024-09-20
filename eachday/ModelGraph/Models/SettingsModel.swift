@@ -13,6 +13,13 @@ class SettingsModel: Model<SettingsRecord>, Settings {
         get { savedStartOfWeek ?? .sunday}
         set { savedStartOfWeek = newValue }
     }
+    var prefferedColorScheme: ColorScheme? {
+        switch theme {
+        case Theme.light: ColorScheme.light
+        case Theme.dark: ColorScheme.dark
+        case Theme.system: nil
+        }
+    }
     
     init(_ modelGraph: ModelGraph, fromRecord: SettingsRecord) {
         self.savedTheme = fromRecord.savedTheme

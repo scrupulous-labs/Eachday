@@ -2,7 +2,7 @@ import Foundation
 import GRDB
 
 class SettingsRecord: Record, Settings {
-    var id: Int = 1
+    var id: Int
     var savedTheme: Theme?
     var savedStartOfWeek: DayOfWeek?
     
@@ -14,14 +14,16 @@ class SettingsRecord: Record, Settings {
         case savedStartOfWeek
     }
     
-    init(fromModel: Settings) {
+    init(fromModel: SettingsModel) {
+        self.id = 1
         self.savedTheme = fromModel.savedTheme
         self.savedStartOfWeek = fromModel.savedStartOfWeek
         super.init()
     }
     
     required init(row: Row) throws {
-        self.savedTheme = row[Columns.savedTheme] != nil 
+        self.id = row[Columns.id]
+        self.savedTheme = row[Columns.savedTheme] != nil
             ? Theme(rawValue: row[Columns.savedTheme]) 
             : nil
         self.savedStartOfWeek = row[Columns.savedStartOfWeek] != nil
@@ -31,7 +33,7 @@ class SettingsRecord: Record, Settings {
     }
     
     override func encode(to container: inout PersistenceContainer) throws {
-        container[Columns.id] = 1
+        container[Columns.id] = id
         container[Columns.savedTheme] = savedTheme?.rawValue
         container[Columns.savedStartOfWeek] = savedStartOfWeek?.rawValue
     }

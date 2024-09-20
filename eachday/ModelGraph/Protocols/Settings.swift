@@ -22,7 +22,7 @@ extension Settings {
 }
 
 enum Theme: Int {
-    case light = 0
-    case dark = 1
-    case system = 2
+    case light = 1
+    case dark = 2
+    case system = 3
 }

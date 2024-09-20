@@ -6,7 +6,9 @@ struct eachdayApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AppView().environment(appDelegate.modelGraph)
+            AppView()
+                .environment(appDelegate.modelGraph)
+                .preferredColorScheme(appDelegate.modelGraph.settingsUI.prefferedColorScheme)
         }
     }
 }
