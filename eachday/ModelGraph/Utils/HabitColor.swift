@@ -1,11 +1,6 @@
 import Foundation
 import SwiftUI
 
-enum HabitIcon: String {
-    case circle = "circle"
-    case square = "square"
-}
-
 enum HabitColor: String, CaseIterable {
     case blue = "blue" // a
     case indigo = "indigo"

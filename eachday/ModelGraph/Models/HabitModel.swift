@@ -41,7 +41,7 @@ class HabitModel: Model<HabitRecord>, Habit {
     init(_ modelGraph: ModelGraph, markForDeletion: Bool = false) {
         self.id = UUID()
         self.name = ""
-        self.icon = HabitIcon.circle
+        self.icon = HabitIcon.briefcase
         self.color = HabitColor.blue
         self.archived = false
         self.frequency = Frequency.daily(times: 1)

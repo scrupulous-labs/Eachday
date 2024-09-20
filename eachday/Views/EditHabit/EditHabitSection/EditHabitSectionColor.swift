@@ -2,10 +2,11 @@ import SwiftUI
 
 struct EditHabitSectionColor: View {
     let habit: Habit
+    @Environment(\.colorScheme) var colorScheme
     
     let ringColor = Color(hex: "#a3a3a3")
-    let ringWidth = 4.0
-    let ringRadiusMultiplier = 0.58
+    let ringWidth = 2.0
+    let ringRadiusMultiplier = 0.56
     let colorRadiusMultiplier = 0.42
 
     var body: some View {
@@ -17,12 +18,10 @@ struct EditHabitSectionColor: View {
                 ForEach(
                     [ HabitColor.blue,
                       HabitColor.red,
-                      HabitColor.fuchsia,
                       HabitColor.rose,
                       HabitColor.orange,
                       HabitColor.emerald,
                       HabitColor.pink,
-                      HabitColor.purple
                     ],
                     id: \.self
                 ) { color in
@@ -54,13 +53,14 @@ struct EditHabitSectionColor: View {
                                         clockwise: false
                                     )
                                 }
-                                .stroke(ringColor, lineWidth: ringWidth)
+                                .stroke(
+                                    colorScheme == .light ? .black : .white,
+                                    lineWidth: ringWidth
+                                )
                             }
                         }
                     }
-                    .onTapGesture {
-                        habit.color = color
-                    }
+                    .onTapGesture { habit.color = color }
                 }
             }
             .padding(.vertical, 8)

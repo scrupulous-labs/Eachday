@@ -36,10 +36,10 @@ class HabitRecord: Record, Habit {
     required init(row: Row) throws {
         self.id = UUID(uuidString: row[Columns.id])!
         self.name = row[Columns.name]
-        self.icon = HabitIcon(rawValue: row[Columns.icon])!
-        self.color = HabitColor(rawValue: row[Columns.color])!
+        self.icon = HabitIcon(rawValue: row[Columns.icon]) ?? HabitIcon.briefcase
+        self.color = HabitColor(rawValue: row[Columns.color]) ?? HabitColor.blue
         self.archived = row[Columns.archived]
-        self.frequency = Frequency.fromJson(json: row[Columns.frequency])!
+        self.frequency = Frequency.fromJson(json: row[Columns.frequency]) ?? Frequency.daily(times: 1)
         self.sortOrder = SortOrder(rank: row[Columns.sortOrder])
         try super.init(row: row)
     }

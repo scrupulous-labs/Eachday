@@ -25,11 +25,12 @@ struct AppViewHabitCardHeader: View {
                             .size(width: headerIconHeight, height: headerIconHeight)
                             .fill(habit.color.shade1)
                     }
-                Image(systemName: "figure.walk")
+                Image(systemName: habit.icon.rawValue)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 20, height: 20)
+                    .frame(width: 22, height: 22)
                     .foregroundColor(iconForegroundColor)
+                    .fontWeight(.light)
             }
             .frame(width: headerIconHeight, height: headerIconHeight)
             
@@ -41,14 +42,6 @@ struct AppViewHabitCardHeader: View {
                     .truncationMode(.tail)
                 
                 let nextTask = habit.nextTaskToComplete(day: today)
-                if !habit.isCompleted(day: today) && !habit.habitTasks.isEmpty && nextTask != nil {
-                    Text("\(nextTask!.description)")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(Font.caption.weight(.regular))
-                        .lineLimit(1)
-                        .truncationMode(.tail)
-                        .offset(CGSize(width: 0, height: -2))
-                }
                 if habit.isCompleted(day: today) {
                     Text("✓ Done for today")
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -56,6 +49,13 @@ struct AppViewHabitCardHeader: View {
                         .lineLimit(1)
                         .truncationMode(.tail)
                         .foregroundColor(.green)
+                        .offset(CGSize(width: 0, height: -2))
+                } else if nextTask != nil && nextTask!.description.trimmingCharacters(in: .whitespaces) != "" {
+                    Text("\(nextTask!.description)")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(Font.caption.weight(.regular))
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                         .offset(CGSize(width: 0, height: -2))
                 }
             }

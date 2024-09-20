@@ -34,6 +34,10 @@ struct EditHabitView: View {
                 EditHabitSectionColor(
                     habit: habit
                 )
+                EditHabitSectionIcon(
+                    habit: habit,
+                    onMoreIcons: ui.openSelectIconScreen
+                )
             }
             .padding(.top, 0)
             .navigationTitle(habit.isMarkedForDeletion ? "New Habit" : "Edit Habit")
@@ -73,7 +77,7 @@ struct EditHabitView: View {
                         onNewGroup: { ui.openNewGroupSheet(modelGraph) }
                     )
                 case EditHabitScreen.selectIconScreen:
-                    Text("")
+                    EditHabitSelectIcon(habit: habit)
                 }
             }
             .confirmationDialog(
