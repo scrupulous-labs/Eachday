@@ -254,9 +254,9 @@
 		B3D3C8062C9720A4005D28E1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B3D3C8032C9720A4005D28E1 /* FP.swift */,
 				B3D3C8002C9720A4005D28E1 /* Calendar.swift */,
 				B3D3C8022C9720A4005D28E1 /* Customization.swift */,
-				B3D3C8032C9720A4005D28E1 /* FP.swift */,
 				B3D3C8042C9720A4005D28E1 /* Frequency.swift */,
 				B3D3C8052C9720A4005D28E1 /* SortOrder.swift */,
 			);

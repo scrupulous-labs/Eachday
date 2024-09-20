@@ -11,6 +11,7 @@ struct HabitMonthGrid: View {
     var cellSize = 8.0
     var cellCornerRadius = 2.0
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(ModelGraph.self) private var modelGraph
     
     var body: some View {
         LazyVGrid(
@@ -20,7 +21,8 @@ struct HabitMonthGrid: View {
             ),
             spacing: gridVerticalSpacing
         ) {
-            ForEach(Array(month.daysGrid().enumerated()), id: \.offset) { (_, maybeDay) in
+            let startDay = modelGraph.settingsUI.startOfWeek
+            ForEach(Array(month.daysGrid(startDay: startDay).enumerated()), id: \.offset) { (_, maybeDay) in
                 switch maybeDay {
                 case Maybe.nothing:
                     RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)

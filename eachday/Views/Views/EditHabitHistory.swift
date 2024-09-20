@@ -9,6 +9,7 @@ struct EditHabitHistory: View {
     @State private var calendarViewProxy = CalendarViewProxy()
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(ModelGraph.self) private var modelGraph
     
     let cellPadding = 5.0
     let cellCornerRadius = 5.0
@@ -17,6 +18,11 @@ struct EditHabitHistory: View {
         .prev().prev().prev().prev().prev().prev()
         .prev().prev().prev().prev().prev().prev()
         .startDay().toDate()
+    var customCalendar: Calendar {
+        var cal = Calendar.current
+        cal.firstWeekday = modelGraph.settingsUI.startOfWeek.rawValue
+        return cal
+    }
     
     var body: some View {
         VStack {
@@ -29,6 +35,7 @@ struct EditHabitHistory: View {
             .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
             
             CalendarViewRepresentable(
+                calendar: customCalendar,
                 visibleDateRange: startDate...endDate,
                 monthsLayout: .vertical(
                     options: VerticalMonthsLayoutOptions(

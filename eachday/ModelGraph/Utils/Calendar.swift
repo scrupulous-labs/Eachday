@@ -271,7 +271,7 @@ enum Month: Hashable, Comparable {
         return Day(day: numberOfDays?.count ?? 2, month: self)
     }
     
-    func daysGrid() -> [Maybe<Day>] {
+    func daysGrid(startDay: DayOfWeek) -> [Maybe<Day>] {
         let calendar = Calendar.current
         let (monthInd, year) = toIndex()
         
@@ -282,10 +282,12 @@ enum Month: Hashable, Comparable {
         
         if let startDate = calendar.date(from: startDateComponents) {
             if let range = calendar.range(of: .day, in: .month, for: startDate) {
-                var days: [Maybe<Day>] = Array(
-                    repeating: Maybe.nothing,
-                    count: calendar.component(.weekday, from: startDate) - 1
-                )
+                var emptyCellCount = calendar.component(.weekday, from: startDate) - startDay.rawValue
+                if emptyCellCount < 0 {
+                    emptyCellCount += 7
+                }
+                
+                var days: [Maybe<Day>] = Array(repeating: Maybe.nothing, count: emptyCellCount)
                 for day in range {
                     days.append(Maybe.just(Day(day: day, month: self)))
                 }
