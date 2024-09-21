@@ -63,7 +63,7 @@ struct EditHabitSectionColor: View {
                     .onTapGesture { habit.color = color }
                 }
             }
-            .padding(.vertical, 8)
+            .padding(.vertical, 14)
         }
     }
 }

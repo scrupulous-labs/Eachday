@@ -77,6 +77,7 @@ struct EditHabitSelectIconGrid: View {
     var cellSize = 38.0
     var cellCornerRadius = 6.0
     
+    @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -112,7 +113,10 @@ struct EditHabitSelectIconGrid: View {
                         }
                     }
                     .frame(width: cellSize, height: cellSize)
-                    .onTapGesture { habit.icon = icon }
+                    .onTapGesture {
+                        habit.icon = icon
+                        dismiss()
+                    }
                 }
             }
         }

@@ -44,16 +44,16 @@ class ProfileViewModel {
     
     var navigationPath: NavigationPath = NavigationPath()
     
-    func reset() {
-        navigationPath = NavigationPath()
-        EditHabitOrderViewModel.instance.reset()
-    }
-    
     func openEditHabitOrder() {
         navigationPath.append(ProfileViewScreen.editHabitOrder)
     }
     
     func openArchivedHabits() {
         navigationPath.append(ProfileViewScreen.archivedHabits)
+    }
+    
+    func reset() {
+        navigationPath = NavigationPath()
+        EditHabitOrderViewModel.instance.reset()
     }
 }

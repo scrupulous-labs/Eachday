@@ -47,7 +47,7 @@ extension Database {
             }
             
             try db.create(table: "settings") { t in
-                t.column("id", .integer).primaryKey(onConflict: .replace)
+                t.column("id", .integer).primaryKey(onConflict: .replace).check { $0 == 1 }
                 t.column("savedTheme", .integer)
                 t.column("savedStartOfWeek", .integer)
             }

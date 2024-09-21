@@ -53,7 +53,7 @@ class HabitModel: Model<HabitRecord>, Habit {
     // MARK - FOR UI
     //
     func belongsToGroup(group: HabitGroupModel) -> Bool {
-        return habitGroupItems.contains { $0.groupId == group.id }
+        return habitGroupItemsUI.contains { $0.groupId == group.id }
     }
 
     @discardableResult
@@ -62,8 +62,8 @@ class HabitModel: Model<HabitRecord>, Habit {
     }
     
     func removeFromGroup(group: HabitGroupModel) {
-        habitGroupItems
-            .filter { $0.groupId == group.id}
+        habitGroupItemsUI
+            .filter { $0.groupId == group.id }
             .forEach { $0.markForDeletion() }
     }
     

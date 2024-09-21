@@ -18,7 +18,7 @@ class ModelGraph {
     var settings: SettingsModel?
     
     var habitsUI: [HabitModel] {
-        habits.filter { $0.showInUI }.sorted { $0.sortOrder < $1.sortOrder }
+        habits.filter { $0.showInUI && !$0.archived }.sorted { $0.sortOrder < $1.sortOrder }
     }
     var habitGroupsUI: [HabitGroupModel] {
         habitGroups.filter { $0.showInUI }.sorted { $0.sortOrder < $1.sortOrder }

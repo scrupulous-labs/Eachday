@@ -25,7 +25,8 @@ struct AppView: View {
                             onTapGroup: ui.toggleGroupId,
                             onEditGroup: ui.openEditHabitGroup
                         )
-                        .padding(.vertical, 14)
+                        .padding(.top, 14)
+                        .padding(.bottom, 12)
                         
                         ForEach(
                             modelGraph.habitsUI.filter { habit in
@@ -80,6 +81,7 @@ struct AppView: View {
                 modelGraph.habits.forEach { $0.graphResetToDb() }
                 modelGraph.habitGroups.forEach { $0.graphResetToDb() }
                 ProfileViewModel.instance.reset()
+                EditHabitViewModel.instance.reset()
             }) { item in
                 switch item {
                 case AppViewSheet.profileSheet:

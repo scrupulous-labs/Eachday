@@ -16,7 +16,8 @@ struct EditHabitView: View {
                 EditHabitSectionHabit(
                     habit: habit,
                     focusedField: $focusedField,
-                    onFieldChange: onFieldChange
+                    onFieldChange: onFieldChange,
+                    onIconChange: ui.openSelectIconScreen
                 )
                 EditHabitSectionChecklist(
                     habit: habit,
@@ -33,10 +34,6 @@ struct EditHabitView: View {
                 )
                 EditHabitSectionColor(
                     habit: habit
-                )
-                EditHabitSectionIcon(
-                    habit: habit,
-                    onMoreIcons: ui.openSelectIconScreen
                 )
             }
             .padding(.top, 0)
@@ -73,8 +70,7 @@ struct EditHabitView: View {
                     Text("")
                 case EditHabitScreen.selectGroupScreen:
                     EditHabitSelectGroup(
-                        habit: habit,
-                        onNewGroup: { ui.openNewGroupSheet(modelGraph) }
+                        habit: habit
                     )
                 case EditHabitScreen.selectIconScreen:
                     EditHabitSelectIcon(habit: habit)
@@ -141,5 +137,9 @@ class EditHabitViewModel {
         currentSheetDent = .large
         userAttemptedToDismissSheet = false
         canInteractivelyDismissSheet = true
+    }
+    
+    func reset() {
+        
     }
 }
