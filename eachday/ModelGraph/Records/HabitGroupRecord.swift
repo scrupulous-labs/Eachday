@@ -14,7 +14,7 @@ class HabitGroupRecord: Record, HabitGroup {
         case sortOrder
     }
     
-    init(fromModel: HabitGroup) {
+    init(fromModel: HabitGroupModel) {
         self.id = fromModel.id
         self.name = fromModel.name
         self.sortOrder = fromModel.sortOrder

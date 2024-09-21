@@ -1,36 +1,41 @@
 import Foundation
 import GRDB
 
-class HabitGroupItemRecord: Record, HabitGroupItem {
+class HabitReminderRecord: Record, HabitReminder {
     var id: UUID
     var habitId: UUID
-    var groupId: UUID
+    var dayOfWeek: DayOfWeek
+    var timeOfDay: Int
     
-    override class var databaseTableName: String { "habitGroupItem" }
+    override class var databaseTableName: String { "habitReminder" }
     
     enum Columns: String, ColumnExpression {
         case id
         case habitId
-        case groupId
+        case dayOfWeek
+        case timeOfDay
     }
     
-    init(fromModel: HabitGroupItemModel) {
+    init(fromModel: HabitReminderModel) {
         self.id = fromModel.id
         self.habitId = fromModel.habitId
-        self.groupId = fromModel.groupId
+        self.dayOfWeek = fromModel.dayOfWeek
+        self.timeOfDay = fromModel.timeOfDay
         super.init()
     }
     
     required init(row: Row) throws {
         self.id = UUID(uuidString: row[Columns.id])!
         self.habitId = UUID(uuidString: row[Columns.habitId])!
-        self.groupId = UUID(uuidString: row[Columns.groupId])!
+        self.dayOfWeek = DayOfWeek(rawValue: row[Columns.dayOfWeek])!
+        self.timeOfDay = row[Columns.timeOfDay]
         try super.init(row: row)
     }
     
     override func encode(to container: inout PersistenceContainer) throws {
         container[Columns.id] = id.uuidString.lowercased()
         container[Columns.habitId] = habitId.uuidString.lowercased()
-        container[Columns.groupId] = groupId.uuidString.lowercased()
+        container[Columns.dayOfWeek] = dayOfWeek.rawValue
+        container[Columns.timeOfDay] = timeOfDay
     }
 }

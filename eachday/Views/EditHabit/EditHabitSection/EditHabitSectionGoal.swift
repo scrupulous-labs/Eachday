@@ -1,4 +1,5 @@
 import SwiftUI
+import UserNotifications
 
 struct EditHabitSectionGoal: View {
     @Bindable var habit: HabitModel
@@ -35,7 +36,15 @@ struct EditHabitSectionGoal: View {
             
             Button { 
                 focusedField = nil
-                onChangeReminders()
+                UNUserNotificationCenter.current().requestAuthorization(
+                    options: [.alert, .sound, .badge]
+                ) { success, error in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        onChangeReminders()
+                    }
+                }
             } label: {
                 HStack {
                     Text("Reminders")

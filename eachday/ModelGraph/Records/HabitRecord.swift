@@ -22,7 +22,7 @@ class HabitRecord: Record, Habit {
         case sortOrder
     }
     
-    init(fromModel: Habit) {
+    init(fromModel: HabitModel) {
         self.id = fromModel.id
         self.name = fromModel.name
         self.icon = fromModel.icon

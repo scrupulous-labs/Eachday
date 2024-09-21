@@ -46,6 +46,13 @@ extension Database {
                 t.uniqueKey(["habitId", "groupId"], onConflict: .replace)
             }
             
+            try db.create(table: "habitReminder") { t in
+                t.column("id", .text).primaryKey()
+                t.column("habitId", .text).references("habit", column: "id", onDelete: .cascade).notNull()
+                t.column("dayOfWeek", .integer).notNull()
+                t.column("timeOfDay", .integer).notNull()
+            }
+            
             try db.create(table: "settings") { t in
                 t.column("id", .integer).primaryKey(onConflict: .replace).check { $0 == 1 }
                 t.column("savedTheme", .integer)

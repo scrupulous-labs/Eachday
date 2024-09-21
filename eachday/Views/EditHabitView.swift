@@ -59,7 +59,7 @@ struct EditHabitView: View {
             .navigationDestination(for: EditHabitScreen.self) { destination in
                 switch destination {
                 case EditHabitScreen.setRemindersScreen:
-                    Text("")
+                    EditHabitSetReminders(habit: habit)
                 case EditHabitScreen.selectGroupScreen(let group):
                     EditHabitSelectGroup(
                         habit: habit, group: group,
@@ -82,7 +82,9 @@ struct EditHabitView: View {
                 Button("Keep Editing", role: .cancel) { }
             }
             .onAppear {
-                focusedField = EditHabitFormField.habitName
+                if habit.isMarkedForDeletion {
+                    focusedField = EditHabitFormField.habitName
+                }
             }
         }
     }

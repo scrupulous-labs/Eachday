@@ -12,12 +12,16 @@ class HabitModel: Model<HabitRecord>, Habit {
     var sortOrder: SortOrder
     var habitTasks: [HabitTaskModel] = []
     var habitGroupItems: [HabitGroupItemModel] = []
+    var habitReminders: [HabitReminderModel] = []
     
     var habitTasksUI: [HabitTaskModel] {
         habitTasks.sorted { $0.sortOrder < $1.sortOrder }.filter { $0.showInUI }
     }
     var habitGroupItemsUI: [HabitGroupItemModel] {
         habitGroupItems.filter { $0.showInUI }
+    }
+    var habitRemindersUI: [HabitReminderModel] {
+        habitReminders.filter { $0.showInUI }
     }
     var completionsByDay: [Day: [TaskCompletionModel]] {
         habitTasksUI.reduce(into: [Day: [TaskCompletionModel]]()) { res, habitTask in

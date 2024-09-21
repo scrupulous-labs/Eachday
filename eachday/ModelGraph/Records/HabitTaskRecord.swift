@@ -16,7 +16,7 @@ class HabitTaskRecord: Record, HabitTask {
         case sortOrder
     }
     
-    init(fromModel: HabitTask) {
+    init(fromModel: HabitTaskModel) {
         self.id = fromModel.id
         self.habitId = fromModel.habitId
         self.description = fromModel.description

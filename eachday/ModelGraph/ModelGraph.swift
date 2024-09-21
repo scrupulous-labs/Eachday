@@ -15,6 +15,7 @@ class ModelGraph {
     var habitGroups: [HabitGroupModel]
     var habitGroupItems: [HabitGroupItemModel]
     var completions: [TaskCompletionModel]
+    var habitReminders: [HabitReminderModel]
     var settings: SettingsModel?
     
     var habitsUI: [HabitModel] {
@@ -34,6 +35,7 @@ class ModelGraph {
         self.habitGroups = []
         self.habitGroupItems = []
         self.completions = []
+        self.habitReminders = []
         self.settings = nil
     }
     
@@ -44,6 +46,7 @@ class ModelGraph {
             _ = try HabitGroupRecord.fetchAll(db).map { HabitGroupModel(self, fromRecord: $0) }
             _ = try HabitGroupItemRecord.fetchAll(db).map { HabitGroupItemModel(self, fromRecord: $0) }
             _ = try TaskCompletionRecord.fetchAll(db).map { TaskCompletionModel(self, fromRecord: $0) }
+            _ = try HabitReminderRecord.fetchAll(db).map { HabitReminderModel(self, fromRecord: $0) }
             _ = try SettingsRecord.fetchAll(db).map { SettingsModel(self, fromRecord: $0) }
         }
     }

@@ -15,7 +15,7 @@ class TaskCompletionRecord: Record, TaskCompletion {
         case day
     }
     
-    init(fromModel: TaskCompletion) {
+    init(fromModel: TaskCompletionModel) {
         self.id = fromModel.id
         self.taskId = fromModel.taskId
         self.day = fromModel.day
