@@ -2,29 +2,26 @@ import Foundation
 
 enum EditHabitSheet: Identifiable {
     case selectFrequencySheet
-    case editGroupSheet(HabitGroupModel)
     
     var id: String {
         switch self {
         case .selectFrequencySheet:
             return "selectFrequencySheet"
-        case .editGroupSheet(let group):
-            return "editGroupSheet \(group.id.uuidString)"
         }
     }
 }
 
 enum EditHabitScreen: Hashable {
     case setRemindersScreen
-    case selectGroupScreen
+    case selectGroupScreen(HabitGroupModel)
     case selectIconScreen
     
     static func == (lhs: EditHabitScreen, rhs: EditHabitScreen) -> Bool {
         switch (lhs, rhs) {
         case (.setRemindersScreen, .setRemindersScreen):
             return true
-        case (.selectGroupScreen, .selectGroupScreen):
-            return true
+        case (.selectGroupScreen(let group1), .selectGroupScreen(let group2)):
+            return group1.id == group2.id
         case (.selectIconScreen, .selectIconScreen):
             return true
         default:
@@ -36,8 +33,8 @@ enum EditHabitScreen: Hashable {
         switch self {
         case .setRemindersScreen:
             hasher.combine("setRemindersScreen")
-        case .selectGroupScreen:
-            hasher.combine("selectGroupScreen")
+        case .selectGroupScreen(let group):
+            hasher.combine("selectGroupScreen \(group.id.uuidString)")
         case .selectIconScreen:
             hasher.combine("selectIconScreen")
         }

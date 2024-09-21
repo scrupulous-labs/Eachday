@@ -30,7 +30,7 @@ struct EditHabitView: View {
                     onFieldChange: onFieldChange,
                     onChangeFrequency: ui.openSelectFrequencySheet,
                     onChangeReminders: ui.openSetRemindersScreen,
-                    onChangeGroup: ui.openSelectGroupScreen
+                    onChangeGroup: { ui.openSelectGroupScreen(modelGraph) }
                 )
                 EditHabitSectionColor(
                     habit: habit
@@ -54,23 +54,20 @@ struct EditHabitView: View {
                     EditHabitSelectFrequency(habit: habit)
                         .presentationDetents([.fraction(0.65)])
                         .presentationDragIndicator(.visible)
-                
-                case EditHabitSheet.editGroupSheet(let habitGroup):
-                    EditHabitGroupView(
-                        habitGroup: habitGroup,
-                        canCancel: $ui.canInteractivelyDismissSheet,
-                        attemptedToCancel: $ui.userAttemptedToDismissSheet,
-                        onSave: { }
-                    )
                 }
             }
             .navigationDestination(for: EditHabitScreen.self) { destination in
                 switch destination {
                 case EditHabitScreen.setRemindersScreen:
                     Text("")
-                case EditHabitScreen.selectGroupScreen:
+                case EditHabitScreen.selectGroupScreen(let group):
                     EditHabitSelectGroup(
-                        habit: habit
+                        habit: habit, group: group,
+                        onSaveGroup: {
+                            group.unmarkForDeletion(); group.save()
+                            ui.navigationPath.removeLast()
+                            ui.openSelectGroupScreen(modelGraph)
+                        }
                     )
                 case EditHabitScreen.selectIconScreen:
                     EditHabitSelectIcon(habit: habit)
@@ -106,40 +103,31 @@ struct EditHabitView: View {
 class EditHabitViewModel {
     static var instance: EditHabitViewModel = EditHabitViewModel()
     
-    var navigationPath: NavigationPath = NavigationPath()
     var activeSheet: EditHabitSheet? = nil
-    var currentSheetDent: PresentationDetent = PresentationDetent.large
-    var userAttemptedToDismissSheet: Bool = false
-    var canInteractivelyDismissSheet: Bool = true
+    var navigationPath: NavigationPath = NavigationPath()
+    
+    func openSelectFrequencySheet() {
+        activeSheet = EditHabitSheet.selectFrequencySheet
+    }
     
     func openSetRemindersScreen() {
         navigationPath.append(EditHabitScreen.setRemindersScreen)
     }
     
-    func openSelectGroupScreen() {
-        navigationPath.append(EditHabitScreen.selectGroupScreen)
+    func openSelectGroupScreen(_ modelGraph: ModelGraph) {
+        let firstGroup = modelGraph.habitGroupsUI.first
+        let sortOrder = firstGroup?.sortOrder.prev() ?? SortOrder.new()
+        navigationPath.append(EditHabitScreen.selectGroupScreen(
+            HabitGroupModel(modelGraph, sortOrder: sortOrder, markForDeletion: true)
+        ))
     }
     
     func openSelectIconScreen() {
         navigationPath.append(EditHabitScreen.selectIconScreen)
     }
     
-    func openSelectFrequencySheet() {
-        activeSheet = EditHabitSheet.selectFrequencySheet
-    }
-    
-    func openNewGroupSheet(_ modelGraph: ModelGraph) {
-        let lastGroup = modelGraph.habitGroupsUI.first
-        let sortOrder = lastGroup?.sortOrder.next() ?? SortOrder.new()
-        let groupToEdit = HabitGroupModel(modelGraph, sortOrder: sortOrder, markForDeletion: true)
-        
-        activeSheet = EditHabitSheet.editGroupSheet(groupToEdit)
-        currentSheetDent = .large
-        userAttemptedToDismissSheet = false
-        canInteractivelyDismissSheet = true
-    }
-    
     func reset() {
-        
+        activeSheet = nil
+        navigationPath = NavigationPath()
     }
 }

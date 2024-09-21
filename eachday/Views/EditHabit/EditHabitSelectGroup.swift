@@ -2,8 +2,8 @@ import SwiftUI
 
 struct EditHabitSelectGroup: View {
     var habit: HabitModel
-//    @Bindable var group: HabitGroupModel
-//    var onSaveGroup: () -> Void
+    @Bindable var group: HabitGroupModel
+    var onSaveGroup: () -> Void
     
     var cellSize = 40.0
     var cellCornerRadius = 6.0
@@ -14,24 +14,24 @@ struct EditHabitSelectGroup: View {
         List {
             Section {
                 HStack(spacing: 12) {
-//                    TextField("New Group", text: $group.name)
-//                        .frame(maxWidth: .infinity)
-//                    
-//                    Button { onSaveGroup() } label: {
-//                        ZStack {
-//                            RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
-//                                .size(width: cellSize, height: cellSize)
-//                                .fill(Color(hex: colorScheme == .light ? "#F2F2F7" : "#262626"))
-//                            
-//                            Image(systemName: "checkmark")
-//                                .resizable()
-//                                .aspectRatio(contentMode: .fit)
-//                                .frame(width: 16, height: 16)
-//                                .foregroundColor(colorScheme == .light ? .black : .white)
-//                                .fontWeight(.regular)
-//                        }
-//                        .frame(width: cellSize, height: cellSize)
-//                    }
+                    TextField("New Group", text: $group.name)
+                        .frame(maxWidth: .infinity)
+                    
+                    Button { onSaveGroup() } label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
+                                .size(width: cellSize, height: cellSize)
+                                .fill(Color(hex: colorScheme == .light ? "#F2F2F7" : "#262626"))
+                            
+                            Image(systemName: "checkmark")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 16, height: 16)
+                                .foregroundColor(colorScheme == .light ? .black : .white)
+                                .fontWeight(.regular)
+                        }
+                        .frame(width: cellSize, height: cellSize)
+                    }
                 }
                 .padding(.vertical, 8)
                 .listRowInsets(.init(top: 0, leading: 24, bottom: 0, trailing: 10))
