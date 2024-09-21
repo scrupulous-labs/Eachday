@@ -5,7 +5,6 @@ enum AppViewSheet: Identifiable {
     case editHabitOrderSheet
     case editHabitSheet(HabitModel)
     case editHabitHistorySheet(HabitModel)
-    case editHabitGroupSheet(HabitGroupModel)
     
     var id: String {
         switch self {
@@ -17,8 +16,6 @@ enum AppViewSheet: Identifiable {
             return "editHabitSheet \(habit.id.uuidString)"
         case .editHabitHistorySheet(let habit):
             return "editHabitHistorySheet \(habit.id.uuidString)"
-        case .editHabitGroupSheet(let habitGroup):
-            return "editHabitGroupSheet \(habitGroup.id.uuidString)"
         }
     }
 }

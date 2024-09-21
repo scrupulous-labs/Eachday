@@ -40,7 +40,6 @@
 		B3D3C8512C9720AA005D28E1 /* AppHabitCardContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8212C9720AA005D28E1 /* AppHabitCardContextMenu.swift */; };
 		B3D3C8522C9720AA005D28E1 /* AppHabitCardHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8222C9720AA005D28E1 /* AppHabitCardHeader.swift */; };
 		B3D3C8532C9720AA005D28E1 /* AppHabitCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8242C9720AA005D28E1 /* AppHabitCard.swift */; };
-		B3D3C8542C9720AA005D28E1 /* AppHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8252C9720AA005D28E1 /* AppHeader.swift */; };
 		B3D3C8552C9720AA005D28E1 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8262C9720AA005D28E1 /* AppUtils.swift */; };
 		B3D3C8562C9720AA005D28E1 /* EditHabitSectionChecklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8282C9720AA005D28E1 /* EditHabitSectionChecklist.swift */; };
 		B3D3C8572C9720AA005D28E1 /* EditHabitSectionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8292C9720AA005D28E1 /* EditHabitSectionColor.swift */; };
@@ -51,7 +50,6 @@
 		B3D3C85C2C9720AA005D28E1 /* EditHabitSelectIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C82F2C9720AA005D28E1 /* EditHabitSelectIcon.swift */; };
 		B3D3C85D2C9720AA005D28E1 /* EditHabitSetReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8302C9720AA005D28E1 /* EditHabitSetReminders.swift */; };
 		B3D3C85E2C9720AA005D28E1 /* EditHabitUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8312C9720AA005D28E1 /* EditHabitUtils.swift */; };
-		B3D3C85F2C9720AA005D28E1 /* EditHabitGroupUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8332C9720AA005D28E1 /* EditHabitGroupUtils.swift */; };
 		B3D3C8662C9720AA005D28E1 /* HabitDetailsCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C83D2C9720AA005D28E1 /* HabitDetailsCalendar.swift */; };
 		B3D3C8672C9720AA005D28E1 /* HabitDetailsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C83E2C9720AA005D28E1 /* HabitDetailsCard.swift */; };
 		B3D3C8682C9720AA005D28E1 /* HabitDetailsCompletionCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C83F2C9720AA005D28E1 /* HabitDetailsCompletionCount.swift */; };
@@ -62,7 +60,6 @@
 		B3D3C86D2C9720AA005D28E1 /* HabitMonthGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8452C9720AA005D28E1 /* HabitMonthGrid.swift */; };
 		B3D3C86E2C9720AA005D28E1 /* MarkHabitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8462C9720AA005D28E1 /* MarkHabitButton.swift */; };
 		B3D3C86F2C9720AA005D28E1 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8482C9720AA005D28E1 /* AppView.swift */; };
-		B3D3C8712C9720AA005D28E1 /* EditHabitGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C84A2C9720AA005D28E1 /* EditHabitGroupView.swift */; };
 		B3D3C8722C9720AA005D28E1 /* EditHabitOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C84B2C9720AA005D28E1 /* EditHabitOrderView.swift */; };
 		B3D3C8732C9720AA005D28E1 /* EditHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C84C2C9720AA005D28E1 /* EditHabitView.swift */; };
 		B3D3C8742C9720AA005D28E1 /* HabitDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C84D2C9720AA005D28E1 /* HabitDetailsView.swift */; };
@@ -115,7 +112,6 @@
 		B3D3C8212C9720AA005D28E1 /* AppHabitCardContextMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppHabitCardContextMenu.swift; sourceTree = "<group>"; };
 		B3D3C8222C9720AA005D28E1 /* AppHabitCardHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppHabitCardHeader.swift; sourceTree = "<group>"; };
 		B3D3C8242C9720AA005D28E1 /* AppHabitCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppHabitCard.swift; sourceTree = "<group>"; };
-		B3D3C8252C9720AA005D28E1 /* AppHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppHeader.swift; sourceTree = "<group>"; };
 		B3D3C8262C9720AA005D28E1 /* AppUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		B3D3C8282C9720AA005D28E1 /* EditHabitSectionChecklist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitSectionChecklist.swift; sourceTree = "<group>"; };
 		B3D3C8292C9720AA005D28E1 /* EditHabitSectionColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitSectionColor.swift; sourceTree = "<group>"; };
@@ -126,7 +122,6 @@
 		B3D3C82F2C9720AA005D28E1 /* EditHabitSelectIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitSelectIcon.swift; sourceTree = "<group>"; };
 		B3D3C8302C9720AA005D28E1 /* EditHabitSetReminders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitSetReminders.swift; sourceTree = "<group>"; };
 		B3D3C8312C9720AA005D28E1 /* EditHabitUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitUtils.swift; sourceTree = "<group>"; };
-		B3D3C8332C9720AA005D28E1 /* EditHabitGroupUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitGroupUtils.swift; sourceTree = "<group>"; };
 		B3D3C83D2C9720AA005D28E1 /* HabitDetailsCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitDetailsCalendar.swift; sourceTree = "<group>"; };
 		B3D3C83E2C9720AA005D28E1 /* HabitDetailsCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitDetailsCard.swift; sourceTree = "<group>"; };
 		B3D3C83F2C9720AA005D28E1 /* HabitDetailsCompletionCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitDetailsCompletionCount.swift; sourceTree = "<group>"; };
@@ -137,7 +132,6 @@
 		B3D3C8452C9720AA005D28E1 /* HabitMonthGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitMonthGrid.swift; sourceTree = "<group>"; };
 		B3D3C8462C9720AA005D28E1 /* MarkHabitButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkHabitButton.swift; sourceTree = "<group>"; };
 		B3D3C8482C9720AA005D28E1 /* AppView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
-		B3D3C84A2C9720AA005D28E1 /* EditHabitGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitGroupView.swift; sourceTree = "<group>"; };
 		B3D3C84B2C9720AA005D28E1 /* EditHabitOrderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitOrderView.swift; sourceTree = "<group>"; };
 		B3D3C84C2C9720AA005D28E1 /* EditHabitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitView.swift; sourceTree = "<group>"; };
 		B3D3C84D2C9720AA005D28E1 /* HabitDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitDetailsView.swift; sourceTree = "<group>"; };
@@ -293,7 +287,6 @@
 			children = (
 				B3D3C8232C9720AA005D28E1 /* AppHabitCard */,
 				B3D3C8242C9720AA005D28E1 /* AppHabitCard.swift */,
-				B3D3C8252C9720AA005D28E1 /* AppHeader.swift */,
 				B3D3C8262C9720AA005D28E1 /* AppUtils.swift */,
 			);
 			path = App;
@@ -321,14 +314,6 @@
 				B3D3C8312C9720AA005D28E1 /* EditHabitUtils.swift */,
 			);
 			path = EditHabit;
-			sourceTree = "<group>";
-		};
-		B3D3C8342C9720AA005D28E1 /* EditHabitGroup */ = {
-			isa = PBXGroup;
-			children = (
-				B3D3C8332C9720AA005D28E1 /* EditHabitGroupUtils.swift */,
-			);
-			path = EditHabitGroup;
 			sourceTree = "<group>";
 		};
 		B3D3C83C2C9720AA005D28E1 /* EditHabitOrder */ = {
@@ -370,8 +355,6 @@
 				B3D3C8482C9720AA005D28E1 /* AppView.swift */,
 				B3D3C8322C9720AA005D28E1 /* EditHabit */,
 				B3D3C84C2C9720AA005D28E1 /* EditHabitView.swift */,
-				B3D3C8342C9720AA005D28E1 /* EditHabitGroup */,
-				B3D3C84A2C9720AA005D28E1 /* EditHabitGroupView.swift */,
 				B3D3C83C2C9720AA005D28E1 /* EditHabitOrder */,
 				B3D3C84B2C9720AA005D28E1 /* EditHabitOrderView.swift */,
 				B3D3C8422C9720AA005D28E1 /* HabitDetails */,
@@ -488,7 +471,6 @@
 				B3D3C8592C9720AA005D28E1 /* EditHabitSectionHabit.swift in Sources */,
 				B3D3C86F2C9720AA005D28E1 /* AppView.swift in Sources */,
 				B3D3C80C2C9720A4005D28E1 /* HabitTaskModel.swift in Sources */,
-				B3D3C85F2C9720AA005D28E1 /* EditHabitGroupUtils.swift in Sources */,
 				B3D3C7EC2C97209D005D28E1 /* Database+Persistence.swift in Sources */,
 				B3D3C86E2C9720AA005D28E1 /* MarkHabitButton.swift in Sources */,
 				B3D3C80D2C9720A4005D28E1 /* Model.swift in Sources */,
@@ -525,7 +507,6 @@
 				B3D3C80E2C9720A4005D28E1 /* TaskCompletionModel.swift in Sources */,
 				B3D3C86A2C9720AA005D28E1 /* HabitDetailsUtils.swift in Sources */,
 				B3D3C88F2C9C6C04005D28E1 /* SettingsRecord.swift in Sources */,
-				B3D3C8712C9720AA005D28E1 /* EditHabitGroupView.swift in Sources */,
 				B3D3C86C2C9720AA005D28E1 /* HabitGroupBar.swift in Sources */,
 				B3D3C8552C9720AA005D28E1 /* AppUtils.swift in Sources */,
 				B3D3C8162C9720A4005D28E1 /* HabitRecord.swift in Sources */,
@@ -544,7 +525,6 @@
 				B3D3C88D2C9B2E24005D28E1 /* Settings.swift in Sources */,
 				B3D3C81D2C9720A4005D28E1 /* Frequency.swift in Sources */,
 				B3D3C81B2C9720A4005D28E1 /* HabitColor.swift in Sources */,
-				B3D3C8542C9720AA005D28E1 /* AppHeader.swift in Sources */,
 				B3D3C8512C9720AA005D28E1 /* AppHabitCardContextMenu.swift in Sources */,
 				B3D3C8872C9ACC8C005D28E1 /* ProfileUtils.swift in Sources */,
 			);

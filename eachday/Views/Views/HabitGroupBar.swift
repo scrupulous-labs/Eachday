@@ -5,7 +5,6 @@ struct HabitGroupBar: View {
     var trailingGap: Double? = nil
     var activeGroupIds: Set<UUID>
     var onTapGroup: (HabitGroupModel) -> Void
-    var onEditGroup: ((HabitGroupModel) -> Void)? = nil
     
     @Environment(\.colorScheme) var colorScheme
     @Environment(ModelGraph.self) var modelGraph
@@ -33,14 +32,8 @@ struct HabitGroupBar: View {
                         .cornerRadius(18)
                         .onTapGesture { onTapGroup(habitGroup) }
                         .contextMenu {
-                            if onEditGroup != nil {
-                                Button { onEditGroup!(habitGroup) } label: {
-                                    Label("Edit", systemImage: "pencil")
-                                }
-                                Divider()
-                                Button { habitGroup.markForDeletion(); habitGroup.save() } label: {
-                                    Label("Delete", systemImage: "trash").foregroundColor(.red)
-                                }
+                            Button { habitGroup.markForDeletion(); habitGroup.save() } label: {
+                                Label("Delete", systemImage: "trash").foregroundColor(.red)
                             }
                         }
                 }

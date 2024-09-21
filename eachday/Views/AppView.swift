@@ -22,8 +22,7 @@ struct AppView: View {
                         HabitGroupBar(
                             leadingGap: 16, trailingGap: 16,
                             activeGroupIds: ui.activeGroupIds,
-                            onTapGroup: ui.toggleGroupId,
-                            onEditGroup: ui.openEditHabitGroup
+                            onTapGroup: ui.toggleGroupId
                         )
                         .padding(.top, 14)
                         .padding(.bottom, 12)
@@ -131,28 +130,6 @@ struct AppView: View {
                             })
                         }
                     }
-                
-                case AppViewSheet.editHabitGroupSheet(let habitGroup):
-                    EditHabitGroupView(
-                        habitGroup: habitGroup,
-                        canCancel: $ui.canInteractivelyDismissSheet,
-                        attemptedToCancel: $ui.userAttemptedToDismissSheet,
-                        onSave: { }
-                    )
-                    .interactiveDismissDisabled(!ui.canInteractivelyDismissSheet)
-                    .presentationDragIndicator(.hidden)
-                    .presentationDetents(
-                        ui.canInteractivelyDismissSheet ? [.large] : [.large, .fraction(0.95)],
-                        selection: $ui.currentSheetDent
-                    )
-                    .onChange(of: ui.currentSheetDent) { oldVal, newVal in
-                        if newVal != .large {
-                            ui.currentSheetDent = .large
-                            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-                                ui.userAttemptedToDismissSheet = true
-                            })
-                        }
-                    }
                 }
             }
             .navigationDestination(for: AppViewScreen.self) { destination in
@@ -168,10 +145,11 @@ struct AppView: View {
     }
 }
 
+
 @Observable
 class AppViewModel {
     static let instance: AppViewModel = AppViewModel()
-
+    
     var activeSheet: AppViewSheet? = nil
     var currentSheetDent: PresentationDetent = PresentationDetent.large
     var userAttemptedToDismissSheet: Bool = false
@@ -182,7 +160,7 @@ class AppViewModel {
     func openProfileSheet() {
         activeSheet = AppViewSheet.profileSheet
     }
-
+    
     func openEditHabitOrderSheet() {
         activeSheet = AppViewSheet.editHabitOrderSheet
     }
@@ -195,13 +173,6 @@ class AppViewModel {
     
     func openEditHabitSheet(_ modelGraph: ModelGraph, habit: HabitModel) {
         activeSheet = AppViewSheet.editHabitSheet(habit)
-        currentSheetDent = .large
-        userAttemptedToDismissSheet = false
-        canInteractivelyDismissSheet = true
-    }
-    
-    func openEditHabitGroup(habitGroup: HabitGroupModel) {
-        activeSheet = AppViewSheet.editHabitGroupSheet(habitGroup)
         currentSheetDent = .large
         userAttemptedToDismissSheet = false
         canInteractivelyDismissSheet = true
