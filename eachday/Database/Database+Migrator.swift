@@ -49,8 +49,14 @@ extension Database {
             try db.create(table: "habitReminder") { t in
                 t.column("id", .text).primaryKey()
                 t.column("habitId", .text).references("habit", column: "id", onDelete: .cascade).notNull()
-                t.column("dayOfWeek", .integer).notNull()
                 t.column("timeOfDay", .integer).notNull()
+                t.column("sunday", .boolean).notNull()
+                t.column("monday", .boolean).notNull()
+                t.column("tuesday", .boolean).notNull()
+                t.column("wednesday", .boolean).notNull()
+                t.column("thursday", .boolean).notNull()
+                t.column("friday", .boolean).notNull()
+                t.column("saturday", .boolean).notNull()
             }
             
             try db.create(table: "settings") { t in

@@ -29,7 +29,7 @@ struct EditHabitView: View {
                     focusedField: $focusedField,
                     onFieldChange: onFieldChange,
                     onChangeFrequency: ui.openSelectFrequencySheet,
-                    onChangeReminders: ui.openSetRemindersScreen,
+                    onChangeReminders: { ui.openSetRemindersScreen(modelGraph, habit: habit) },
                     onChangeGroup: { ui.openSelectGroupScreen(modelGraph) }
                 )
                 EditHabitSectionColor(
@@ -58,8 +58,15 @@ struct EditHabitView: View {
             }
             .navigationDestination(for: EditHabitScreen.self) { destination in
                 switch destination {
-                case EditHabitScreen.setRemindersScreen:
-                    EditHabitSetReminders(habit: habit)
+                case EditHabitScreen.setRemindersScreen(let reminder):
+                    EditHabitSetReminders(
+                        habit: habit, reminder: reminder,
+                        onSaveReminder: {
+                            reminder.unmarkForDeletion()
+                            ui.navigationPath.removeLast()
+                            ui.openSetRemindersScreen(modelGraph, habit: habit)
+                        }
+                    )
                 case EditHabitScreen.selectGroupScreen(let group):
                     EditHabitSelectGroup(
                         habit: habit, group: group,
@@ -112,13 +119,15 @@ class EditHabitViewModel {
         activeSheet = EditHabitSheet.selectFrequencySheet
     }
     
-    func openSetRemindersScreen() {
-        navigationPath.append(EditHabitScreen.setRemindersScreen)
+    func openSetRemindersScreen(_ modelGraph: ModelGraph, habit: HabitModel) {
+        navigationPath.append(EditHabitScreen.setRemindersScreen(
+            HabitReminderModel(modelGraph, habitId: habit.id, markForDeletion: true)
+        ))
     }
     
     func openSelectGroupScreen(_ modelGraph: ModelGraph) {
-        let firstGroup = modelGraph.habitGroupsUI.first
-        let sortOrder = firstGroup?.sortOrder.prev() ?? SortOrder.new()
+        let lastGroup = modelGraph.habitGroupsUI.last
+        let sortOrder = lastGroup?.sortOrder.next() ?? SortOrder.new()
         navigationPath.append(EditHabitScreen.selectGroupScreen(
             HabitGroupModel(modelGraph, sortOrder: sortOrder, markForDeletion: true)
         ))

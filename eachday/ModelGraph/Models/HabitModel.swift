@@ -53,9 +53,9 @@ class HabitModel: Model<HabitRecord>, Habit {
         super.init(modelGraph, fromRecord: nil, markForDeletion: markForDeletion)
     }
     
-    //
-    // MARK - FOR UI
-    //
+//
+// MARK - FOR UI
+//
     func belongsToGroup(group: HabitGroupModel) -> Bool {
         return habitGroupItemsUI.contains { $0.groupId == group.id }
     }
@@ -211,7 +211,7 @@ class HabitModel: Model<HabitRecord>, Habit {
 //
 // MARK - OVERRIDES
 //
-    override var children: [ModelNode] { habitTasks + habitGroupItems }
+    override var children: [ModelNode] { habitTasks + habitGroupItems + habitReminders }
     override var isModified: Bool { record != nil && !equals(record!) }
     override var isValid: Bool { validate() }
 
@@ -219,14 +219,17 @@ class HabitModel: Model<HabitRecord>, Habit {
     override func addToGraph() {
         habitTasks = modelGraph.habitTasks.filter { $0.habitId == id }
         habitGroupItems = modelGraph.habitGroupItems.filter { $0.habitId == id }
+        habitReminders = modelGraph.habitReminders.filter { $0.habitId == id }
         
         habitTasks.forEach { $0.habit = self }
         habitGroupItems.forEach { $0.habit = self }
+        habitReminders.forEach { $0.habit = self }
         modelGraph.habits.append(self)
     }
     override func removeFromGraph() {
         habitTasks.forEach { $0.habit = nil }
         habitGroupItems.forEach { $0.habit = nil }
+        habitReminders.forEach { $0.habit = nil }
         modelGraph.habits.removeAll { $0.id == id }
     }
     override func resetToDbRecord() { if record != nil { copyFrom(record!) } }

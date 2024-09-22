@@ -12,14 +12,14 @@ enum EditHabitSheet: Identifiable {
 }
 
 enum EditHabitScreen: Hashable {
-    case setRemindersScreen
+    case setRemindersScreen(HabitReminderModel)
     case selectGroupScreen(HabitGroupModel)
     case selectIconScreen
     
     static func == (lhs: EditHabitScreen, rhs: EditHabitScreen) -> Bool {
         switch (lhs, rhs) {
-        case (.setRemindersScreen, .setRemindersScreen):
-            return true
+        case (.setRemindersScreen(let reminder1), .setRemindersScreen(let reminder2)):
+            return reminder1.id == reminder2.id
         case (.selectGroupScreen(let group1), .selectGroupScreen(let group2)):
             return group1.id == group2.id
         case (.selectIconScreen, .selectIconScreen):

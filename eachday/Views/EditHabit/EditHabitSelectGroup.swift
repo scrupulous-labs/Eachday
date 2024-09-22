@@ -13,31 +13,6 @@ struct EditHabitSelectGroup: View {
     var body: some View {
         List {
             Section {
-                HStack(spacing: 12) {
-                    TextField("New Group", text: $group.name)
-                        .frame(maxWidth: .infinity)
-                    
-                    Button { onSaveGroup() } label: {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
-                                .size(width: cellSize, height: cellSize)
-                                .fill(Color(hex: colorScheme == .light ? "#F2F2F7" : "#262626"))
-                            
-                            Image(systemName: "checkmark")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 16, height: 16)
-                                .foregroundColor(colorScheme == .light ? .black : .white)
-                                .fontWeight(.regular)
-                        }
-                        .frame(width: cellSize, height: cellSize)
-                    }
-                }
-                .padding(.vertical, 8)
-                .listRowInsets(.init(top: 0, leading: 24, bottom: 0, trailing: 10))
-            }
-
-            Section {
                 ForEach(modelGraph.habitGroupsUI, id: \.id) { group in
                     let habitInGroup = habit.belongsToGroup(group: group)
                     let iconName: String = habitInGroup ? "checkmark.circle.fill" : "circle"
@@ -62,6 +37,34 @@ struct EditHabitSelectGroup: View {
                         }
                     }
                 }
+            } header: {
+                Text("Groups")
+            }
+            
+            Section {
+                HStack(spacing: 12) {
+                    TextField("New Group", text: $group.name)
+                        .frame(maxWidth: .infinity)
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
+                            .size(width: cellSize, height: cellSize)
+                            .fill(Color(hex: colorScheme == .light ? "#F2F2F7" : "#262626"))
+                        
+                        Image(systemName: "plus")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 16, height: 16)
+                            .foregroundColor(colorScheme == .light ? .black : .white)
+                            .fontWeight(.regular)
+                    }
+                    .frame(width: cellSize, height: cellSize)
+                    .onTapGesture { onSaveGroup() }
+                }
+                .padding(.vertical, 8)
+                .listRowInsets(.init(top: 0, leading: 24, bottom: 0, trailing: 10))
+            } header: {
+                Text("Add Group")
             }
         }
     }

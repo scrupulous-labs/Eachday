@@ -2,13 +2,13 @@ import Foundation
 import SwiftUI
 
 enum HabitColor: String, CaseIterable {
-    case blue = "blue" // a
+    case blue = "blue"
     case indigo = "indigo"
-    case red = "red" // a
-    case orange = "orange" // a
+    case red = "red"
+    case orange = "orange"
     case yellow = "yellow"
     case green = "green"
-    case emerald = "emerald" // a
+    case emerald = "emerald"
     case cyan = "cyan" 
     case purple = "purple"
     case fuchsia = "fuchsia"
