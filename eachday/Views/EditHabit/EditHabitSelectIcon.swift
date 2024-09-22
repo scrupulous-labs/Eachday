@@ -2,6 +2,7 @@ import SwiftUI
 
 struct EditHabitSelectIcon: View {
     var habit: HabitModel
+    var onFieldChange: () -> Void
 
     var body: some View {
         ScrollView {
@@ -9,55 +10,64 @@ struct EditHabitSelectIcon: View {
                 EditHabitSelectIconGrid(
                     habit: habit,
                     title: "Common Activites",
-                    icons: HabitIconGroup.commonActivites.icons()
+                    icons: HabitIconGroup.commonActivites.icons(),
+                    onFieldChange: onFieldChange
                 )
                 
                 EditHabitSelectIconGrid(
                     habit: habit,
                     title: "Food and Celebrations",
-                    icons: HabitIconGroup.foodAndCelebrations.icons()
+                    icons: HabitIconGroup.foodAndCelebrations.icons(),
+                    onFieldChange: onFieldChange
                 )
                 
                 EditHabitSelectIconGrid(
                     habit: habit,
                     title: "Work and Study",
-                    icons: HabitIconGroup.workAndStudy.icons()
+                    icons: HabitIconGroup.workAndStudy.icons(),
+                    onFieldChange: onFieldChange
                 )
                 
                 EditHabitSelectIconGrid(
                     habit: habit,
                     title: "Sports and Fitness",
-                    icons: HabitIconGroup.sportsAndFitness.icons()
+                    icons: HabitIconGroup.sportsAndFitness.icons(),
+                    onFieldChange: onFieldChange
                 )
                 
                 EditHabitSelectIconGrid(
                     habit: habit,
                     title: "Nature and Animals",
-                    icons: HabitIconGroup.natureAndAnimals.icons()
+                    icons: HabitIconGroup.natureAndAnimals.icons(),
+                    onFieldChange: onFieldChange
                 )
                 
                 EditHabitSelectIconGrid(
                     habit: habit,
                     title: "Art and Creativity",
-                    icons: HabitIconGroup.artsAndCreativity.icons()
+                    icons: HabitIconGroup.artsAndCreativity.icons(),
+                    onFieldChange: onFieldChange
                 )
                 
                 EditHabitSelectIconGrid(
                     habit: habit,
                     title: "Home",
-                    icons: HabitIconGroup.home.icons()
+                    icons: HabitIconGroup.home.icons(),
+                    onFieldChange: onFieldChange
                 )
                 
                 EditHabitSelectIconGrid(
                     habit: habit,
                     title: "Travel",
-                    icons: HabitIconGroup.travel.icons()
+                    icons: HabitIconGroup.travel.icons(),
+                    onFieldChange: onFieldChange
                 )
                 
                 EditHabitSelectIconGrid(
                     habit: habit,
                     title: "Shapes and Emojis",
-                    icons: HabitIconGroup.shapesAndEmojis.icons()
+                    icons: HabitIconGroup.shapesAndEmojis.icons(),
+                    onFieldChange: onFieldChange
                 )
             }
             .padding(.top, 16)
@@ -69,6 +79,7 @@ struct EditHabitSelectIconGrid: View {
     var habit: HabitModel
     var title: String
     var icons: [HabitIcon]
+    var onFieldChange: () -> Void
     
     var gridItemWidth = 38.0
     var gridColumnCount = 8
@@ -115,6 +126,7 @@ struct EditHabitSelectIconGrid: View {
                     .frame(width: cellSize, height: cellSize)
                     .onTapGesture {
                         habit.icon = icon
+                        onFieldChange()
                         dismiss()
                     }
                 }

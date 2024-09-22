@@ -2,6 +2,7 @@ import SwiftUI
 
 struct EditHabitSelectFrequency: View {
     var habit: HabitModel
+    var onFieldChange: () -> Void
     var ui: EditHabitSelectFrequencyModel = EditHabitSelectFrequencyModel.instance
 
     @Environment(\.dismiss) var dismiss
@@ -20,6 +21,7 @@ struct EditHabitSelectFrequency: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .onTapGesture {
                             habit.frequency = ui.frequencies[ind]
+                            onFieldChange()
                             dismiss()
                         }
                     

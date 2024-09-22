@@ -12,7 +12,7 @@ protocol TaskCompletion: AnyObject {
 
 extension TaskCompletion {
     func validate() -> Bool {
-        true
+        return true
     }
     
     func equals(_ completion: TaskCompletion) -> Bool {

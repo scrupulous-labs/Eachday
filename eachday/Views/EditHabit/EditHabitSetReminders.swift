@@ -3,6 +3,7 @@ import SwiftUI
 struct EditHabitSetReminders: View {
     var habit: HabitModel
     @Bindable var reminder: HabitReminderModel
+    var onFieldChange: () -> Void
     var onSaveReminder: () -> Void
     
     var cellSize = 40.0
@@ -29,13 +30,15 @@ struct EditHabitSetReminders: View {
                     @Bindable var reminder = reminder
                     HStack(alignment: .top, spacing: 0) {
                         VStack(alignment: .leading, spacing: 16) {
-                            DatePicker("", selection: $reminder.time, displayedComponents: .hourAndMinute).labelsHidden()
+                            DatePicker("", selection: $reminder.time, displayedComponents: .hourAndMinute)
+                                .labelsHidden()
+                                .onChange(of: reminder.time, { _, _ in onFieldChange() })
                             dayOfWeek(reminder: reminder)
                         }
                         .frame(maxWidth: .infinity)
                         
                         Menu {
-                            Button { reminder.markForDeletion() } label: {
+                            Button { reminder.markForDeletion(); onFieldChange() } label: {
                                 Label("Delete", systemImage: "trash").foregroundColor(.red)
                             }
                         } label: {
@@ -77,7 +80,7 @@ struct EditHabitSetReminders: View {
                             .fontWeight(.regular)
                     }
                     .frame(width: cellSize, height: cellSize)
-                    .onTapGesture { onSaveReminder() }
+                    .onTapGesture { onSaveReminder(); onFieldChange() }
                 }
             } header: {
                 Text("Add Reminder")
@@ -106,7 +109,10 @@ struct EditHabitSetReminders: View {
                         .foregroundColor(Color(hex: foreGround))
                 }
                 .frame(width: 32, height: 32)
-                .onTapGesture { reminder.toggleDay(day: dayOfWeek) }
+                .onTapGesture {
+                    reminder.toggleDay(day: dayOfWeek)
+                    onFieldChange()
+                }
             }
         }
     }

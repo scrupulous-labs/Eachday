@@ -12,7 +12,7 @@ protocol HabitGroupItem: AnyObject {
 
 extension HabitGroupItem {
     func validate() -> Bool {
-        true
+        return true
     }
     
     func equals(_ habitGroupItem: HabitGroupItem) -> Bool {

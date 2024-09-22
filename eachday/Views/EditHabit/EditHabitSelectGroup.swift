@@ -3,6 +3,7 @@ import SwiftUI
 struct EditHabitSelectGroup: View {
     var habit: HabitModel
     @Bindable var group: HabitGroupModel
+    var onFieldChange: () -> Void
     var onSaveGroup: () -> Void
     
     var cellSize = 40.0
@@ -20,8 +21,10 @@ struct EditHabitSelectGroup: View {
                     Button {
                         if habit.belongsToGroup(group: group) {
                             habit.removeFromGroup(group: group)
+                            onFieldChange()
                         } else {
                             habit.addToGroup(group: group)
+                            onFieldChange()
                         }
                     } label: {
                         HStack {

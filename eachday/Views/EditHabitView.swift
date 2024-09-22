@@ -51,7 +51,7 @@ struct EditHabitView: View {
             .sheet(item: $ui.activeSheet) { item in
                 switch item {
                 case EditHabitSheet.selectFrequencySheet:
-                    EditHabitSelectFrequency(habit: habit)
+                    EditHabitSelectFrequency(habit: habit, onFieldChange: onFieldChange)
                         .presentationDetents([.fraction(0.65)])
                         .presentationDragIndicator(.visible)
                 }
@@ -61,6 +61,7 @@ struct EditHabitView: View {
                 case EditHabitScreen.setRemindersScreen(let reminder):
                     EditHabitSetReminders(
                         habit: habit, reminder: reminder,
+                        onFieldChange: onFieldChange,
                         onSaveReminder: {
                             reminder.unmarkForDeletion()
                             ui.navigationPath.removeLast()
@@ -70,6 +71,7 @@ struct EditHabitView: View {
                 case EditHabitScreen.selectGroupScreen(let group):
                     EditHabitSelectGroup(
                         habit: habit, group: group,
+                        onFieldChange: onFieldChange,
                         onSaveGroup: {
                             group.unmarkForDeletion(); group.save()
                             ui.navigationPath.removeLast()
@@ -77,7 +79,10 @@ struct EditHabitView: View {
                         }
                     )
                 case EditHabitScreen.selectIconScreen:
-                    EditHabitSelectIcon(habit: habit)
+                    EditHabitSelectIcon(
+                        habit: habit,
+                        onFieldChange: onFieldChange
+                    )
                 }
             }
             .confirmationDialog(

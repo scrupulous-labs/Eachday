@@ -19,7 +19,10 @@ protocol HabitReminder: AnyObject {
 
 extension HabitReminder {
     func validate() -> Bool {
-        return true
+        return (
+            sunday || monday || tuesday || wednesday ||
+            thursday || friday || saturday
+        )
     }
     
     func equals(_ habitReminder: HabitReminder) -> Bool {

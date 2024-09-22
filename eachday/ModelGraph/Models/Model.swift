@@ -26,7 +26,6 @@ class Model<R: GRDB.Record>: ModelNode {
     override var db: Database { return modelGraph.database }
     override var children: [ModelNode] { fatalError("subclass must override") }
     override var isValid: Bool { fatalError("subclass must override") }
-    override var isDefaultModel: Bool { false }
     override var isMarkedForDeletion: Bool { markedForDeletion }
     override var status: ModelStatus {
         if record == nil { return ModelStatus.transient }
@@ -53,13 +52,12 @@ class ModelNode {
     var status: ModelStatus { fatalError("subclass must override") }
     var children: [ModelNode] { fatalError("subclass must override") }
     var isValid: Bool { fatalError("subclass must override") }
-    var isDefaultModel: Bool { fatalError("subclass must override") }
     var isMarkedForDeletion: Bool { fatalError("subclass must override") }
     var isGraphModified: Bool {
         (status == ModelStatus.changed && isValid) ||
         (status == ModelStatus.changed && isMarkedForDeletion) ||
         (status == ModelStatus.unChanged && isMarkedForDeletion) ||
-        (status == ModelStatus.transient && !isDefaultModel && isValid) ||
+        (status == ModelStatus.transient && isValid) ||
         (!children.isEmpty && children.contains { $0.isGraphModified })
     }
     
