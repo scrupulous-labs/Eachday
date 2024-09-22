@@ -6,6 +6,12 @@ struct EditHabitOrderHabits: View {
     
     var body: some View {
         Section {
+            if modelGraph.habitsUI.isEmpty {
+                Text("No Habits")
+                    .padding(.vertical, 32)
+                    .frame(maxWidth: .infinity, alignment: .center)
+            }
+            
             ForEach(modelGraph.habitsUI, id: \.id) { habit in
                 HStack {
                     Text(habit.name)

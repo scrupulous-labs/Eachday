@@ -16,6 +16,12 @@ struct ArchivedHabits: View {
         List {
             Section {
                 let archivedHabits = modelGraph.habits.filter { $0.showInUI && $0.archived }
+                if archivedHabits.isEmpty {
+                    Text("No archived habits")
+                        .padding(.vertical, 32)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                }
+                
                 ForEach(archivedHabits, id: \.id) { habit in
                     HStack(spacing: 10) {
                         ZStack {

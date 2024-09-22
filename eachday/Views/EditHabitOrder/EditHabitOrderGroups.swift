@@ -6,6 +6,11 @@ struct EditHabitOrderGroups: View {
     
     var body: some View {
         Section {
+            if modelGraph.habitsUI.isEmpty {
+                Text("No groups")
+                    .padding(.vertical, 32)
+                    .frame(maxWidth: .infinity, alignment: .center)
+            }
             ForEach(modelGraph.habitGroupsUI, id: \.id) { group in
                 HStack {
                     Text(group.name)
