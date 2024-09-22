@@ -10,10 +10,11 @@ struct EditHabitSelectFrequency: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Text("Habit Frequency")
+            Text("HABIT FREQUENCY")
+                .font(Font.subheadline.weight(.light))
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.all)
-                .background(Color(hex: "#F3F4F6"))
+                .padding(EdgeInsets(top: 38, leading: 16, bottom: 16, trailing: 16))
+                .background(Color(hex: colorScheme == .light ? "#F3F4F6" : "#000000"))
 
             ForEach(Array(0..<3), id: \.self) { ind in
                 HStack {
@@ -31,7 +32,7 @@ struct EditHabitSelectFrequency: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 16, height: 16)
-                                .foregroundColor(.black)
+                                .foregroundColor(colorScheme == .light ? .black : .white)
                                 .fontWeight(.medium)
                                 .padding(9)
                                 .overlay {
@@ -46,7 +47,7 @@ struct EditHabitSelectFrequency: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 16, height: 16)
-                                .foregroundColor(.black)
+                                .foregroundColor(colorScheme == .light ? .black : .white)
                                 .fontWeight(.medium)
                                 .padding(9)
                                 .overlay {

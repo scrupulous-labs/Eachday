@@ -43,7 +43,7 @@ struct RemindersMinimap: View {
                 let isActive = activeDaysOfWeek.contains(day)
                 
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(.black, lineWidth: 0.5)
+                    .stroke(colorScheme == .light ? .black : .white, lineWidth: 0.5)
                     .fill(isActive ? .green : .white.opacity(0))
                     .frame(width: 12, height: 12)
             }
