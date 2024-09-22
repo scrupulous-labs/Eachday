@@ -59,6 +59,20 @@ extension Database {
                 t.column("saturday", .boolean).notNull()
             }
             
+            try db.create(table: "reminderNotification") { t in
+                t.column("reminderId", .text)
+                    .primaryKey(onConflict: .replace)
+                    .references("habitReminder", column: "id", onDelete: .cascade)
+                    .notNull()
+                t.column("sundayId", .text).notNull()
+                t.column("mondayId", .text).notNull()
+                t.column("tuesdayId", .text).notNull()
+                t.column("wednesdayId", .text).notNull()
+                t.column("thursdayId", .text).notNull()
+                t.column("fridayId", .text).notNull()
+                t.column("saturdayId", .text).notNull()
+            }
+            
             try db.create(table: "settings") { t in
                 t.column("id", .integer).primaryKey(onConflict: .replace).check { $0 == 1 }
                 t.column("savedTheme", .integer)

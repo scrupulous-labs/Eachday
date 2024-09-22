@@ -10,13 +10,14 @@ class ModelGraph {
     }
     
     let database: Database
-    var habits: [HabitModel]
-    var habitTasks: [HabitTaskModel]
-    var habitGroups: [HabitGroupModel]
-    var habitGroupItems: [HabitGroupItemModel]
-    var completions: [TaskCompletionModel]
-    var habitReminders: [HabitReminderModel]
-    var settings: SettingsModel?
+    var habits: [HabitModel] = []
+    var habitTasks: [HabitTaskModel] = []
+    var habitGroups: [HabitGroupModel] = []
+    var habitGroupItems: [HabitGroupItemModel] = []
+    var completions: [TaskCompletionModel] = []
+    var habitReminders: [HabitReminderModel] = []
+    var reminderNotifications: [ReminderNotificationModel] = []
+    var settings: SettingsModel? = nil
     
     var habitsUI: [HabitModel] {
         habits.filter { $0.showInUI && !$0.archived }.sorted { $0.sortOrder < $1.sortOrder }
@@ -30,13 +31,6 @@ class ModelGraph {
 
     init(database: Database) {
         self.database = database
-        self.habits = []
-        self.habitTasks = []
-        self.habitGroups = []
-        self.habitGroupItems = []
-        self.completions = []
-        self.habitReminders = []
-        self.settings = nil
     }
     
     func loadFromDb() throws {
@@ -47,6 +41,7 @@ class ModelGraph {
             _ = try HabitGroupItemRecord.fetchAll(db).map { HabitGroupItemModel(self, fromRecord: $0) }
             _ = try TaskCompletionRecord.fetchAll(db).map { TaskCompletionModel(self, fromRecord: $0) }
             _ = try HabitReminderRecord.fetchAll(db).map { HabitReminderModel(self, fromRecord: $0) }
+            _ = try ReminderNotificationRecord.fetchAll(db).map { ReminderNotificationModel(self, fromRecord: $0) }
             _ = try SettingsRecord.fetchAll(db).map { SettingsModel(self, fromRecord: $0) }
         }
     }

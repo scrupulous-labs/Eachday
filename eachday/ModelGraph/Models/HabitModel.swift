@@ -21,7 +21,7 @@ class HabitModel: Model<HabitRecord>, Habit {
         habitGroupItems.filter { $0.showInUI }
     }
     var habitRemindersUI: [HabitReminderModel] {
-        habitReminders.filter { $0.showInUI }
+        habitReminders.sorted { $0.timeOfDay < $1.timeOfDay }.filter { $0.showInUI }
     }
     var completionsByDay: [Day: [TaskCompletionModel]] {
         habitTasksUI.reduce(into: [Day: [TaskCompletionModel]]()) { res, habitTask in

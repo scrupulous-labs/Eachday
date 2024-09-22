@@ -71,6 +71,10 @@ class ModelNode {
     func resetToDbRecord() { fatalError("subclass must override") }
     func unmarkForDeletion() { fatalError("subclass must override") }
     
+    func preSave() { }
+    func preUpdate() { }
+    func preDelete() { }
+    
     /*
      Reset model's graph to it's Database state
      */
@@ -126,6 +130,7 @@ class ModelNode {
                 model.delete(dbOps: &dbOps)
                 
             case ModelStatus.transient:
+                model.preSave()
                 dbOps.append(model.insertToDb)
                 
             case ModelStatus.changed where model.isMarkedForDeletion:
@@ -135,6 +140,7 @@ class ModelNode {
                 model.resetToDbRecord()
                 
             case ModelStatus.changed:
+                model.preUpdate()
                 dbOps.append(model.updateToDb)
                 
             case ModelStatus.unChanged where model.isMarkedForDeletion:
@@ -168,10 +174,12 @@ class ModelNode {
                 model.removeFromGraph()
                 
             case .changed:
+                model.preDelete()
                 model.removeFromGraph()
                 dbOps.append(model.deleteFromDb)
                 
             case .unChanged:
+                model.preDelete()
                 model.removeFromGraph()
                 dbOps.append(model.deleteFromDb)
             }

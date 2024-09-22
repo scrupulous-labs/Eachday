@@ -15,7 +15,7 @@ struct ProfileSectionApp: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: iconCornerRadius, style: .continuous)
                             .size(width: iconHeight, height: iconHeight)
-                            .fill(.green)
+                            .fill(.orange)
                         
                         Image(systemName: "arrow.up.arrow.down")
                             .resizable()
@@ -43,7 +43,7 @@ struct ProfileSectionApp: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: iconCornerRadius, style: .continuous)
                             .size(width: iconHeight, height: iconHeight)
-                            .fill(.green)
+                            .fill(.brown)
                         
                         Image(systemName: "archivebox")
                             .resizable()
