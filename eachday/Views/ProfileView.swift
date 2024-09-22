@@ -30,7 +30,7 @@ struct ProfileView: View {
                 case ProfileViewScreen.editHabitOrder:
                     EditHabitOrderView()
                 case ProfileViewScreen.archivedHabits:
-                    Text("TEST")
+                    ArchivedHabits()
                 }
             }
         }

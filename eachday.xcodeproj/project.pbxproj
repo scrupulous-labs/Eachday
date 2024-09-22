@@ -11,6 +11,7 @@
 		B3B38AB52C9EB6210037D58E /* HabitReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB42C9EB61D0037D58E /* HabitReminder.swift */; };
 		B3B38AB72C9EB79B0037D58E /* HabitReminderRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB62C9EB7940037D58E /* HabitReminderRecord.swift */; };
 		B3B38AB92C9EB9040037D58E /* HabitReminderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB82C9EB8FF0037D58E /* HabitReminderModel.swift */; };
+		B3B38ABB2CA038ED0037D58E /* ArchivedHabits.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38ABA2CA038E50037D58E /* ArchivedHabits.swift */; };
 		B3D3C7D92C972089005D28E1 /* eachdayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C7D82C972089005D28E1 /* eachdayApp.swift */; };
 		B3D3C7DD2C97208A005D28E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3D3C7DC2C97208A005D28E1 /* Assets.xcassets */; };
 		B3D3C7E02C97208A005D28E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3D3C7DF2C97208A005D28E1 /* Preview Assets.xcassets */; };
@@ -85,6 +86,7 @@
 		B3B38AB42C9EB61D0037D58E /* HabitReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitReminder.swift; sourceTree = "<group>"; };
 		B3B38AB62C9EB7940037D58E /* HabitReminderRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitReminderRecord.swift; sourceTree = "<group>"; };
 		B3B38AB82C9EB8FF0037D58E /* HabitReminderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitReminderModel.swift; sourceTree = "<group>"; };
+		B3B38ABA2CA038E50037D58E /* ArchivedHabits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedHabits.swift; sourceTree = "<group>"; };
 		B3D3C7D52C972089005D28E1 /* eachday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eachday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D3C7D82C972089005D28E1 /* eachdayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eachdayApp.swift; sourceTree = "<group>"; };
 		B3D3C7DC2C97208A005D28E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 		B3D3C8472C9720AA005D28E1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B3B38ABA2CA038E50037D58E /* ArchivedHabits.swift */,
 				B3D3C8432C9720AA005D28E1 /* EditHabitHistory.swift */,
 				B3D3C8442C9720AA005D28E1 /* HabitGroupBar.swift */,
 				B3D3C8452C9720AA005D28E1 /* HabitMonthGrid.swift */,
@@ -496,6 +499,7 @@
 				B3D3C8752C9720AA005D28E1 /* ProfileView.swift in Sources */,
 				B3D3C85D2C9720AA005D28E1 /* EditHabitSetReminders.swift in Sources */,
 				B3D3C8102C9720A4005D28E1 /* HabitGroup.swift in Sources */,
+				B3B38ABB2CA038ED0037D58E /* ArchivedHabits.swift in Sources */,
 				B3B38AB72C9EB79B0037D58E /* HabitReminderRecord.swift in Sources */,
 				B3D3C8502C9720AA005D28E1 /* AppHabitCardCalendar.swift in Sources */,
 				B3D3C8912C9C79ED005D28E1 /* SettingsModel.swift in Sources */,
