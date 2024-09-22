@@ -201,7 +201,7 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
 //
 // MARK - OVERRIDES
 //
-    override var children: [ModelNode] { [notificationUI] }
+    override var children: [ModelNode] { notification != nil ? [notificationUI] : [] }
     override var isModified: Bool { record != nil && !equals(record!) }
     override var isValid: Bool { validate() }
     
