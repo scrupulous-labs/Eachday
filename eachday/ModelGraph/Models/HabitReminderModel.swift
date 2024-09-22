@@ -5,7 +5,7 @@ import UserNotifications
 class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
     var id: UUID
     var habitId: UUID
-    var timeOfDay: Int
+    var timeOfDay: TimeOfDay
     var sunday: Bool
     var monday: Bool
     var tuesday: Bool
@@ -16,12 +16,6 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
     var habit: HabitModel? = nil
     var notification: ReminderNotificationModel? = nil
     
-    var hours: Int {
-        timeOfDay / 60
-    }
-    var minutes: Int {
-        timeOfDay % 60
-    }
     var notificationUI: ReminderNotificationModel {
         notification ?? ReminderNotificationModel(modelGraph, reminderId: id)
     }
@@ -43,7 +37,7 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
     init(_ modelGraph: ModelGraph, habitId: UUID, markForDeletion: Bool = false) {
         self.id = UUID()
         self.habitId = habitId
-        self.timeOfDay = 12 * 60
+        self.timeOfDay = TimeOfDay(value: 8 * 60 + 30) // 8:30 AM
         self.sunday = true
         self.monday = true
         self.tuesday = false
@@ -58,8 +52,8 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
 // MARK - FOR UI
 //
     var time: Date {
-        get { fromTimeOfDay(timeOfDay: timeOfDay) }
-        set { timeOfDay = toTimeOfDay(date: newValue ) }
+        get { timeOfDay.toDate() }
+        set { timeOfDay = TimeOfDay.fromDate(newValue) }
     }
     
     func isActive(day: DayOfWeek) -> Bool {
@@ -111,11 +105,11 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
         content.sound = .default
         
         cancelAllNotifications()
-        for day in allNotificationDays() {
+        for day in daysToNotify() {
             var dateComponents = DateComponents()
             dateComponents.calendar = calendar
-            dateComponents.hour = hours
-            dateComponents.minute = minutes
+            dateComponents.hour = timeOfDay.hour
+            dateComponents.minute = timeOfDay.minute
             dateComponents.weekday = day.rawValue
             
             do {
@@ -132,43 +126,14 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
     
     func cancelAllNotifications() {
         let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.removePendingNotificationRequests(withIdentifiers: allNotificationIdentifiers())
+        let notificationIds = DayOfWeek.allCases.map(notificationIdentifier)
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: notificationIds)
     }
     
 //
 // MARK - UTILS
 //
-    func toTimeOfDay(date: Date) -> Int {
-        let calendar = Calendar.current
-        let dateComponents = calendar.dateComponents([.hour, .minute], from: date)
-        if let hour = dateComponents.hour, let minute = dateComponents.minute {
-            print("Hour \(hour) minute \(minute)")
-            return hour * 60 + minute
-        } else {
-            return 12 * 60
-        }
-    }
-    
-    func fromTimeOfDay(timeOfDay: Int) -> Date {
-        let calendar = Calendar.current
-        var dateComponents = DateComponents()
-        dateComponents.day = 1
-        dateComponents.month = 1
-        dateComponents.year = 2024
-        dateComponents.hour = timeOfDay / 60
-        dateComponents.minute = timeOfDay % 60
-        if let date = calendar.date(from: dateComponents) {
-            return date
-        } else {
-            return Date.now
-        }
-    }
-    
-    func allNotificationIdentifiers() -> [String] {
-        return DayOfWeek.allCases.map(notificationIdentifier)
-    }
-    
-    func allNotificationDays() -> [DayOfWeek] {
+    func daysToNotify() -> [DayOfWeek] {
         var result: [DayOfWeek] = []
         if sunday { result.append(.sunday) }
         if monday { result.append(.monday) }

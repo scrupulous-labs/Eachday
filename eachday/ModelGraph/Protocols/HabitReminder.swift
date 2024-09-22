@@ -3,7 +3,7 @@ import Foundation
 protocol HabitReminder: AnyObject {
     var id: UUID { get set }
     var habitId: UUID { get set }
-    var timeOfDay: Int { get set }
+    var timeOfDay: TimeOfDay { get set }
     var sunday: Bool { get set }
     var monday: Bool { get set }
     var tuesday: Bool { get set }

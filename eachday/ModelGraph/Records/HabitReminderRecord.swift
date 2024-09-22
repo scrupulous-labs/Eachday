@@ -4,7 +4,7 @@ import GRDB
 class HabitReminderRecord: Record, HabitReminder {
     var id: UUID
     var habitId: UUID
-    var timeOfDay: Int
+    var timeOfDay: TimeOfDay
     var sunday: Bool
     var monday: Bool
     var tuesday: Bool
@@ -45,7 +45,7 @@ class HabitReminderRecord: Record, HabitReminder {
     required init(row: Row) throws {
         self.id = UUID(uuidString: row[Columns.id])!
         self.habitId = UUID(uuidString: row[Columns.habitId])!
-        self.timeOfDay = row[Columns.timeOfDay]
+        self.timeOfDay = TimeOfDay(value: row[Columns.timeOfDay])
         self.sunday = row[Columns.sunday]
         self.monday = row[Columns.monday]
         self.tuesday = row[Columns.tuesday]
@@ -59,7 +59,7 @@ class HabitReminderRecord: Record, HabitReminder {
     override func encode(to container: inout PersistenceContainer) throws {
         container[Columns.id] = id.uuidString.lowercased()
         container[Columns.habitId] = habitId.uuidString.lowercased()
-        container[Columns.timeOfDay] = timeOfDay
+        container[Columns.timeOfDay] = timeOfDay.value
         container[Columns.sunday] = sunday
         container[Columns.monday] = monday
         container[Columns.tuesday] = tuesday

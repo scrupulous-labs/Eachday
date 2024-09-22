@@ -9,16 +9,9 @@ struct EditHabitSetReminders: View {
     var cellSize = 40.0
     var cellCornerRadius = 6.0
     var daysOfWeek: [DayOfWeek] {
-        let startOfWeek = modelGraph.settingsUI.startOfWeek
-        return [
-            startOfWeek,
-            startOfWeek.next(),
-            startOfWeek.next().next(),
-            startOfWeek.next().next().next(),
-            startOfWeek.next().next().next().next(),
-            startOfWeek.next().next().next().next().next(),
-            startOfWeek.next().next().next().next().next().next()
-        ]
+        DayOfWeek.allDaysOfWeek(
+            startOfWeek: modelGraph.settingsUI.startOfWeek
+        )
     }
     @Environment(\.colorScheme) var colorScheme
     @Environment(ModelGraph.self) var modelGraph

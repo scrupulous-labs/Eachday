@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B38BF9152CA0784600A70228 /* RemindersMinimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38BF9142CA0784000A70228 /* RemindersMinimap.swift */; };
 		B3B38AB32C9D5E580037D58E /* HabitIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB22C9D5E540037D58E /* HabitIcon.swift */; };
 		B3B38AB52C9EB6210037D58E /* HabitReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB42C9EB61D0037D58E /* HabitReminder.swift */; };
 		B3B38AB72C9EB79B0037D58E /* HabitReminderRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB62C9EB7940037D58E /* HabitReminderRecord.swift */; };
@@ -85,6 +86,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B38BF9142CA0784000A70228 /* RemindersMinimap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersMinimap.swift; sourceTree = "<group>"; };
 		B3B38AB22C9D5E540037D58E /* HabitIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitIcon.swift; sourceTree = "<group>"; };
 		B3B38AB42C9EB61D0037D58E /* HabitReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitReminder.swift; sourceTree = "<group>"; };
 		B3B38AB62C9EB7940037D58E /* HabitReminderRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitReminderRecord.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 		B3D3C8472C9720AA005D28E1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B38BF9142CA0784000A70228 /* RemindersMinimap.swift */,
 				B3B38ABA2CA038E50037D58E /* ArchivedHabits.swift */,
 				B3D3C8432C9720AA005D28E1 /* EditHabitHistory.swift */,
 				B3D3C8442C9720AA005D28E1 /* HabitGroupBar.swift */,
@@ -545,6 +548,7 @@
 				B3D3C85B2C9720AA005D28E1 /* EditHabitSelectGroup.swift in Sources */,
 				B3D3C8122C9720A4005D28E1 /* HabitTask.swift in Sources */,
 				B3D3C8732C9720AA005D28E1 /* EditHabitView.swift in Sources */,
+				B38BF9152CA0784600A70228 /* RemindersMinimap.swift in Sources */,
 				B3D3C8112C9720A4005D28E1 /* HabitGroupItem.swift in Sources */,
 				B3D3C8802C9A9D3B005D28E1 /* ProfileSectionGeneral.swift in Sources */,
 				B3D3C8692C9720AA005D28E1 /* HabitDetailsStreaks.swift in Sources */,
