@@ -7,7 +7,7 @@ struct AppView: View {
     
     var body: some View {
         NavigationStack(path: $ui.navigationPath) {
-            ScrollView {
+            ScrollView {                
                 if modelGraph.habits.filter({ $0.showInUI }).isEmpty {
                     VStack {
                         Button { ui.openNewHabitSheet(modelGraph) } label: {

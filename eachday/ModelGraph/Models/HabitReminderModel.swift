@@ -44,8 +44,8 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
         self.id = UUID()
         self.habitId = habitId
         self.timeOfDay = 12 * 60
-        self.sunday = false
-        self.monday = false
+        self.sunday = true
+        self.monday = true
         self.tuesday = false
         self.wednesday = false
         self.thursday = false
@@ -103,7 +103,7 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
 //
 // MARK - NOTIFICATIONS
 //
-    func registerNotifications() {
+    func registerNotifications() async {
         let notificationCenter = UNUserNotificationCenter.current()
         let calendar = Calendar.current
         let content = UNMutableNotificationContent()
@@ -117,14 +117,16 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
             dateComponents.hour = hours
             dateComponents.minute = minutes
             dateComponents.weekday = day.rawValue
-
-            notificationCenter.add(UNNotificationRequest(
-                identifier: notificationIdentifier(day: day),
-                content: content,
-                trigger: UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-            ))
             
-            print("Date \(dateComponents.weekday!) \(dateComponents.hour!)-\(dateComponents.minute!), \(notificationIdentifier(day: day))")
+            do {
+                try await notificationCenter.add(UNNotificationRequest(
+                    identifier: notificationIdentifier(day: day),
+                    content: content,
+                    trigger: UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+                ))
+            } catch let error {
+                print(error)
+            }
         }
     }
     
@@ -221,7 +223,7 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
     }
     override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
     
-    override func preSave() { registerNotifications() }
-    override func preUpdate() { registerNotifications() }
+    override func preSave() { Task { await registerNotifications() } }
+    override func preUpdate() { Task { await registerNotifications() } }
     override func preDelete() { cancelAllNotifications() }
 }
