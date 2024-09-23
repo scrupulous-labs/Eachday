@@ -2,15 +2,28 @@ import SwiftUI
 
 struct HabitDetailsView: View {
     var habit: HabitModel
+
     @Bindable var ui: HabitDetailsViewModel = HabitDetailsViewModel.instance
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         ScrollView {
+            let completionsByDay = completionsForYear(year: ui.year)
             VStack(spacing: 16) {
                 HabitDetailsCard(habit: habit).padding(.bottom, 14)
-                HabitDetailsCalendar(habit: habit, year: ui.year, onYearChange: ui.setYear)
-                HabitDetailsStreaks(habit: habit)
+                HabitDetailsCalendar(
+                    habit: habit,
+                    year: ui.year,
+                    onYearChange: ui.setYear
+                )
+                HabitDetailsStreaks(
+                    habit: habit,
+                    completionsByDay: completionsByDay
+                )
+                HabitDetailsCompletionCount(
+                    habit: habit,
+                    completionsByDay: completionsByDay
+                )
             }
             .padding(.vertical, 12)
             .padding(.horizontal)
@@ -54,18 +67,24 @@ struct HabitDetailsView: View {
             }
         }
     }
+    
+    func completionsForYear(year: Year) -> [Day: [TaskCompletionModel]] {
+        return habit.completionsByDay.filter { (day, _) in
+            day.month.year == year
+        }
+    }
 }
 
 @Observable
 class HabitDetailsViewModel {
     static let instance: HabitDetailsViewModel = HabitDetailsViewModel()
     
-    var year: Int = Day.today().month.year()
+    var year: Year = Day.today().month.year
     var activeSheet: HabitDetailsSheet? = nil
     var userAttemptedToDismissSheet: Bool = false
     var canInteractivelyDismissSheet: Bool = true
 
-    func setYear(year: Int) {
+    func setYear(year: Year) {
         self.year = year
     }
 }

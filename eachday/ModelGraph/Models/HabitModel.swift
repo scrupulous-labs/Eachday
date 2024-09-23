@@ -207,7 +207,6 @@ class HabitModel: Model<HabitRecord>, Habit {
         }
     }
 
-
 //
 // MARK - OVERRIDES
 //

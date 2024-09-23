@@ -4,7 +4,7 @@ import GRDB
 class SettingsRecord: Record, Settings {
     var id: Int
     var savedTheme: Theme?
-    var savedStartOfWeek: DayOfWeek?
+    var savedStartOfWeek: WeekDay?
     
     override class var databaseTableName: String { "settings" }
     
@@ -27,7 +27,7 @@ class SettingsRecord: Record, Settings {
             ? Theme(rawValue: row[Columns.savedTheme]) 
             : nil
         self.savedStartOfWeek = row[Columns.savedStartOfWeek] != nil
-            ? DayOfWeek(rawValue: row[Columns.savedStartOfWeek])
+            ? WeekDay(rawValue: row[Columns.savedStartOfWeek])
             : nil
         try super.init(row: row)
     }

@@ -72,8 +72,7 @@ struct ArchivedHabits: View {
                     .frame(height: headerHeight)
                 }
             } header: {
-                Text("Archived Habits")
-                    .padding(.leading, -8)
+                Text("Archived Habits").padding(.leading, -8)
             }
         }
     }

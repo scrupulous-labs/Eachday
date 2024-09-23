@@ -2,7 +2,7 @@ import Foundation
 
 protocol Settings: AnyObject {
     var savedTheme: Theme? { get set }
-    var savedStartOfWeek: DayOfWeek? { get set }
+    var savedStartOfWeek: WeekDay? { get set }
 }
 
 extension Settings {

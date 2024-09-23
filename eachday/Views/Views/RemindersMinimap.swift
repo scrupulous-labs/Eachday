@@ -3,14 +3,14 @@ import SwiftUI
 struct RemindersMinimap: View {
     var habit: HabitModel
     
-    var daysOfWeek: [DayOfWeek] {
-        DayOfWeek.allDaysOfWeek(
+    var daysOfWeek: [WeekDay] {
+        WeekDay.allDaysOfWeek(
             startOfWeek: modelGraph.settingsUI.startOfWeek
         )
     }
-    var activeDaysOfWeek: Set<DayOfWeek> {
+    var activeDaysOfWeek: Set<WeekDay> {
         let reminders = habit.habitRemindersUI
-        var result: Set<DayOfWeek> = Set()
+        var result: Set<WeekDay> = Set()
         if reminders.contains(where: { $0.sunday }) {
             result.insert(.sunday)
         }

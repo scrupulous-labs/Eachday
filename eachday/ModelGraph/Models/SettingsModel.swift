@@ -3,13 +3,13 @@ import SwiftUI
 @Observable
 class SettingsModel: Model<SettingsRecord>, Settings {
     var savedTheme: Theme?
-    var savedStartOfWeek: DayOfWeek?
+    var savedStartOfWeek: WeekDay?
     
     var theme: Theme {
         get { savedTheme ?? .system }
         set { savedTheme = newValue }
     }
-    var startOfWeek: DayOfWeek {
+    var startOfWeek: WeekDay {
         get { savedStartOfWeek ?? .sunday}
         set { savedStartOfWeek = newValue }
     }

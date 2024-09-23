@@ -39,8 +39,8 @@ struct ProfileSectionSettings: View {
             
             
             Picker(selection: $settings.startOfWeek) {
-                Text("Sunday").tag(DayOfWeek.sunday)
-                Text("Monday").tag(DayOfWeek.monday)
+                Text("Sunday").tag(WeekDay.sunday)
+                Text("Monday").tag(WeekDay.monday)
             } label: {
                 HStack(spacing: 12) {
                     ZStack {

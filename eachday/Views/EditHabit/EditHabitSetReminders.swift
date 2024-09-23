@@ -8,8 +8,8 @@ struct EditHabitSetReminders: View {
     
     var cellSize = 40.0
     var cellCornerRadius = 6.0
-    var daysOfWeek: [DayOfWeek] {
-        DayOfWeek.allDaysOfWeek(
+    var daysOfWeek: [WeekDay] {
+        WeekDay.allDaysOfWeek(
             startOfWeek: modelGraph.settingsUI.startOfWeek
         )
     }
@@ -26,7 +26,7 @@ struct EditHabitSetReminders: View {
                             DatePicker("", selection: $reminder.time, displayedComponents: .hourAndMinute)
                                 .labelsHidden()
                                 .onChange(of: reminder.time, { _, _ in onFieldChange() })
-                            dayOfWeek(reminder: reminder)
+                            renderWeekDays(reminder: reminder)
                         }
                         .frame(maxWidth: .infinity)
                         
@@ -56,7 +56,7 @@ struct EditHabitSetReminders: View {
                 HStack(alignment: .top, spacing: 0) {
                     VStack(alignment: .leading, spacing: 16) {
                         DatePicker("", selection: $reminder.time, displayedComponents: .hourAndMinute).labelsHidden()
-                        dayOfWeek(reminder: reminder)
+                        renderWeekDays(reminder: reminder)
                     }
                     .frame(maxWidth: .infinity)
                     
@@ -81,10 +81,10 @@ struct EditHabitSetReminders: View {
         }
     }
     
-    func dayOfWeek(reminder: HabitReminderModel) -> some View {
+    func renderWeekDays(reminder: HabitReminderModel) -> some View {
         HStack(spacing: 10) {
-            ForEach(daysOfWeek, id: \.self) { dayOfWeek in
-                let isActive = reminder.isActive(day: dayOfWeek)
+            ForEach(daysOfWeek, id: \.self) { WeekDay in
+                let isActive = reminder.isActive(day: WeekDay)
                 let background = isActive
                     ? (colorScheme == .light ? "#E5E5E5" : "#404040")
                     : (colorScheme == .light ? "#FAFAFA" : "#27272A")
@@ -97,13 +97,13 @@ struct EditHabitSetReminders: View {
                         .fill(Color(hex: background))
                         .frame(width: 32, height: 32)
                     
-                    Text("\(dayOfWeek.shortHand())")
+                    Text("\(WeekDay.shortHand)")
                         .font(Font.caption.weight(.medium))
                         .foregroundColor(Color(hex: foreGround))
                 }
                 .frame(width: 32, height: 32)
                 .onTapGesture {
-                    reminder.toggleDay(day: dayOfWeek)
+                    reminder.toggleDay(day: WeekDay)
                     onFieldChange()
                 }
             }

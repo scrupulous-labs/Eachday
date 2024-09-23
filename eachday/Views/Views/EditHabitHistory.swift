@@ -15,9 +15,9 @@ struct EditHabitHistory: View {
     let cellCornerRadius = 5.0
     let endDate: Date = Day.today().toDate()
     let startDate: Date = Month.current()
-        .prev().prev().prev().prev().prev().prev()
-        .prev().prev().prev().prev().prev().prev()
-        .startDay().toDate()
+        .prev.prev.prev.prev.prev.prev
+        .prev.prev.prev.prev.prev.prev
+        .startDay.toDate()
     var customCalendar: Calendar {
         var cal = Calendar.current
         cal.firstWeekday = modelGraph.settingsUI.startOfWeek.rawValue

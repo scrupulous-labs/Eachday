@@ -22,7 +22,7 @@ struct HabitMonthGrid: View {
             spacing: gridVerticalSpacing
         ) {
             let startDay = modelGraph.settingsUI.startOfWeek
-            ForEach(Array(month.daysGrid(startDay: startDay).enumerated()), id: \.offset) { (_, maybeDay) in
+            ForEach(Array(month.daysGrid(startOfWeek: startDay).enumerated()), id: \.offset) { (_, maybeDay) in
                 switch maybeDay {
                 case Maybe.nothing:
                     RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
@@ -38,20 +38,6 @@ struct HabitMonthGrid: View {
                                 .size(width: cellSize, height: cellSize)
                                 .fill(habit.color.shade1)
                                 .overlay {
-//                                    let start = completedDays.min()
-//                                    let end = completedDays.max()
-//                                    if start != nil && end != nil && start! <= day && day <= end! {
-//                                        RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
-//                                            .size(width: cellSize, height: cellSize)
-//                                            .fill(habit.color.shade2)
-//                                            .overlay {
-//                                                if completedDays.contains(day) {
-//                                                    RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
-//                                                        .size(width: cellSize, height: cellSize)
-//                                                        .fill(habit.color.shade4)
-//                                                }
-//                                            }
-//                                    }
                                     RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
                                         .size(width: cellSize, height: cellSize)
                                         .fill(habit.dayCalendarColor(day: day))

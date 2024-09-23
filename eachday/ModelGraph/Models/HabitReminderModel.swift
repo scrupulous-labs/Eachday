@@ -56,7 +56,7 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
         set { timeOfDay = TimeOfDay.fromDate(newValue) }
     }
     
-    func isActive(day: DayOfWeek) -> Bool {
+    func isActive(day: WeekDay) -> Bool {
         switch day {
         case .sunday:
             return sunday
@@ -75,7 +75,7 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
         }
     }
     
-    func toggleDay(day: DayOfWeek) {
+    func toggleDay(day: WeekDay) {
         switch day {
         case .sunday:
             sunday = !sunday
@@ -126,15 +126,15 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
     
     func cancelAllNotifications() {
         let notificationCenter = UNUserNotificationCenter.current()
-        let notificationIds = DayOfWeek.allCases.map(notificationIdentifier)
+        let notificationIds = WeekDay.allCases.map(notificationIdentifier)
         notificationCenter.removePendingNotificationRequests(withIdentifiers: notificationIds)
     }
     
 //
 // MARK - UTILS
 //
-    func daysToNotify() -> [DayOfWeek] {
-        var result: [DayOfWeek] = []
+    func daysToNotify() -> [WeekDay] {
+        var result: [WeekDay] = []
         if sunday { result.append(.sunday) }
         if monday { result.append(.monday) }
         if tuesday { result.append(.tuesday) }
@@ -145,7 +145,7 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
         return result
     }
     
-    func notificationIdentifier(day: DayOfWeek) -> String {
+    func notificationIdentifier(day: WeekDay) -> String {
         let notificationId = switch day {
             case .sunday:
                 notificationUI.sundayId

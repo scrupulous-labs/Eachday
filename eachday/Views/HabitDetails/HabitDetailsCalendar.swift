@@ -2,18 +2,17 @@ import SwiftUI
 
 struct HabitDetailsCalendar: View {
     var habit: HabitModel
-    var year: Int
-    var onYearChange: (Int) -> Void
-    var currentYear: Int = Day.today().month.year()
+    var year: Year
+    var onYearChange: (Year) -> Void
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack(spacing: 16) {
             HStack {
-                Text(String(year))
+                Text(String(year.value))
                     .font(Font.system(size: 24).weight(.semibold))
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Button { onYearChange(year - 1) } label: {
+                Button { onYearChange(year.prev) } label: {
                     Image(systemName: "chevron.left")
                         .resizable()
                         .scaledToFit()
@@ -22,12 +21,12 @@ struct HabitDetailsCalendar: View {
                         .fontWeight(.medium)
                 }
                 Spacer().frame(width: 26)
-                Button { if year < currentYear { onYearChange(year + 1) } } label: {
+                Button { if year < Year.current() { onYearChange(year.next) } } label: {
                     Image(systemName: "chevron.right")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 16, height: 16)
-                        .foregroundColor(year == currentYear ? .gray : .black)
+                        .foregroundColor(year == Year.current() ? .gray : .black)
                         .fontWeight(.medium)
                 }
             }
@@ -42,7 +41,7 @@ struct HabitDetailsCalendar: View {
                         Month.april(year: year)
                     ], id: \.self) { month in
                         VStack {
-                            Text(month.shortHand())
+                            Text(month.shortHand)
                                 .font(Font.system(size: 10).weight(.light))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.bottom, -2)
@@ -60,7 +59,7 @@ struct HabitDetailsCalendar: View {
                         Month.august(year: year)
                     ], id: \.self) { month in
                         VStack {
-                            Text(month.shortHand())
+                            Text(month.shortHand)
                                 .font(Font.system(size: 10).weight(.light))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.bottom, 0)
@@ -78,7 +77,7 @@ struct HabitDetailsCalendar: View {
                         Month.december(year: year)
                     ], id: \.self) { month in
                         VStack {
-                            Text(month.shortHand())
+                            Text(month.shortHand)
                                 .font(Font.system(size: 10).weight(.light))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.bottom, -2)

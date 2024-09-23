@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B31E240F2CA1468600424C55 /* Algorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E240E2CA1468200424C55 /* Algorithms.swift */; };
 		B38BF9152CA0784600A70228 /* RemindersMinimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38BF9142CA0784000A70228 /* RemindersMinimap.swift */; };
 		B3B38AB32C9D5E580037D58E /* HabitIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB22C9D5E540037D58E /* HabitIcon.swift */; };
 		B3B38AB52C9EB6210037D58E /* HabitReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB42C9EB61D0037D58E /* HabitReminder.swift */; };
@@ -38,7 +39,6 @@
 		B3D3C8162C9720A4005D28E1 /* HabitRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C7FC2C9720A4005D28E1 /* HabitRecord.swift */; };
 		B3D3C8172C9720A4005D28E1 /* HabitTaskRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C7FD2C9720A4005D28E1 /* HabitTaskRecord.swift */; };
 		B3D3C8182C9720A4005D28E1 /* TaskCompletionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C7FE2C9720A4005D28E1 /* TaskCompletionRecord.swift */; };
-		B3D3C8192C9720A4005D28E1 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8002C9720A4005D28E1 /* Calendar.swift */; };
 		B3D3C81B2C9720A4005D28E1 /* HabitColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8022C9720A4005D28E1 /* HabitColor.swift */; };
 		B3D3C81C2C9720A4005D28E1 /* FP.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8032C9720A4005D28E1 /* FP.swift */; };
 		B3D3C81D2C9720A4005D28E1 /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8042C9720A4005D28E1 /* Frequency.swift */; };
@@ -86,6 +86,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B31E240E2CA1468200424C55 /* Algorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithms.swift; sourceTree = "<group>"; };
 		B38BF9142CA0784000A70228 /* RemindersMinimap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersMinimap.swift; sourceTree = "<group>"; };
 		B3B38AB22C9D5E540037D58E /* HabitIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitIcon.swift; sourceTree = "<group>"; };
 		B3B38AB42C9EB61D0037D58E /* HabitReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitReminder.swift; sourceTree = "<group>"; };
@@ -118,7 +119,6 @@
 		B3D3C7FC2C9720A4005D28E1 /* HabitRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitRecord.swift; sourceTree = "<group>"; };
 		B3D3C7FD2C9720A4005D28E1 /* HabitTaskRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitTaskRecord.swift; sourceTree = "<group>"; };
 		B3D3C7FE2C9720A4005D28E1 /* TaskCompletionRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCompletionRecord.swift; sourceTree = "<group>"; };
-		B3D3C8002C9720A4005D28E1 /* Calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		B3D3C8022C9720A4005D28E1 /* HabitColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitColor.swift; sourceTree = "<group>"; };
 		B3D3C8032C9720A4005D28E1 /* FP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FP.swift; sourceTree = "<group>"; };
 		B3D3C8042C9720A4005D28E1 /* Frequency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
@@ -163,6 +163,10 @@
 		B3D3C8902C9C79ED005D28E1 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B31E24102CA1599000424C55 /* Calendar */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Calendar; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		B3D3C7D22C972089005D28E1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -198,8 +202,9 @@
 				B3D3C84F2C9720AA005D28E1 /* Views */,
 				B3D3C8082C9720A4005D28E1 /* ModelGraph */,
 				B3D3C7E92C97209D005D28E1 /* Database */,
-				B3D3C7D82C972089005D28E1 /* eachdayApp.swift */,
+				B3D3C8062C9720A4005D28E1 /* Utils */,
 				B3D3C7DC2C97208A005D28E1 /* Assets.xcassets */,
+				B3D3C7D82C972089005D28E1 /* eachdayApp.swift */,
 				B3D3C7DE2C97208A005D28E1 /* Preview Content */,
 			);
 			path = eachday;
@@ -272,8 +277,9 @@
 		B3D3C8062C9720A4005D28E1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B31E24102CA1599000424C55 /* Calendar */,
 				B3D3C8032C9720A4005D28E1 /* FP.swift */,
-				B3D3C8002C9720A4005D28E1 /* Calendar.swift */,
+				B31E240E2CA1468200424C55 /* Algorithms.swift */,
 				B3B38AB22C9D5E540037D58E /* HabitIcon.swift */,
 				B3D3C8022C9720A4005D28E1 /* HabitColor.swift */,
 				B3D3C8042C9720A4005D28E1 /* Frequency.swift */,
@@ -288,7 +294,6 @@
 				B3D3C7F32C9720A4005D28E1 /* Models */,
 				B3D3C7FF2C9720A4005D28E1 /* Records */,
 				B3D3C7F92C9720A4005D28E1 /* Protocols */,
-				B3D3C8062C9720A4005D28E1 /* Utils */,
 				B3D3C8072C9720A4005D28E1 /* ModelGraph.swift */,
 			);
 			path = ModelGraph;
@@ -350,11 +355,11 @@
 		B3D3C8422C9720AA005D28E1 /* HabitDetails */ = {
 			isa = PBXGroup;
 			children = (
-				B3D3C83D2C9720AA005D28E1 /* HabitDetailsCalendar.swift */,
-				B3D3C83E2C9720AA005D28E1 /* HabitDetailsCard.swift */,
-				B3D3C83F2C9720AA005D28E1 /* HabitDetailsCompletionCount.swift */,
-				B3D3C8402C9720AA005D28E1 /* HabitDetailsStreaks.swift */,
 				B3D3C8412C9720AA005D28E1 /* HabitDetailsUtils.swift */,
+				B3D3C83E2C9720AA005D28E1 /* HabitDetailsCard.swift */,
+				B3D3C83D2C9720AA005D28E1 /* HabitDetailsCalendar.swift */,
+				B3D3C8402C9720AA005D28E1 /* HabitDetailsStreaks.swift */,
+				B3D3C83F2C9720AA005D28E1 /* HabitDetailsCompletionCount.swift */,
 			);
 			path = HabitDetails;
 			sourceTree = "<group>";
@@ -423,6 +428,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B31E24102CA1599000424C55 /* Calendar */,
 			);
 			name = eachday;
 			packageProductDependencies = (
@@ -498,6 +506,7 @@
 				B3D3C86F2C9720AA005D28E1 /* AppView.swift in Sources */,
 				B3D3C80C2C9720A4005D28E1 /* HabitTaskModel.swift in Sources */,
 				B3D3C7EC2C97209D005D28E1 /* Database+Persistence.swift in Sources */,
+				B31E240F2CA1468600424C55 /* Algorithms.swift in Sources */,
 				B3D3C86E2C9720AA005D28E1 /* MarkHabitButton.swift in Sources */,
 				B3D3C80D2C9720A4005D28E1 /* Model.swift in Sources */,
 				B3D3C8522C9720AA005D28E1 /* AppHabitCardHeader.swift in Sources */,
@@ -519,7 +528,6 @@
 				B3D3C8672C9720AA005D28E1 /* HabitDetailsCard.swift in Sources */,
 				B3D3C8562C9720AA005D28E1 /* EditHabitSectionChecklist.swift in Sources */,
 				B3D3C8842C9A9DED005D28E1 /* ProfileSectionApp.swift in Sources */,
-				B3D3C8192C9720A4005D28E1 /* Calendar.swift in Sources */,
 				B3D3C8182C9720A4005D28E1 /* TaskCompletionRecord.swift in Sources */,
 				B3D3C88B2C9AF6EA005D28E1 /* EditHabitOrderGroups.swift in Sources */,
 				B3D3C8532C9720AA005D28E1 /* AppHabitCard.swift in Sources */,
