@@ -5,6 +5,14 @@ enum Frequency: Hashable {
     case weekly(times: Int)
     case monthly(times: Int)
     
+    var streakUnit: String {
+        switch self {
+        case .daily(_): "days"
+        case .weekly(_): "weeks"
+        case .monthly(_): "monthly"
+        }
+    }
+    
     static func fromJson(json: String) -> Frequency? {
         let decoder = JSONDecoder()
         let jsonData = json.data(using: .utf8)!

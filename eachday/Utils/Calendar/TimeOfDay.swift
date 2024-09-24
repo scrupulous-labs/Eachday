@@ -17,7 +17,6 @@ struct TimeOfDay: Hashable, Comparable {
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.hour, .minute], from: date)
         if let hour = dateComponents.hour, let minute = dateComponents.minute {
-            print("Hour \(hour) minute \(minute)")
             return TimeOfDay(value: hour * 60 + minute)
         } else {
             return TimeOfDay(value: 12 * 60)

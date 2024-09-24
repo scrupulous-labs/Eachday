@@ -15,7 +15,6 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
     var saturday: Bool
     var habit: HabitModel? = nil
     var notification: ReminderNotificationModel? = nil
-    
     var notificationUI: ReminderNotificationModel {
         notification ?? ReminderNotificationModel(modelGraph, reminderId: id)
     }
@@ -168,7 +167,7 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
 //
 // MARK - OVERRIDES
 //
-    override var children: [ModelNode] { notification != nil ? [notification!] : [] }
+    override var children: [ModelNode] { [notificationUI] }
     override var isModified: Bool { record != nil && !equals(record!) }
     override var isValid: Bool { validate() }
     
