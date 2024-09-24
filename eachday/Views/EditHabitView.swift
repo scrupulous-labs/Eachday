@@ -102,7 +102,7 @@ struct EditHabitView: View {
     }
     
     func done() {
-        if habit.isMarkedForDeletion { habit.graphUmarkForDeletion() }
+        if habit.isMarkedForDeletion { habit.unmarkForDeletion() }
         habit.save(); dismiss()
     }
     func cancel() {

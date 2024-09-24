@@ -128,6 +128,7 @@ class ModelNode {
             switch model.status {
             case ModelStatus.transient where model.isMarkedForDeletion || !model.isValid:
                 model.delete(dbOps: &dbOps)
+                continue
                 
             case ModelStatus.transient:
                 model.preSave()
@@ -135,6 +136,7 @@ class ModelNode {
                 
             case ModelStatus.changed where model.isMarkedForDeletion:
                 model.delete(dbOps: &dbOps)
+                continue
                 
             case ModelStatus.changed where !model.isValid:
                 model.resetToDbRecord()
@@ -145,6 +147,7 @@ class ModelNode {
                 
             case ModelStatus.unChanged where model.isMarkedForDeletion:
                 model.delete(dbOps: &dbOps)
+                continue
                 
             default:
                 break
