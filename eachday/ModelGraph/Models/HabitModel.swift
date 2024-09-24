@@ -11,17 +11,17 @@ class HabitModel: Model<HabitRecord>, Habit {
     var frequency: Frequency
     var sortOrder: SortOrder
     var habitTasks: [HabitTaskModel] = []
-    var habitGroupItems: [HabitGroupItemModel] = []
     var habitReminders: [HabitReminderModel] = []
+    var habitGroupItems: [HabitGroupItemModel] = []
     
     var habitTasksUI: [HabitTaskModel] {
-        habitTasks.sorted { $0.sortOrder < $1.sortOrder }.filter { $0.showInUI }
+        habitTasks.filter { $0.showInUI }.sorted { $0.sortOrder < $1.sortOrder }
+    }
+    var habitRemindersUI: [HabitReminderModel] {
+        habitReminders.filter { $0.showInUI }.sorted { $0.timeOfDay < $1.timeOfDay }
     }
     var habitGroupItemsUI: [HabitGroupItemModel] {
         habitGroupItems.filter { $0.showInUI }
-    }
-    var habitRemindersUI: [HabitReminderModel] {
-        habitReminders.sorted { $0.timeOfDay < $1.timeOfDay }.filter { $0.showInUI }
     }
     var completionsByDay: [Day: [TaskCompletionModel]] = [:]
     
@@ -34,6 +34,7 @@ class HabitModel: Model<HabitRecord>, Habit {
         self.frequency = fromRecord.frequency
         self.sortOrder = fromRecord.sortOrder
         super.init(modelGraph, fromRecord: fromRecord, markForDeletion: false)
+        deriveCompletionsByDay()
         registerCompletionsByDay()
     }
     
@@ -46,19 +47,30 @@ class HabitModel: Model<HabitRecord>, Habit {
         self.frequency = Frequency.daily(times: 1)
         self.sortOrder = SortOrder.new()
         super.init(modelGraph, fromRecord: nil, markForDeletion: markForDeletion)
+        deriveCompletionsByDay()
         registerCompletionsByDay()
     }
     
-    @Sendable func registerCompletionsByDay() {
-        self.completionsByDay = withObservationTracking({
-            habitTasksUI.reduce(into: [Day: [TaskCompletionModel]]()) { res, habitTask in
-                habitTask.completionsByDay.forEach {(day, completions) in
-                    res[day] = (res[day] ?? []) + completions
-                }
+    func deriveCompletionsByDay() {
+        print("DERIVE COMPLETIONS BY DAY")
+        self.completionsByDay = habitTasksUI.reduce(into: [Day: [TaskCompletionModel]]()) { res, habitTask in
+            habitTask.completionsByDay.forEach {(day, completions) in
+                res[day] = (res[day] ?? []) + completions
             }
-        }, onChange: self.registerCompletionsByDay)
+        }
     }
     
+    func registerCompletionsByDay() {
+        withObservationTracking({
+            habitTasksUI.forEach { _ = $0.completionsByDay }
+        }, onChange: {
+            DispatchQueue.main.async { [self] in
+                deriveCompletionsByDay()
+                registerCompletionsByDay()
+            }
+        })
+    }
+
 //
 // MARK - FOR UI
 //
@@ -144,11 +156,13 @@ class HabitModel: Model<HabitRecord>, Habit {
     }
     
     func markNextRepetition(day: Day) {
-        var nextTask = nextTaskToComplete(day: day)
+        let nextTask = nextTaskToComplete(day: day)
         let repetition = repetitionsCompleted(day: day)
-        while (nextTask != nil && repetitionsCompleted(day: day) < repetition + 1) {
+        if nextTask != nil && repetitionsCompleted(day: day) < repetition + 1 {
             _ = TaskCompletionModel(modelGraph, taskId: nextTask!.id, day: day)
-            nextTask = nextTaskToComplete(day: day)
+            DispatchQueue.main.async { [self] in
+                markNextRepetition(day: day)
+            }
         }
     }
     
@@ -212,6 +226,7 @@ class HabitModel: Model<HabitRecord>, Habit {
             }
         }
     }
+
 
 //
 // MARK - OVERRIDES
