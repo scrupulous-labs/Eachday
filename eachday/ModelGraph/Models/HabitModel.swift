@@ -23,13 +23,7 @@ class HabitModel: Model<HabitRecord>, Habit {
     var habitRemindersUI: [HabitReminderModel] {
         habitReminders.sorted { $0.timeOfDay < $1.timeOfDay }.filter { $0.showInUI }
     }
-    var completionsByDay: [Day: [TaskCompletionModel]] {
-        habitTasksUI.reduce(into: [Day: [TaskCompletionModel]]()) { res, habitTask in
-            habitTask.completionsByDay.forEach {(day, completions) in
-                res[day] = (res[day] ?? []) + completions
-            }
-        }
-    }
+    var completionsByDay: [Day: [TaskCompletionModel]] = [:]
     
     init(_ modelGraph: ModelGraph, fromRecord: HabitRecord) {
         self.id = fromRecord.id
@@ -40,6 +34,7 @@ class HabitModel: Model<HabitRecord>, Habit {
         self.frequency = fromRecord.frequency
         self.sortOrder = fromRecord.sortOrder
         super.init(modelGraph, fromRecord: fromRecord, markForDeletion: false)
+        registerCompletionsByDay()
     }
     
     init(_ modelGraph: ModelGraph, markForDeletion: Bool = false) {
@@ -51,6 +46,17 @@ class HabitModel: Model<HabitRecord>, Habit {
         self.frequency = Frequency.daily(times: 1)
         self.sortOrder = SortOrder.new()
         super.init(modelGraph, fromRecord: nil, markForDeletion: markForDeletion)
+        registerCompletionsByDay()
+    }
+    
+    @Sendable func registerCompletionsByDay() {
+        self.completionsByDay = withObservationTracking({
+            habitTasksUI.reduce(into: [Day: [TaskCompletionModel]]()) { res, habitTask in
+                habitTask.completionsByDay.forEach {(day, completions) in
+                    res[day] = (res[day] ?? []) + completions
+                }
+            }
+        }, onChange: self.registerCompletionsByDay)
     }
     
 //
