@@ -18,7 +18,7 @@ struct EditHabitSelectFrequency: View {
 
             ForEach(Array(0..<3), id: \.self) { ind in
                 HStack {
-                    Text(ui.frequencies[ind].uiText())
+                    Text(ui.frequencies[ind].uiText)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .onTapGesture {
                             habit.frequency = ui.frequencies[ind]

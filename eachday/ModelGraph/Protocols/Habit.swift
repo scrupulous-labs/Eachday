@@ -1,11 +1,5 @@
 import Foundation
 
-enum HabitDayStatus: Equatable {
-    case completed
-    case notCompleted
-    case partiallyCompleted(value: Double)
-}
-
 protocol Habit: AnyObject {
     var id: UUID { get set }
     var name: String { get set }

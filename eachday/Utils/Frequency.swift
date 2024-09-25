@@ -5,27 +5,16 @@ enum Frequency: Hashable {
     case weekly(times: Int)
     case monthly(times: Int)
     
-    var streakUnit: String {
+    var repetitionsPerDay: Int {
         switch self {
-        case .daily(_): "days"
-        case .weekly(_): "weeks"
-        case .monthly(_): "monthly"
+        case .daily(let times):
+            return times
+        default:
+            return 1
         }
     }
     
-    static func fromJson(json: String) -> Frequency? {
-        let decoder = JSONDecoder()
-        let jsonData = json.data(using: .utf8)!
-        return try? decoder.decode(Frequency.self, from: jsonData)
-    }
-    
-    func toJson() -> String {
-        let encoder = JSONEncoder()
-        let jsonData = try? encoder.encode(self)
-        return String(data: jsonData!, encoding: .utf8)!
-    }
-    
-    func uiText() -> String {
+    var uiText: String {
         switch self {
         case .daily(let times) where times == 1:
             return "Daily"
@@ -42,13 +31,35 @@ enum Frequency: Hashable {
         }
     }
     
-    func repetitionsPerDay() -> Int {
+    var streakUnit: String {
+        switch self {
+        case .daily(_): "days"
+        case .weekly(_): "weeks"
+        case .monthly(_): "months"
+        }
+    }
+    
+    var streakDefinition: String {
         switch self {
         case .daily(let times):
-            return times
-        default:
-            return 1
+            times > 1 ? "atleast once a day" : "once a day"
+        case .weekly(let times):
+            times > 1 ? "\(times) times a week" : "once a week"
+        case .monthly(let times):
+            times > 1 ? "\(times) times a month" : "once a month"
         }
+    }
+    
+    static func fromJson(json: String) -> Frequency? {
+        let decoder = JSONDecoder()
+        let jsonData = json.data(using: .utf8)!
+        return try? decoder.decode(Frequency.self, from: jsonData)
+    }
+    
+    func toJson() -> String {
+        let encoder = JSONEncoder()
+        let jsonData = try? encoder.encode(self)
+        return String(data: jsonData!, encoding: .utf8)!
     }
     
     mutating func incr() {

@@ -22,7 +22,7 @@ struct EditHabitSectionGoal: View {
                         .font(Font.subheadline.weight(.regular))
                         .foregroundColor(colorScheme == .light ? .black : .white)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(habit.frequency.uiText())
+                    Text(habit.frequency.uiText)
                         .font(Font.subheadline.weight(.regular))
                         .foregroundColor(colorScheme == .light ? .black : .white)
                     Image(systemName: "chevron.right")

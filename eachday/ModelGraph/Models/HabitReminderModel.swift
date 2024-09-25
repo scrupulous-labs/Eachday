@@ -129,10 +129,7 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
         notificationCenter.removePendingNotificationRequests(withIdentifiers: notificationIds)
     }
     
-//
-// MARK - UTILS
-//
-    func daysToNotify() -> [WeekDay] {
+    private func daysToNotify() -> [WeekDay] {
         var result: [WeekDay] = []
         if sunday { result.append(.sunday) }
         if monday { result.append(.monday) }
@@ -144,7 +141,7 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
         return result
     }
     
-    func notificationIdentifier(day: WeekDay) -> String {
+    private func notificationIdentifier(day: WeekDay) -> String {
         let notificationId = switch day {
             case .sunday:
                 notificationUI.sundayId

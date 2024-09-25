@@ -24,7 +24,7 @@ class HabitGroupItemModel: Model<HabitGroupItemRecord>, HabitGroupItem {
         self.groupId = groupId
         super.init(modelGraph, fromRecord: nil, markForDeletion: markForDeletion)
     }
-    
+
     
 //
 // MARK - OVERRIDES

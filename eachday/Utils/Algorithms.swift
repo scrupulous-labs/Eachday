@@ -1,16 +1,17 @@
 import Foundation
 
 final class Algorithms {
-    static func longestStreak(completionArray: [Float]) -> [Double] {
+    static func longestStreak(completionArray: [HabitDayStatus]) -> [HabitDayStatus] {
         var res = 0
-        var map = [Bool: Int]()
+        var map = [HabitDayStatus: Int]()
         var (start, end) = (0, 0)
-        let completedArray: [Bool] = completionArray.map { $0 >= 1.0 }
-        while end < completedArray.count {
-            map[completedArray[end]] = (map[completedArray[end]] ?? 0) + 1
-            while (map[false] ?? 0) > 0 && start <= end {
-                if map[completedArray[start]] != nil {
-                    map[completedArray[start]] = map[completedArray[start]]! - 1
+        
+        let completed = completionArray.map { $0.eitherCompletedOrNot() }
+        while end < completed.count {
+            map[completed[end]] = (map[completed[end]] ?? 0) + 1
+            while (map[.notCompleted] ?? 0) > 0 && start <= end {
+                if map[completed[start]] != nil {
+                    map[completed[start]] = map[completed[start]]! - 1
                 }
                 start += 1
             }
@@ -18,22 +19,16 @@ final class Algorithms {
             end += 1
         }
         
-        return Array(repeating: 1.0, count: res)
+        return Array(repeating: .completed, count: res)
     }
     
-    static func currentStreak(completionArray: [Float]) -> [Float] {
+    static func currentStreak(completionArray: [HabitDayStatus]) -> [HabitDayStatus] {
         let end = completionArray.count - 1
         var start = end
         while start >= 0 {
-            if completionArray[start] < 1 { break }
+            if completionArray[start] != .completed { break }
             start -= 1
         }
-        
-        if end - start > 0 {
-            if start > 0 { start -= 1 }
-            return Array(completionArray[start...end])
-        } else {
-            return []
-        }
+        return Array(repeating: .completed, count: end - start)
     }
 }

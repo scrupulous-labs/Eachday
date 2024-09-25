@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B31E240F2CA1468600424C55 /* Algorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E240E2CA1468200424C55 /* Algorithms.swift */; };
+		B3231F6A2CA33CDA00B37C4D /* HabitDayStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3231F692CA33CCC00B37C4D /* HabitDayStatus.swift */; };
 		B38BF9152CA0784600A70228 /* RemindersMinimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38BF9142CA0784000A70228 /* RemindersMinimap.swift */; };
 		B3B38AB32C9D5E580037D58E /* HabitIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB22C9D5E540037D58E /* HabitIcon.swift */; };
 		B3B38AB52C9EB6210037D58E /* HabitReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB42C9EB61D0037D58E /* HabitReminder.swift */; };
@@ -87,6 +88,7 @@
 
 /* Begin PBXFileReference section */
 		B31E240E2CA1468200424C55 /* Algorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithms.swift; sourceTree = "<group>"; };
+		B3231F692CA33CCC00B37C4D /* HabitDayStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDayStatus.swift; sourceTree = "<group>"; };
 		B38BF9142CA0784000A70228 /* RemindersMinimap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersMinimap.swift; sourceTree = "<group>"; };
 		B3B38AB22C9D5E540037D58E /* HabitIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitIcon.swift; sourceTree = "<group>"; };
 		B3B38AB42C9EB61D0037D58E /* HabitReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitReminder.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				B31E240E2CA1468200424C55 /* Algorithms.swift */,
 				B3B38AB22C9D5E540037D58E /* HabitIcon.swift */,
 				B3D3C8022C9720A4005D28E1 /* HabitColor.swift */,
+				B3231F692CA33CCC00B37C4D /* HabitDayStatus.swift */,
 				B3D3C8042C9720A4005D28E1 /* Frequency.swift */,
 				B3D3C8052C9720A4005D28E1 /* SortOrder.swift */,
 			);
@@ -560,6 +563,7 @@
 				B3D3C8112C9720A4005D28E1 /* HabitGroupItem.swift in Sources */,
 				B3D3C8802C9A9D3B005D28E1 /* ProfileSectionGeneral.swift in Sources */,
 				B3D3C8692C9720AA005D28E1 /* HabitDetailsStreaks.swift in Sources */,
+				B3231F6A2CA33CDA00B37C4D /* HabitDayStatus.swift in Sources */,
 				B3D3C81C2C9720A4005D28E1 /* FP.swift in Sources */,
 				B3D3C85E2C9720AA005D28E1 /* EditHabitUtils.swift in Sources */,
 				B3D3C88D2C9B2E24005D28E1 /* Settings.swift in Sources */,

@@ -13,6 +13,7 @@ class HabitModel: Model<HabitRecord>, Habit {
     var habitTasks: [HabitTaskModel] = []
     var habitReminders: [HabitReminderModel] = []
     var habitGroupItems: [HabitGroupItemModel] = []
+    var completionsByDay: [Day: [TaskCompletionModel]] = [:]
     
     var habitTasksUI: [HabitTaskModel] {
         habitTasks.filter { $0.showInUI }.sorted { $0.sortOrder < $1.sortOrder }
@@ -23,7 +24,6 @@ class HabitModel: Model<HabitRecord>, Habit {
     var habitGroupItemsUI: [HabitGroupItemModel] {
         habitGroupItems.filter { $0.showInUI }
     }
-    var completionsByDay: [Day: [TaskCompletionModel]] = [:]
     
     init(_ modelGraph: ModelGraph, fromRecord: HabitRecord) {
         self.id = fromRecord.id
@@ -52,12 +52,12 @@ class HabitModel: Model<HabitRecord>, Habit {
     }
     
     func deriveCompletionsByDay() {
-        print("DERIVE COMPLETIONS BY DAY")
-        self.completionsByDay = habitTasksUI.reduce(into: [Day: [TaskCompletionModel]]()) { res, habitTask in
-            habitTask.completionsByDay.forEach {(day, completions) in
-                res[day] = (res[day] ?? []) + completions
+        self.completionsByDay = habitTasksUI.reduce(into: [Day: [TaskCompletionModel]]())
+            { res, habitTask in
+                habitTask.completionsByDay.forEach {(day, completions) in
+                    res[day] = (res[day] ?? []) + completions
+                }
             }
-        }
     }
     
     func registerCompletionsByDay() {
@@ -88,45 +88,13 @@ class HabitModel: Model<HabitRecord>, Habit {
             .filter { $0.groupId == group.id }
             .forEach { $0.markForDeletion() }
     }
-    
+
     func isCompleted(day: Day) -> Bool {
         dayStatus(day: day) == HabitDayStatus.completed
     }
     
     func repetitionsToGo(day: Day) -> Int {
-        frequency.repetitionsPerDay() - repetitionsCompleted(day: day)
-    }
-    
-    func dayStatus(day: Day) -> HabitDayStatus {
-        let completions = completionsByDay[day] ?? []
-        let repetitionsDone = repetitionsCompleted(day: day)
-        let repetitionsTotal = frequency.repetitionsPerDay()
-        
-        if completions.isEmpty || repetitionsDone == 0 {
-            return HabitDayStatus.notCompleted
-        } else if repetitionsDone < repetitionsTotal {
-            let value = Double(repetitionsDone) / Double(repetitionsTotal)
-            return HabitDayStatus.partiallyCompleted(value: value)
-        } else {
-            return HabitDayStatus.completed
-        }
-    }
-    
-    func dayCalendarColor(day: Day) -> Color {
-        switch dayStatus(day: day) {
-            case .completed:
-                return color.shade5
-            case .partiallyCompleted(let value) where value > 0.75:
-                return color.shade4
-            case .partiallyCompleted(let value) where value > 0.5:
-                return color.shade3
-            case .partiallyCompleted(let value) where value > 0.25:
-                return color.shade2
-            case .partiallyCompleted(_):
-                return color.shade1
-            default:
-                return .white.opacity(0)
-        }
+        frequency.repetitionsPerDay - repetitionsCompleted(day: day)
     }
     
     func repetitionsCompleted(day: Day) -> Int {
@@ -173,6 +141,38 @@ class HabitModel: Model<HabitRecord>, Habit {
                     if completion.day == day { completion.markForDeletion() }
                 }
             }
+        }
+    }
+    
+    func dayCalendarColor(day: Day) -> Color {
+        switch dayStatus(day: day) {
+            case .completed:
+                return color.shade5
+            case .partiallyCompleted(let value) where value > 0.75:
+                return color.shade4
+            case .partiallyCompleted(let value) where value > 0.5:
+                return color.shade3
+            case .partiallyCompleted(let value) where value > 0.25:
+                return color.shade2
+            case .partiallyCompleted(_):
+                return color.shade1
+            default:
+                return .white.opacity(0)
+        }
+    }
+    
+    private func dayStatus(day: Day) -> HabitDayStatus {
+        let completions = completionsByDay[day] ?? []
+        let repetitionsDone = repetitionsCompleted(day: day)
+        let repetitionsTotal = frequency.repetitionsPerDay
+        
+        if completions.isEmpty || repetitionsDone == 0 {
+            return HabitDayStatus.notCompleted
+        } else if repetitionsDone < repetitionsTotal {
+            let value = Double(repetitionsDone) / Double(repetitionsTotal)
+            return HabitDayStatus.partiallyCompleted(value: value)
+        } else {
+            return HabitDayStatus.completed
         }
     }
     

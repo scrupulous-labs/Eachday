@@ -13,11 +13,9 @@ class HabitTaskModel: Model<HabitTaskRecord>, HabitTask {
         completions.filter { $0.showInUI }
     }
     var completionsByDay: [Day: [TaskCompletionModel]] {
-        completionsUI
-            .filter { $0.showInUI }
-            .reduce(into: [Day: [TaskCompletionModel]]()) { res, completion in
-                res[completion.day] = (res[completion.day] ?? []) + [completion]
-            }
+        completionsUI.reduce(into: [Day: [TaskCompletionModel]]()) { res, completion in
+            res[completion.day] = (res[completion.day] ?? []) + [completion]
+        }
     }
 
     init(_ modelGraph: ModelGraph, fromRecord: HabitTaskRecord) {

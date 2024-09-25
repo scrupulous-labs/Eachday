@@ -9,17 +9,26 @@ struct HabitDetailsView: View {
     var body: some View {
         ScrollView {
             let completionsByDay = completionsForYear(year: ui.year)
-            VStack(spacing: 16) {
-                HabitDetailsCard(habit: habit).padding(.bottom, 14)
+            VStack(spacing: 0) {
+                HabitDetailsCard(
+                    habit: habit
+                )
+                .padding(.bottom, 30)
+                
                 HabitDetailsCalendar(
                     habit: habit,
                     year: ui.year,
                     onYearChange: ui.setYear
                 )
+                .padding(.bottom, 16)
+                
                 HabitDetailsStreaks(
                     habit: habit,
-                    completionsByDay: completionsByDay
+                    completionsByDay: completionsByDay,
+                    completionsByDayAll: habit.completionsByDay
                 )
+                .padding(.bottom, 12)
+                
                 HabitDetailsCompletionCount(
                     habit: habit,
                     completionsByDay: completionsByDay
