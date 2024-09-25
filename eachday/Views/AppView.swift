@@ -53,6 +53,7 @@ struct AppView: View {
                     Text("Each Day")
                         .font(Font.system(size: 24))
                         .fontWeight(.semibold)
+                        .padding(.leading, 4)
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
@@ -74,6 +75,7 @@ struct AppView: View {
                                 .foregroundColor(.blue)
                         }
                     }
+                    .padding(.trailing, 2)
                 }
             }
             .sheet(item: $ui.activeSheet, onDismiss: {

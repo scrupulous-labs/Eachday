@@ -44,9 +44,9 @@ enum Frequency: Hashable {
         case .daily(let times):
             times > 1 ? "atleast once a day" : "once a day"
         case .weekly(let times):
-            times > 1 ? "\(times) times a week" : "once a week"
+            times > 1 ? "atleast \(times) times a week" : "atleast once a week"
         case .monthly(let times):
-            times > 1 ? "\(times) times a month" : "once a month"
+            times > 1 ? "atleast \(times) times a month" : "atleast once a month"
         }
     }
     

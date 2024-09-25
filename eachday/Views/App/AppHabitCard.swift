@@ -9,11 +9,11 @@ struct HabitCard: View {
     @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 20) {
             AppViewHabitCardHeader(habit: habit)
                 .padding(EdgeInsets(top: 13, leading: 16, bottom: 0, trailing: 16))
             AppViewHabitCardCalendar(habit: habit)
-                .padding(EdgeInsets(top: 13, leading: 16, bottom: 7, trailing: 16))
+                .padding(EdgeInsets(top: 0, leading: 16, bottom: 7, trailing: 16))
         }
         .background(Color(hex: colorScheme == .light ? "#FFFFFF" : "#1C1C1E"))
         .cornerRadius(10)
