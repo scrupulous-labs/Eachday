@@ -15,10 +15,14 @@ struct HabitDetailsView: View {
                 )
                 .padding(.bottom, 30)
                 
-                HabitDetailsCalendar(
-                    habit: habit,
+                HabitDetailsSelectYear(
                     year: ui.year,
                     onYearChange: ui.setYear
+                ).padding(.bottom, 16)
+                
+                HabitDetailsCalendar(
+                    year: ui.year,
+                    habit: habit
                 )
                 .padding(.bottom, 16)
                 
@@ -30,9 +34,11 @@ struct HabitDetailsView: View {
                 .padding(.bottom, 12)
                 
                 HabitDetailsCompletionCount(
+                    year: ui.year,
                     habit: habit,
                     completionsByDay: completionsByDay
                 )
+                .padding(.bottom, 16)
             }
             .padding(.vertical, 12)
             .padding(.horizontal)

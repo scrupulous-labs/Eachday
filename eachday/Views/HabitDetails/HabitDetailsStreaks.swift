@@ -4,6 +4,25 @@ struct HabitDetailsStreaks: View {
     var habit: HabitModel
     var completionsByDay: [Day: [TaskCompletionModel]]
     var completionsByDayAll: [Day: [TaskCompletionModel]]
+    
+    var currentStreak: Double {
+        Algorithms.currentStreak(
+            completionArray: completionArray(
+                completionsByDayAll,
+                maxDay: Day.yesterday()
+            )
+        )
+        .reduce(Double(0)) { $0 + $1.percentage }
+    }
+    
+    var longestStreak: Double {
+        Algorithms.longestStreak(
+            completionArray: completionArray(
+                completionsByDay
+            )
+        )
+        .reduce(Double(0)) { $0 + $1.percentage }
+    }
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -59,25 +78,6 @@ struct HabitDetailsStreaks: View {
                 .font(Font.caption.weight(.light))
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
-    }
-    
-    var currentStreak: Double {
-        Algorithms.currentStreak(
-            completionArray: completionArray(
-                completionsByDayAll,
-                maxDay: Day.yesterday()
-            )
-        )
-        .reduce(Double(0)) { $0 + $1.percentage }
-    }
-    
-    var longestStreak: Double {
-        Algorithms.longestStreak(
-            completionArray: completionArray(
-                completionsByDay
-            )
-        )
-        .reduce(Double(0)) { $0 + $1.percentage }
     }
     
     func completionArray(

@@ -1,4 +1,5 @@
 import Foundation
+import Charts
 
 enum Month: Hashable, Comparable {
     case january(year: Year)
@@ -16,142 +17,98 @@ enum Month: Hashable, Comparable {
     
     var value: Int {
         switch self {
-        case .january(_):
-            return 1
-        case .february(_):
-            return 2
-        case .march(_):
-            return 3
-        case .april(_):
-            return 4
-        case .may(_):
-            return 5
-        case .june(_):
-            return 6
-        case .july(_):
-            return 7
-        case .august(_):
-            return 8
-        case .september(_):
-            return 9
-        case .october(_):
-            return 10
-        case .november(_):
-            return 11
-        case .december(_):
-            return 12
+        case .january(_): 1
+        case .february(_): 2
+        case .march(_): 3
+        case .april(_): 4
+        case .may(_): 5
+        case .june(_): 6
+        case .july(_): 7
+        case .august(_): 8
+        case .september(_): 9
+        case .october(_): 10
+        case .november(_): 11
+        case .december(_): 12
         }
     }
     var year: Year {
         switch self {
-        case .january(let year):
-            return year
-        case .february(let year):
-            return year
-        case .march(let year):
-            return year
-        case .april(let year):
-            return year
-        case .may(let year):
-            return year
-        case .june(let year):
-            return year
-        case .july(let year):
-            return year
-        case .august(let year):
-            return year
-        case .september(let year):
-            return year
-        case .october(let year):
-            return year
-        case .november(let year):
-            return year
-        case .december(let year):
-            return year
+        case .january(let year): year
+        case .february(let year): year
+        case .march(let year): year
+        case .april(let year): year
+        case .may(let year): year
+        case .june(let year): year
+        case .july(let year): year
+        case .august(let year): year
+        case .september(let year): year
+        case .october(let year): year
+        case .november(let year): year
+        case .december(let year): year
         }
     }
     var prev: Month {
         switch self {
-        case .january(let year):
-            return .december(year: year.prev)
-        case .february(let year):
-            return .january(year: year)
-        case .march(let year):
-            return .february(year: year)
-        case .april(let year):
-            return .march(year: year)
-        case .may(let year):
-            return .april(year: year)
-        case .june(let year):
-            return .may(year: year)
-        case .july(let year):
-            return .june(year: year)
-        case .august(let year):
-            return .july(year: year)
-        case .september(let year):
-            return .august(year: year)
-        case .october(let year):
-            return .september(year: year)
-        case .november(let year):
-            return .october(year: year)
-        case .december(let year):
-            return .november(year: year)
+        case .january(let year): .december(year: year.prev)
+        case .february(let year): .january(year: year)
+        case .march(let year): .february(year: year)
+        case .april(let year): .march(year: year)
+        case .may(let year): .april(year: year)
+        case .june(let year): .may(year: year)
+        case .july(let year): .june(year: year)
+        case .august(let year): .july(year: year)
+        case .september(let year): .august(year: year)
+        case .october(let year): .september(year: year)
+        case .november(let year): .october(year: year)
+        case .december(let year): .november(year: year)
         }
     }
     var next: Month {
         switch self {
-        case .january(let year):
-            return .february(year: year)
-        case .february(let year):
-            return .march(year: year)
-        case .march(let year):
-            return .april(year: year)
-        case .april(let year):
-            return .may(year: year)
-        case .may(let year):
-            return .june(year: year)
-        case .june(let year):
-            return .july(year: year)
-        case .july(let year):
-            return .august(year: year)
-        case .august(let year):
-            return .september(year: year)
-        case .september(let year):
-            return .october(year: year)
-        case .october(let year):
-            return .november(year: year)
-        case .november(let year):
-            return .december(year: year)
-        case .december(let year):
-            return .january(year: year.next)
+        case .january(let year): .february(year: year)
+        case .february(let year): .march(year: year)
+        case .march(let year): .april(year: year)
+        case .april(let year): .may(year: year)
+        case .may(let year): .june(year: year)
+        case .june(let year): .july(year: year)
+        case .july(let year): .august(year: year)
+        case .august(let year): .september(year: year)
+        case .september(let year): .october(year: year)
+        case .october(let year): .november(year: year)
+        case .november(let year): .december(year: year)
+        case .december(let year): .january(year: year.next)
+        }
+    }
+    var symbol: String {
+        switch self {
+        case .january(_): "J"
+        case .february(_): "F"
+        case .march(_): "M"
+        case .april(_): "A"
+        case .may(_): "M    "
+        case .june(_): "J "
+        case .july(_): "J "
+        case .august(_): "Aᅟᅟ឴"
+        case .september(_): "S"
+        case .october(_): "O"
+        case .november(_): "N"
+        case .december(_): "D"
         }
     }
     var shortHand: String {
         switch self {
-        case .january(_):
-            return "JAN"
-        case .february(_):
-            return "FEB"
-        case .march(_):
-            return "MAR"
-        case .april(_):
-            return "APR"
-        case .may(_):
-            return "MAY"
-        case .june(_):
-            return "JUN"
-        case .july(_):
-            return "JUL"
-        case .august(_):
-            return "AUG"
-        case .september(_):
-            return "SEP"
-        case .october(_):
-            return "OCT"
-        case .november(_):
-            return "NOV"
-        case .december(_):
-            return "DEC"
+        case .january(_): "JAN"
+        case .february(_): "FEB"
+        case .march(_): "MAR"
+        case .april(_): "APR"
+        case .may(_): "MAY"
+        case .june(_): "JUN"
+        case .july(_): "JUL"
+        case .august(_): "AUG"
+        case .september(_): "SEP"
+        case .october(_): "OCT"
+        case .november(_): "NOV"
+        case .december(_): "DEC"
         }
     }
     var startDay: Day {
@@ -163,6 +120,7 @@ enum Month: Hashable, Comparable {
         let numberOfDays = calendar.range(of: .day, in: .month, for: startDate)
         return Day(day: numberOfDays?.count ?? 2, month: self)
     }
+    
     
     static func < (lhs: Month, rhs: Month) -> Bool {
         let (m1, y1) = (lhs.value, lhs.year)
@@ -226,4 +184,6 @@ enum Month: Hashable, Comparable {
         }
         return []
     }
+    
+    
 }

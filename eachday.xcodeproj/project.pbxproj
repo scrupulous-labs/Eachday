@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B31E240F2CA1468600424C55 /* Algorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E240E2CA1468200424C55 /* Algorithms.swift */; };
 		B3231F6A2CA33CDA00B37C4D /* HabitDayStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3231F692CA33CCC00B37C4D /* HabitDayStatus.swift */; };
+		B3231F782CA3C65800B37C4D /* HabitDetailsSelectYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3231F772CA3C64F00B37C4D /* HabitDetailsSelectYear.swift */; };
 		B38BF9152CA0784600A70228 /* RemindersMinimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38BF9142CA0784000A70228 /* RemindersMinimap.swift */; };
 		B3B38AB32C9D5E580037D58E /* HabitIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB22C9D5E540037D58E /* HabitIcon.swift */; };
 		B3B38AB52C9EB6210037D58E /* HabitReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB42C9EB61D0037D58E /* HabitReminder.swift */; };
@@ -89,6 +90,7 @@
 /* Begin PBXFileReference section */
 		B31E240E2CA1468200424C55 /* Algorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithms.swift; sourceTree = "<group>"; };
 		B3231F692CA33CCC00B37C4D /* HabitDayStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDayStatus.swift; sourceTree = "<group>"; };
+		B3231F772CA3C64F00B37C4D /* HabitDetailsSelectYear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsSelectYear.swift; sourceTree = "<group>"; };
 		B38BF9142CA0784000A70228 /* RemindersMinimap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersMinimap.swift; sourceTree = "<group>"; };
 		B3B38AB22C9D5E540037D58E /* HabitIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitIcon.swift; sourceTree = "<group>"; };
 		B3B38AB42C9EB61D0037D58E /* HabitReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitReminder.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 			children = (
 				B3D3C8412C9720AA005D28E1 /* HabitDetailsUtils.swift */,
 				B3D3C83E2C9720AA005D28E1 /* HabitDetailsCard.swift */,
+				B3231F772CA3C64F00B37C4D /* HabitDetailsSelectYear.swift */,
 				B3D3C83D2C9720AA005D28E1 /* HabitDetailsCalendar.swift */,
 				B3D3C8402C9720AA005D28E1 /* HabitDetailsStreaks.swift */,
 				B3D3C83F2C9720AA005D28E1 /* HabitDetailsCompletionCount.swift */,
@@ -520,6 +523,7 @@
 				B3D3C8152C9720A4005D28E1 /* HabitGroupRecord.swift in Sources */,
 				B3D3C85A2C9720AA005D28E1 /* EditHabitSelectFrequency.swift in Sources */,
 				B3D3C80B2C9720A4005D28E1 /* HabitModel.swift in Sources */,
+				B3231F782CA3C65800B37C4D /* HabitDetailsSelectYear.swift in Sources */,
 				B3D3C86B2C9720AA005D28E1 /* EditHabitHistory.swift in Sources */,
 				B3D3C8752C9720AA005D28E1 /* ProfileView.swift in Sources */,
 				B3D3C85D2C9720AA005D28E1 /* EditHabitSetReminders.swift in Sources */,
