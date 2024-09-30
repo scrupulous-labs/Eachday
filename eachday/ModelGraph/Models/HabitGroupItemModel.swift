@@ -29,7 +29,7 @@ class HabitGroupItemModel: Model<HabitGroupItemRecord>, HabitGroupItem {
 //
 // MARK - OVERRIDES
 //
-    override var showInUI: Bool { super.showInUI && habit != nil && !habit!.archived } 
+    override var showInUI: Bool { super.showInUI && habit != nil && !habit!.archived }
     override var children: [ModelNode] { [] }
     override var isModified: Bool { record != nil && !equals(record!) }
     override var isValid: Bool { validate() }

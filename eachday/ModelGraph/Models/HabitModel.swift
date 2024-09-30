@@ -121,13 +121,13 @@ class HabitModel: Model<HabitRecord>, Habit {
         }
     }
     
-    func markNextRepetition(day: Day) {
+    func markNextRepetition(day: Day, repetition: Int? = nil) {
         let nextTask = nextTaskToComplete(day: day)
-        let repetition = repetitionsCompleted(day: day)
+        let repetition = repetition ?? repetitionsCompleted(day: day)
         if nextTask != nil && repetitionsCompleted(day: day) < repetition + 1 {
             _ = TaskCompletionModel(modelGraph, taskId: nextTask!.id, day: day)
             DispatchQueue.main.async { [self] in
-                markNextRepetition(day: day)
+                markNextRepetition(day: day, repetition: repetition)
             }
         }
     }

@@ -45,16 +45,4 @@ enum WeekDay: Int, CaseIterable {
             return "S"
         }
     }
-    
-    static func allDaysOfWeek(startOfWeek: WeekDay) -> [WeekDay] {
-        return [
-            startOfWeek,
-            startOfWeek.next,
-            startOfWeek.next.next,
-            startOfWeek.next.next.next,
-            startOfWeek.next.next.next.next,
-            startOfWeek.next.next.next.next.next,
-            startOfWeek.next.next.next.next.next.next
-        ]
-    }
 }

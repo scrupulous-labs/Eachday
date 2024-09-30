@@ -27,7 +27,7 @@ struct HabitGroupBar: View {
                         .padding(EdgeInsets(top: 5, leading: 11, bottom: 5, trailing: 11))
                         .background(isActive
                             ? Color(hex: colorScheme == .light ? "#111827" : "#E5E7EB")
-                            : Color(hex: colorScheme == .light ? "#E4E4E7" : "#262626")
+                            : Color(hex: colorScheme == .light ? "#e7e5e4" : "#262626")
                         )
                         .cornerRadius(18)
                         .onTapGesture { onTapGroup(habitGroup) }

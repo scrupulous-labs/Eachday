@@ -61,14 +61,25 @@ struct EditHabitHistory: View {
                                         .padding(cellPadding)
                                 }
                         }
-
-                    Text("\(day.day)")
-                        .font(Font.headline.weight(.regular))
+                    
+                    if habit.repetitionsCompleted(day: day) > 0 {
+                        VStack(spacing: 0) {
+                            Text("\(day.day)")
+                                .font(Font.headline.weight(.regular))
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .foregroundColor(.white)
+                            Text("x\(habit.repetitionsCompleted(day: day))")
+                                .font(Font.system(size: 14))
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .foregroundColor(.white)
+                        }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .foregroundColor( colorScheme == .light
-                            ? (habit.repetitionsCompleted(day: day) > 0 ? .white : .black)
-                            : .white
-                        )
+                    } else {
+                        Text("\(day.day)")
+                            .font(Font.headline.weight(.regular))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .foregroundColor( colorScheme == .light ? .black : .white)
+                    }
 
                     if day == Day.today() {
                         RoundedRectangle(cornerRadius: cellCornerRadius + 2)

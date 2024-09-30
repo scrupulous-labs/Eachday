@@ -4,7 +4,7 @@ struct RemindersMinimap: View {
     var habit: HabitModel
     
     var daysOfWeek: [WeekDay] {
-        WeekDay.allDaysOfWeek(
+        Week.allDays(
             startOfWeek: modelGraph.settingsUI.startOfWeek
         )
     }

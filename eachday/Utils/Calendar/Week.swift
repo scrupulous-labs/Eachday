@@ -26,4 +26,16 @@ struct Week: Hashable, Comparable {
     static func new(_ week: Int, year: Year) -> Week {
         return Week(week: week, year: year)
     }
+    
+    static func allDays(startOfWeek: WeekDay) -> [WeekDay] {
+        return [
+            startOfWeek,
+            startOfWeek.next,
+            startOfWeek.next.next,
+            startOfWeek.next.next.next,
+            startOfWeek.next.next.next.next,
+            startOfWeek.next.next.next.next.next,
+            startOfWeek.next.next.next.next.next.next
+        ]
+    }
 }

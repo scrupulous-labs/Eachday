@@ -13,7 +13,7 @@ struct HabitDetailsCard: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
                     Text(habit.name)
-                        .font(Font.system(size: 20).weight(.semibold))
+                        .font(Font.system(size: 20))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .lineLimit(1)
                         .truncationMode(.tail)

@@ -5,7 +5,7 @@ struct MarkHabitButton: View {
     @State private var confirmCompletionReset: Bool = false
     
     var size = 42.0
-    var innerSize = 32.0
+    var innerSize = 33.0
     var cornerRadius = 8.0
     var innerCornerRadius = 6.0
     var today = Day.today()

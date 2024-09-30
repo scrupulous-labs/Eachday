@@ -9,7 +9,7 @@ struct EditHabitSetReminders: View {
     var cellSize = 40.0
     var cellCornerRadius = 6.0
     var daysOfWeek: [WeekDay] {
-        WeekDay.allDaysOfWeek(
+        Week.allDays(
             startOfWeek: modelGraph.settingsUI.startOfWeek
         )
     }
