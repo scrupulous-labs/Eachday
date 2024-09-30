@@ -58,15 +58,10 @@ struct EditHabitView: View {
             }
             .navigationDestination(for: EditHabitScreen.self) { destination in
                 switch destination {
-                case EditHabitScreen.setRemindersScreen(let reminder):
+                case EditHabitScreen.setRemindersScreen:
                     EditHabitSetReminders(
-                        habit: habit, reminder: reminder,
-                        onFieldChange: onFieldChange,
-                        onSaveReminder: {
-                            reminder.unmarkForDeletion()
-                            ui.navigationPath.removeLast()
-                            ui.openSetRemindersScreen(modelGraph, habit: habit)
-                        }
+                        habit: habit,
+                        onFieldChange: onFieldChange
                     )
                 case EditHabitScreen.selectGroupScreen(let group):
                     EditHabitSelectGroup(
@@ -125,9 +120,7 @@ class EditHabitViewModel {
     }
     
     func openSetRemindersScreen(_ modelGraph: ModelGraph, habit: HabitModel) {
-        navigationPath.append(EditHabitScreen.setRemindersScreen(
-            HabitReminderModel(modelGraph, habitId: habit.id, markForDeletion: true)
-        ))
+        navigationPath.append(EditHabitScreen.setRemindersScreen)
     }
     
     func openSelectGroupScreen(_ modelGraph: ModelGraph) {

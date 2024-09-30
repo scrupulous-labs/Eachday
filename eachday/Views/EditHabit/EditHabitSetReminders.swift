@@ -2,9 +2,7 @@ import SwiftUI
 
 struct EditHabitSetReminders: View {
     var habit: HabitModel
-    @Bindable var reminder: HabitReminderModel
     var onFieldChange: () -> Void
-    var onSaveReminder: () -> Void
     
     var cellSize = 40.0
     var cellCornerRadius = 6.0
@@ -52,31 +50,12 @@ struct EditHabitSetReminders: View {
                 Text("Reminders")
             }
             
-            Section {
-                HStack(alignment: .top, spacing: 0) {
-                    VStack(alignment: .leading, spacing: 16) {
-                        DatePicker("", selection: $reminder.time, displayedComponents: .hourAndMinute).labelsHidden()
-                        renderWeekDays(reminder: reminder)
-                    }
-                    .frame(maxWidth: .infinity)
-                    
-                    ZStack {
-                        RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
-                            .size(width: cellSize, height: cellSize)
-                            .fill(Color(hex: colorScheme == .light ? "#F2F2F7" : "#262626"))
-                        
-                        Image(systemName: "plus")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 16, height: 16)
-                            .foregroundColor(colorScheme == .light ? .black : .white)
-                            .fontWeight(.regular)
-                    }
-                    .frame(width: cellSize, height: cellSize)
-                    .onTapGesture { onSaveReminder(); onFieldChange() }
-                }
-            } header: {
-                Text("Add Reminder")
+            Button {
+                _ = HabitReminderModel(modelGraph, habitId: habit.id)
+                onFieldChange()
+            } label: {
+                Text("NEW REMINDER")
+                    .frame(maxWidth: .infinity, alignment: .center)
             }
         }
     }
