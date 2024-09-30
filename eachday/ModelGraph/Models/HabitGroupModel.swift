@@ -25,6 +25,7 @@ class HabitGroupModel: Model<HabitGroupRecord>, HabitGroup {
         super.init(modelGraph, fromRecord: nil, markForDeletion: markForDeletion)
     }
 
+
 //
 // MARK - OVERRIDES
 //

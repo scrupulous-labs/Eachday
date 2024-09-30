@@ -47,26 +47,24 @@ class HabitModel: Model<HabitRecord>, Habit {
         self.frequency = Frequency.daily(times: 1)
         self.sortOrder = SortOrder.new()
         super.init(modelGraph, fromRecord: nil, markForDeletion: markForDeletion)
-        deriveCompletionsByDay()
-        registerCompletionsByDay()
+        deriveCompletionsByDay(); registerCompletionsByDay()
     }
     
     func deriveCompletionsByDay() {
-        self.completionsByDay = habitTasksUI.reduce(into: [Day: [TaskCompletionModel]]())
+        self.completionsByDay = habitTasksUI.reduce(into: [:])
             { res, habitTask in
                 habitTask.completionsByDay.forEach {(day, completions) in
                     res[day] = (res[day] ?? []) + completions
                 }
             }
     }
-    
+
     func registerCompletionsByDay() {
         withObservationTracking({
             habitTasksUI.forEach { _ = $0.completionsByDay }
         }, onChange: {
             DispatchQueue.main.async { [self] in
-                deriveCompletionsByDay()
-                registerCompletionsByDay()
+                deriveCompletionsByDay(); registerCompletionsByDay()
             }
         })
     }

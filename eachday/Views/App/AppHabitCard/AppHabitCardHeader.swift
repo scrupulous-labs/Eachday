@@ -4,8 +4,8 @@ struct AppViewHabitCardHeader: View {
     let habit: HabitModel
     
     let headerHeight = 44.0
-    let headerIconHeight = 38.0
-    let iconCornerRadius = 6.0
+    let headerIconHeight = 42.0
+    let iconCornerRadius = 8.0
     let today = Day.today()
     @Environment(\.colorScheme) private var colorScheme
     
@@ -25,7 +25,7 @@ struct AppViewHabitCardHeader: View {
                             .size(width: headerIconHeight, height: headerIconHeight)
                             .fill(habit.color.shade1)
                     }
-                Image(systemName: habit.icon.rawValue)
+                Image(systemName: colorScheme == .light ? habit.icon.rawValue : habit.icon.rawValue + ".fill")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 22, height: 22)
@@ -34,10 +34,10 @@ struct AppViewHabitCardHeader: View {
             }
             .frame(width: headerIconHeight, height: headerIconHeight)
             
-            VStack {
+            VStack(spacing: 4) {
                 Text("\(habit.name)")
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(Font.subheadline.weight(.medium))
+                    .font(Font.system(size: 17))
                     .lineLimit(1)
                     .truncationMode(.tail)
                 
@@ -49,14 +49,13 @@ struct AppViewHabitCardHeader: View {
                         .lineLimit(1)
                         .truncationMode(.tail)
                         .foregroundColor(.green)
-                        .offset(CGSize(width: 0, height: -2))
                 } else if nextTask != nil && nextTask!.description.trimmingCharacters(in: .whitespaces) != "" {
                     Text("\(nextTask!.description)")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(Font.caption.weight(.regular))
+                        .font(Font.system(size: 14))
                         .lineLimit(1)
                         .truncationMode(.tail)
-                        .offset(CGSize(width: 0, height: -2))
+                        .foregroundColor(.gray)
                 }
             }
             .frame(maxWidth: .infinity)

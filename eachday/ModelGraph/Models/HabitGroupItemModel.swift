@@ -25,10 +25,11 @@ class HabitGroupItemModel: Model<HabitGroupItemRecord>, HabitGroupItem {
         super.init(modelGraph, fromRecord: nil, markForDeletion: markForDeletion)
     }
 
-    
+
 //
 // MARK - OVERRIDES
 //
+    override var showInUI: Bool { super.showInUI && habit != nil && !habit!.archived } 
     override var children: [ModelNode] { [] }
     override var isModified: Bool { record != nil && !equals(record!) }
     override var isValid: Bool { validate() }

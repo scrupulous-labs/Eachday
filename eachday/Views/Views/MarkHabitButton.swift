@@ -4,10 +4,10 @@ struct MarkHabitButton: View {
     let habit: HabitModel
     @State private var confirmCompletionReset: Bool = false
     
-    var size = 38.0
-    var innerSize = 30.0
-    var cornerRadius = 6.0
-    var innerCornerRadius = 4.0
+    var size = 42.0
+    var innerSize = 32.0
+    var cornerRadius = 8.0
+    var innerCornerRadius = 6.0
     var today = Day.today()
     @Environment(\.colorScheme) var colorScheme
     
@@ -21,11 +21,11 @@ struct MarkHabitButton: View {
     }
     
     var body: some View {
-        HStack(spacing: 6) {
+        HStack(spacing: 4) {
             switch habit.frequency {
             case .daily(let times) where times > 1 && !habit.isCompleted(day: today):
-                Text("\(habit.repetitionsToGo(day: today))").font(Font.system(size: 22).weight(.bold))
-                Text("✕").font(Font.caption.weight(.bold))
+                Text("\(habit.repetitionsToGo(day: today))").font(Font.system(size: 20))
+                Text("✕").font(Font.caption)
             default:
                 EmptyView()
             }

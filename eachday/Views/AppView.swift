@@ -50,7 +50,7 @@ struct AppView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Text("Each Day")
+                    Text("Eachday")
                         .font(Font.system(size: 24))
                         .fontWeight(.semibold)
                         .padding(.leading, 4)

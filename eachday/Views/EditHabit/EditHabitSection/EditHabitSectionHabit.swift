@@ -13,21 +13,20 @@ struct EditHabitSectionHabit: View {
     var body: some View {
         Section {
             HStack(spacing: 12) {
-                Button { onIconChange() } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
-                            .size(width: cellSize, height: cellSize)
-                            .fill(Color(hex: colorScheme == .light ? "#F2F2F7" : "#262626"))
-                        
-                        Image(systemName: habit.icon.rawValue)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 24, height: 24)
-                            .foregroundColor(colorScheme == .light ? .black : .white)
-                            .fontWeight(.light)
-                    }
-                    .frame(width: cellSize, height: cellSize)
+                ZStack {
+                    RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
+                        .size(width: cellSize, height: cellSize)
+                        .fill(Color(hex: colorScheme == .light ? "#F2F2F7" : "#262626"))
+                    
+                    Image(systemName: habit.icon.rawValue)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 24, height: 24)
+                        .foregroundColor(colorScheme == .light ? .black : .white)
+                        .fontWeight(.light)
                 }
+                .frame(width: cellSize, height: cellSize)
+                .onTapGesture { onIconChange() }
                 
                 TextField("Name", text: $habit.name)
                     .onChange(of: habit.name, onFieldChange)

@@ -13,7 +13,7 @@ class HabitTaskModel: Model<HabitTaskRecord>, HabitTask {
         completions.filter { $0.showInUI }
     }
     var completionsByDay: [Day: [TaskCompletionModel]] {
-        completionsUI.reduce(into: [Day: [TaskCompletionModel]]()) { res, completion in
+        completionsUI.reduce(into: [:]) { res, completion in
             res[completion.day] = (res[completion.day] ?? []) + [completion]
         }
     }

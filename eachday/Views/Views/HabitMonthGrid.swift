@@ -7,7 +7,7 @@ struct HabitMonthGrid: View {
     var gridItemWidth = 10.0
     var gridColumnCount = 7
     var gridVerticalSpacing = 1.0
-    var gridHorizontalSpacing = 1.0
+    var gridHorizontalSpacing = 1.2
     var cellSize = 8.0
     var cellCornerRadius = 2.0
     @Environment(\.colorScheme) private var colorScheme
