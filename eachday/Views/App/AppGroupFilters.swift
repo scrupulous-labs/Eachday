@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct HabitGroupBar: View {
+struct AppGroupFilters: View {
     var leadingGap: Double? = nil
     var trailingGap: Double? = nil
     var activeGroupIds: Set<UUID>

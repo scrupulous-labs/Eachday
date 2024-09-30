@@ -14,6 +14,13 @@ struct EditHabitSelectGroup: View {
     var body: some View {
         List {
             Section {
+                if modelGraph.habitGroupsUI.isEmpty {
+                    Text("No groups")
+                        .padding(.vertical, 32)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                }
+                
+                
                 ForEach(modelGraph.habitGroupsUI, id: \.id) { group in
                     let habitInGroup = habit.belongsToGroup(group: group)
                     let iconName: String = habitInGroup ? "checkmark.circle.fill" : "circle"

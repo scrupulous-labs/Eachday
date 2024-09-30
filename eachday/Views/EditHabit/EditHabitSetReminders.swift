@@ -17,6 +17,12 @@ struct EditHabitSetReminders: View {
     var body: some View {
         List {
             Section {
+                if habit.habitRemindersUI.isEmpty {
+                    Text("No reminders")
+                        .padding(.vertical, 32)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                }
+                
                 ForEach(Array(habit.habitRemindersUI), id: \.id) { reminder in
                     @Bindable var reminder = reminder
                     HStack(alignment: .top, spacing: 0) {

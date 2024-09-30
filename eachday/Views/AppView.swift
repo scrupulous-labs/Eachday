@@ -19,7 +19,7 @@ struct AppView: View {
                     .frame(maxWidth: .infinity)
                 } else {
                     LazyVStack(spacing: 0) {
-                        HabitGroupBar(
+                        AppGroupFilters(
                             leadingGap: 16, trailingGap: 16,
                             activeGroupIds: ui.activeGroupIds,
                             onTapGroup: ui.toggleGroupId
