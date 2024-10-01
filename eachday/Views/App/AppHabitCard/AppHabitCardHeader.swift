@@ -45,7 +45,7 @@ struct AppViewHabitCardHeader: View {
                 if habit.isCompleted(day: today) {
                     Text("✓ Done for today")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(Font.caption.weight(.regular))
+                        .font(Font.system(size: 14))
                         .lineLimit(1)
                         .truncationMode(.tail)
                         .foregroundColor(.green)

@@ -130,9 +130,9 @@ struct RemindersMinimap: View {
     
     var body: some View {
         HStack(spacing: 6) {
+            let activeDays = activeDaysOfWeek
             ForEach(daysOfWeek, id: \.self) { day in
-                let isActive = activeDaysOfWeek.contains(day)
-                
+                let isActive = activeDays.contains(day)
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(colorScheme == .light ? .black : .white, lineWidth: 0.5)
                     .fill(isActive ? .green : .white.opacity(0))

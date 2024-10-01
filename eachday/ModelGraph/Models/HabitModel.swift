@@ -78,7 +78,7 @@ class HabitModel: Model<HabitRecord>, Habit {
 
     @discardableResult
     func addToGroup(group: HabitGroupModel) -> HabitGroupItemModel {
-        return HabitGroupItemModel( modelGraph, habitId: id, groupId: group.id)
+        return HabitGroupItemModel(modelGraph, habitId: id, groupId: group.id)
     }
     
     func removeFromGroup(group: HabitGroupModel) {
@@ -96,18 +96,21 @@ class HabitModel: Model<HabitRecord>, Habit {
     }
     
     func repetitionsCompleted(day: Day) -> Int {
+        if habitTasksUI.isEmpty { return 0 }
         let totalTasks = habitTasksUI.count
         let totalCompletions = (completionsByDay[day] ?? []).count
         return totalCompletions / totalTasks
     }
     
     func repetitionCompletedTasks(day: Day) -> [HabitTaskModel] {
+        if habitTasksUI.isEmpty { return [] }
         let totalTasks = habitTasksUI.count
         let totalCompletions = (completionsByDay[day] ?? []).count
         return Array(habitTasksUI[..<(totalCompletions % totalTasks)])
     }
     
     func nextTaskToComplete(day: Day) -> HabitTaskModel? {
+        if habitTasksUI.isEmpty { return nil }
         let totalTasks = habitTasksUI.count
         let totalCompletions = (completionsByDay[day] ?? []).count
         let nextTaskIndex = totalCompletions % totalTasks

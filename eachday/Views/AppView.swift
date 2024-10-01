@@ -24,7 +24,7 @@ struct AppView: View {
                             activeGroupIds: ui.activeGroupIds,
                             onTapGroup: ui.toggleGroupId
                         )
-                        .padding(.top, 14)
+                        .padding(.top, 8)
                         .padding(.bottom, 12)
                         
                         ForEach(
