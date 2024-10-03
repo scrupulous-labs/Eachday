@@ -18,7 +18,7 @@ struct EditHabitSectionHabit: View {
                         .size(width: cellSize, height: cellSize)
                         .fill(Color(hex: colorScheme == .light ? "#F2F2F7" : "#262626"))
                     
-                    Image(systemName: habit.icon.rawValue)
+                    Image(systemName: colorScheme == .light ? habit.icon.symbol : habit.icon.symbolDark)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 24, height: 24)

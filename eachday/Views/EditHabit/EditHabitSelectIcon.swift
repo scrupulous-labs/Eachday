@@ -109,7 +109,7 @@ struct EditHabitSelectIconGrid: View {
                         RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
                             .size(width: cellSize, height: cellSize)
                             .fill(Color(hex: colorScheme == .light ? "#F2F2F7" : "#171717"))
-                        Image(systemName: colorScheme == .light ? icon.rawValue : icon.rawValue + ".fill")
+                        Image(systemName: colorScheme == .light ? icon.symbol : icon.symbolDark)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .fontWeight(.light)

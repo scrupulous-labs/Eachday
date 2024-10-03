@@ -20,7 +20,7 @@ struct AppView: View {
                 } else {
                     LazyVStack(spacing: 0) {
                         AppGroupFilters(
-                            leadingGap: 16, trailingGap: 16,
+                            leadingGap: 18, trailingGap: 16,
                             activeGroupIds: ui.activeGroupIds,
                             onTapGroup: ui.toggleGroupId
                         )

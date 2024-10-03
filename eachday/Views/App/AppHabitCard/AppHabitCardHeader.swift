@@ -25,7 +25,7 @@ struct AppViewHabitCardHeader: View {
                             .size(width: headerIconHeight, height: headerIconHeight)
                             .fill(habit.color.shade1)
                     }
-                Image(systemName: colorScheme == .light ? habit.icon.rawValue : habit.icon.rawValue + ".fill")
+                Image(systemName: colorScheme == .light ? habit.icon.symbol : habit.icon.symbolDark)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 22, height: 22)

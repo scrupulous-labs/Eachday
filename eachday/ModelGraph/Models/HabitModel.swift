@@ -34,8 +34,7 @@ class HabitModel: Model<HabitRecord>, Habit {
         self.frequency = fromRecord.frequency
         self.sortOrder = fromRecord.sortOrder
         super.init(modelGraph, fromRecord: fromRecord, markForDeletion: false)
-        deriveCompletionsByDay()
-        registerCompletionsByDay()
+        deriveCompletionsByDay(); registerCompletionsByDay()
     }
     
     init(_ modelGraph: ModelGraph, markForDeletion: Bool = false) {
