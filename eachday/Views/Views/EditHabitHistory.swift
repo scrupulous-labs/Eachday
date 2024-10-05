@@ -62,24 +62,24 @@ struct EditHabitHistory: View {
                                 }
                         }
                     
-                    if habit.repetitionsCompleted(day: day) > 0 {
-                        VStack(spacing: 0) {
-                            Text("\(day.day)")
-                                .font(Font.headline.weight(.regular))
-                                .frame(maxWidth: .infinity, alignment: .center)
-                                .foregroundColor(.white)
-                            Text("x\(habit.repetitionsCompleted(day: day))")
+                    let repetitionsPerDay = habit.frequency.repetitionsPerDay
+                    let repetitionsCompleted = habit.repetitionsCompleted(day: day)
+                    VStack(spacing: 0) {
+                        Text("\(day.day)")
+                            .font(Font.headline.weight(.regular))
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .foregroundColor(repetitionsCompleted > 0
+                                ? (colorScheme == .light ? .white : .white)
+                                : (colorScheme == .light ? .black : .white)
+                            )
+                        if repetitionsPerDay > 1 && repetitionsCompleted > 0 {
+                            Text("x\(repetitionsCompleted)")
                                 .font(Font.system(size: 14))
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .foregroundColor(.white)
                         }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    } else {
-                        Text("\(day.day)")
-                            .font(Font.headline.weight(.regular))
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .foregroundColor( colorScheme == .light ? .black : .white)
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
 
                     if day == Day.today() {
                         RoundedRectangle(cornerRadius: cellCornerRadius + 2)
