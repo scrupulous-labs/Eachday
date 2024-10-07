@@ -1,10 +1,8 @@
 import SwiftUI
 
 struct AppGroupFilters: View {
-    var leadingGap: Double? = nil
-    var trailingGap: Double? = nil
-    var activeGroupIds: Set<UUID>
-    var onTapGroup: (HabitGroupModel) -> Void
+    var leadingGap: Double? = 18
+    var trailingGap: Double? = 16
     
     @Environment(\.colorScheme) var colorScheme
     @Environment(RootStore.self) var rootStore
@@ -17,7 +15,7 @@ struct AppGroupFilters: View {
                     rootStore.habitGroups.sorted.filter { !$0.habitGroupItemsUI.isEmpty },
                     id: \.id
                 ) { habitGroup in
-                    let isActive = activeGroupIds.contains(habitGroup.id)
+                    let isActive = rootStore.habitGroups.selected.contains(habitGroup.id)
                     Text(habitGroup.name)
                         .font(Font.subheadline.weight(.medium))
                         .foregroundColor(isActive
@@ -30,7 +28,13 @@ struct AppGroupFilters: View {
                             : Color(hex: colorScheme == .light ? "#e7e5e4" : "#262626")
                         )
                         .cornerRadius(18)
-                        .onTapGesture { onTapGroup(habitGroup) }
+                        .onTapGesture {
+                            if rootStore.habitGroups.selected.contains(habitGroup.id) {
+                                rootStore.habitGroups.selected.remove(habitGroup.id)
+                            } else {
+                                rootStore.habitGroups.selected.insert(habitGroup.id)
+                            }
+                        }
                         .contextMenu {
                             Button { habitGroup.markForDeletion(); habitGroup.save() } label: {
                                 Label("Delete", systemImage: "trash").foregroundColor(.red)

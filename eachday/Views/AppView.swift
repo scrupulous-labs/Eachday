@@ -19,21 +19,11 @@ struct AppView: View {
                     .frame(maxWidth: .infinity)
                 } else {
                     LazyVStack(spacing: 0) {
-                        AppGroupFilters(
-                            leadingGap: 18, trailingGap: 16,
-                            activeGroupIds: ui.activeGroupIds,
-                            onTapGroup: ui.toggleGroupId
-                        )
-                        .padding(.top, 8)
-                        .padding(.bottom, 12)
+                        AppGroupFilters()
+                            .padding(.top, 8)
+                            .padding(.bottom, 12)
                         
-                        ForEach(
-                            rootStore.habits.sorted.filter { habit in
-                                let groupIds = habit.habitGroupItems.map { $0.groupId }
-                                let inActiveGroups = groupIds.contains { ui.activeGroupIds.contains($0) }
-                                return ui.activeGroupIds.isEmpty || inActiveGroups
-                            }, id: \.id
-                        ) { habit in
+                        ForEach(rootStore.habits.filtered, id: \.id) { habit in
                             HabitCard(
                                 habit: habit,
                                 editHabit: { ui.openEditHabitSheet(rootStore, habit: habit) },
@@ -157,7 +147,6 @@ class AppViewModel {
     var userAttemptedToDismissSheet: Bool = false
     var canInteractivelyDismissSheet: Bool = true
     var navigationPath: NavigationPath = NavigationPath()
-    var activeGroupIds: Set<UUID> = Set<UUID>()
     
     func openProfileSheet() {
         activeSheet = AppViewSheet.profileSheet
@@ -193,13 +182,5 @@ class AppViewModel {
         navigationPath.append(
             AppViewScreen.habitDetailsScreen(habitId: habit.id)
         )
-    }
-    
-    func toggleGroupId(habitGroup: HabitGroupModel) {
-        if activeGroupIds.contains(habitGroup.id) {
-            activeGroupIds.remove(habitGroup.id)
-        } else {
-            activeGroupIds.insert(habitGroup.id)
-        }
     }
 }
