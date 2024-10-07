@@ -8,21 +8,21 @@ class HabitGroupItemModel: Model<HabitGroupItemRecord>, HabitGroupItem {
     var habit: HabitModel? = nil
     var habitGroup: HabitGroupModel? = nil
     
-    init(_ modelGraph: ModelGraph, fromRecord: HabitGroupItemRecord) {
+    init(_ rootStore: RootStore, fromRecord: HabitGroupItemRecord) {
         self.id = fromRecord.id
         self.habitId = fromRecord.habitId
         self.groupId = fromRecord.groupId
-        super.init(modelGraph, fromRecord: fromRecord, markForDeletion: false)
+        super.init(rootStore, fromRecord: fromRecord, markForDeletion: false)
     }
     
     init(
-        _ modelGraph: ModelGraph,
+        _ rootStore: RootStore,
         habitId: UUID, groupId: UUID, markForDeletion: Bool = false
     ) {
         self.id = UUID.init()
         self.habitId = habitId
         self.groupId = groupId
-        super.init(modelGraph, fromRecord: nil, markForDeletion: markForDeletion)
+        super.init(rootStore, fromRecord: nil, markForDeletion: markForDeletion)
     }
 
 
@@ -37,16 +37,16 @@ class HabitGroupItemModel: Model<HabitGroupItemRecord>, HabitGroupItem {
     override func toRecord() -> HabitGroupItemRecord { HabitGroupItemRecord(fromModel: self) }
     override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
     override func onCreate() {
-        habit = modelGraph.habits.first { $0.id == habitId }
-        habitGroup = modelGraph.habitGroups.first { $0.id == groupId }
+        habit = rootStore.habits.all.first { $0.id == habitId }
+        habitGroup = rootStore.habitGroups.all.first { $0.id == groupId }
         
         habit?.habitGroupItems.append(self)
         habitGroup?.habitGroupItems.append(self)
-        modelGraph.habitGroupItems.append(self)
+        rootStore.habitGroupItems.all.append(self)
     }
     override func onDelete() {
         habit?.habitGroupItems.removeAll { $0.id == id }
         habitGroup?.habitGroupItems.removeAll { $0.id == id }
-        modelGraph.habitGroupItems.removeAll { $0.id == id}
+        rootStore.habitGroupItems.all.removeAll { $0.id == id}
     }
 }

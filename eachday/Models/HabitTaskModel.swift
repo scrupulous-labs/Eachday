@@ -18,20 +18,20 @@ class HabitTaskModel: Model<HabitTaskRecord>, HabitTask {
         }
     }
 
-    init(_ modelGraph: ModelGraph, fromRecord: HabitTaskRecord) {
+    init(_ rootStore: RootStore, fromRecord: HabitTaskRecord) {
         self.id = fromRecord.id
         self.habitId = fromRecord.habitId
         self.description = fromRecord.description
         self.sortOrder = fromRecord.sortOrder
-        super.init(modelGraph, fromRecord: fromRecord, markForDeletion: false)
+        super.init(rootStore, fromRecord: fromRecord, markForDeletion: false)
     }
     
-    init(_ modelGraph: ModelGraph, habitId: UUID, sortOrder: SortOrder, markForDeletion: Bool = false) {
+    init(_ rootStore: RootStore, habitId: UUID, sortOrder: SortOrder, markForDeletion: Bool = false) {
         self.id = UUID()
         self.habitId = habitId
         self.description = ""
         self.sortOrder = sortOrder
-        super.init(modelGraph, fromRecord: nil, markForDeletion: markForDeletion)
+        super.init(rootStore, fromRecord: nil, markForDeletion: markForDeletion)
     }
 
 
@@ -49,16 +49,16 @@ class HabitTaskModel: Model<HabitTaskRecord>, HabitTask {
     override func toRecord() -> HabitTaskRecord { HabitTaskRecord(fromModel: self) }
     override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
     override func onCreate() {
-        habit = modelGraph.habits.first { $0.id == habitId }
-        completions = modelGraph.completions.filter { $0.taskId == id }
+        habit = rootStore.habits.all.first { $0.id == habitId }
+        completions = rootStore.taskCompletions.all.filter { $0.taskId == id }
         
         habit?.habitTasks.append(self)
         completions.forEach { $0.habitTask = self }
-        modelGraph.habitTasks.append(self)
+        rootStore.habitTasks.all.append(self)
     }
     override func onDelete() {
         habit?.habitTasks.removeAll { $0.id == id }
         completions.forEach { $0.habitTask = nil }
-        modelGraph.habitTasks.removeAll { $0.id == id }
+        rootStore.habitTasks.all.removeAll { $0.id == id }
     }
 }

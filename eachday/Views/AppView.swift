@@ -2,15 +2,15 @@ import SwiftUI
 
 struct AppView: View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
-    @Environment(ModelGraph.self) var modelGraph: ModelGraph
+    @Environment(RootStore.self) var rootStore: RootStore
     @Bindable private var ui: AppViewModel = AppViewModel.instance
     
     var body: some View {
         NavigationStack(path: $ui.navigationPath) {
             ScrollView {                
-                if modelGraph.habits.filter({ $0.showInUI }).isEmpty {
+                if rootStore.habits.sorted.isEmpty {
                     VStack {
-                        Button { ui.openNewHabitSheet(modelGraph) } label: {
+                        Button { ui.openNewHabitSheet(rootStore) } label: {
                             Text("NEW HABIT")
                         }
                         .buttonStyle(.borderedProminent)
@@ -28,15 +28,15 @@ struct AppView: View {
                         .padding(.bottom, 12)
                         
                         ForEach(
-                            modelGraph.habitsUI.filter { habit in
+                            rootStore.habits.sorted.filter { habit in
                                 let groupIds = habit.habitGroupItems.map { $0.groupId }
                                 let inActiveGroups = groupIds.contains { ui.activeGroupIds.contains($0) }
-                                return habit.showInUI && (ui.activeGroupIds.isEmpty || inActiveGroups)
+                                return ui.activeGroupIds.isEmpty || inActiveGroups
                             }, id: \.id
                         ) { habit in
                             HabitCard(
                                 habit: habit,
-                                editHabit: { ui.openEditHabitSheet(modelGraph, habit: habit) },
+                                editHabit: { ui.openEditHabitSheet(rootStore, habit: habit) },
                                 editHabitHistory: { ui.openEditHabitHistorySheet(habit: habit) }
                             )
                             .padding([.bottom, .horizontal])
@@ -58,7 +58,7 @@ struct AppView: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack(spacing: 16) {
-                        Button { ui.openNewHabitSheet(modelGraph) } label: {
+                        Button { ui.openNewHabitSheet(rootStore) } label: {
                             Image(systemName: "plus")
                                 .resizable()
                                 .scaledToFit()
@@ -79,8 +79,8 @@ struct AppView: View {
                 }
             }
             .sheet(item: $ui.activeSheet, onDismiss: {
-                modelGraph.habits.forEach { $0.graphResetToDb() }
-                modelGraph.habitGroups.forEach { $0.graphResetToDb() }
+                rootStore.habits.all.forEach { $0.graphResetToDb() }
+                rootStore.habitGroups.all.forEach { $0.graphResetToDb() }
                 ProfileViewModel.instance.reset()
                 EditHabitViewModel.instance.reset()
             }) { item in
@@ -137,7 +137,7 @@ struct AppView: View {
             .navigationDestination(for: AppViewScreen.self) { destination in
                 switch destination {
                 case AppViewScreen.habitDetailsScreen(let habitId):
-                    let habit = modelGraph.habits.first { $0.id == habitId }
+                    let habit = rootStore.habits.all.first { $0.id == habitId }
                     if habit != nil {
                         HabitDetailsView(habit: habit!)
                     }
@@ -167,15 +167,15 @@ class AppViewModel {
         activeSheet = AppViewSheet.editHabitOrderSheet
     }
     
-    func openNewHabitSheet(_ modelGraph: ModelGraph) {
-        let lastHabit = modelGraph.habitsUI.last
+    func openNewHabitSheet(_ rootStore: RootStore) {
+        let lastHabit = rootStore.habits.sorted.last
         let sortOrder = lastHabit?.sortOrder.next() ?? SortOrder.new()
-        let habitToEdit = HabitModel(modelGraph, sortOrder: sortOrder, markForDeletion: true)
+        let habitToEdit = HabitModel(rootStore, sortOrder: sortOrder, markForDeletion: true)
         habitToEdit.addEmptyTask()
-        openEditHabitSheet(modelGraph, habit: habitToEdit)
+        openEditHabitSheet(rootStore, habit: habitToEdit)
     }
     
-    func openEditHabitSheet(_ modelGraph: ModelGraph, habit: HabitModel) {
+    func openEditHabitSheet(_ rootStore: RootStore, habit: HabitModel) {
         activeSheet = AppViewSheet.editHabitSheet(habit)
         currentSheetDent = .large
         userAttemptedToDismissSheet = false

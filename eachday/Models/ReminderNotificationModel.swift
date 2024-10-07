@@ -12,7 +12,7 @@ class ReminderNotificationModel: Model<ReminderNotificationRecord>, ReminderNoti
     var saturdayId: UUID
     var habitReminder: HabitReminderModel? = nil
     
-    init(_ modelGraph: ModelGraph, fromRecord: ReminderNotificationRecord) {
+    init(_ rootStore: RootStore, fromRecord: ReminderNotificationRecord) {
         self.reminderId = fromRecord.reminderId
         self.sundayId = fromRecord.sundayId
         self.mondayId = fromRecord.mondayId
@@ -21,10 +21,10 @@ class ReminderNotificationModel: Model<ReminderNotificationRecord>, ReminderNoti
         self.thursdayId = fromRecord.thursdayId
         self.fridayId = fromRecord.fridayId
         self.saturdayId = fromRecord.saturdayId
-        super.init(modelGraph, fromRecord: fromRecord, markForDeletion: false)
+        super.init(rootStore, fromRecord: fromRecord, markForDeletion: false)
     }
     
-    init(_ modelGraph: ModelGraph, reminderId: UUID, markForDeletion: Bool = false) {
+    init(_ rootStore: RootStore, reminderId: UUID, markForDeletion: Bool = false) {
         self.reminderId = reminderId
         self.sundayId = UUID() 
         self.mondayId = UUID()
@@ -33,7 +33,7 @@ class ReminderNotificationModel: Model<ReminderNotificationRecord>, ReminderNoti
         self.thursdayId = UUID()  
         self.fridayId = UUID() 
         self.saturdayId = UUID() 
-        super.init(modelGraph, fromRecord: nil, markForDeletion: markForDeletion)
+        super.init(rootStore, fromRecord: nil, markForDeletion: markForDeletion)
     }
     
 //
@@ -46,13 +46,13 @@ class ReminderNotificationModel: Model<ReminderNotificationRecord>, ReminderNoti
     override func toRecord() -> ReminderNotificationRecord { ReminderNotificationRecord(fromModel: self) }
     override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
     override func onCreate() {
-        habitReminder = modelGraph.habitReminders.first { $0.id == reminderId }
+        habitReminder = rootStore.habitReminders.all.first { $0.id == reminderId }
         
         habitReminder?.notification = self
-        modelGraph.reminderNotifications.append(self)
+        rootStore.reminderNotifications.all.append(self)
     }
     override func onDelete() {
         habitReminder?.notification = nil
-        modelGraph.reminderNotifications.removeAll { $0.reminderId == reminderId }
+        rootStore.reminderNotifications.all.removeAll { $0.reminderId == reminderId }
     }
 }

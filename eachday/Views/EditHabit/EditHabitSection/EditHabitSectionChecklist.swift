@@ -6,7 +6,7 @@ struct EditHabitSectionChecklist: View {
     @FocusState.Binding var focusedField: EditHabitFormField?
     var onFieldChange: () -> ()
     
-    @Environment(ModelGraph.self) var modelGraph: ModelGraph
+    @Environment(RootStore.self) var rootStore: RootStore
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     
     var body: some View {

@@ -21,16 +21,16 @@ class SettingsModel: Model<SettingsRecord>, Settings {
         }
     }
     
-    init(_ modelGraph: ModelGraph, fromRecord: SettingsRecord) {
+    init(_ rootStore: RootStore, fromRecord: SettingsRecord) {
         self.savedTheme = fromRecord.savedTheme
         self.savedStartOfWeek = fromRecord.savedStartOfWeek
-        super.init(modelGraph, fromRecord: fromRecord, markForDeletion: false)
+        super.init(rootStore, fromRecord: fromRecord, markForDeletion: false)
     }
     
-    init(_ modelGraph: ModelGraph) {
+    init(_ rootStore: RootStore) {
         self.savedTheme = nil
         self.savedStartOfWeek = nil
-        super.init(modelGraph, fromRecord: nil, markForDeletion: false)
+        super.init(rootStore, fromRecord: nil, markForDeletion: false)
     }
     
 //
@@ -42,6 +42,6 @@ class SettingsModel: Model<SettingsRecord>, Settings {
     
     override func toRecord() -> SettingsRecord { SettingsRecord(fromModel: self) }
     override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
-    override func onCreate() { modelGraph.settings = self }
-    override func onDelete() { modelGraph.settings = nil }
+    override func onCreate() { rootStore.settings.saved = self }
+    override func onDelete() { rootStore.settings.saved = nil }
 }

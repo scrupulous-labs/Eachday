@@ -7,15 +7,15 @@ struct eachdayApp: App {
     var body: some Scene {
         WindowGroup {
             AppView()
-                .environment(appDelegate.modelGraph)
-                .preferredColorScheme(appDelegate.modelGraph.settingsUI.prefferedColorScheme)
+                .environment(appDelegate.rootStore)
+                .preferredColorScheme(appDelegate.rootStore.settings.value.prefferedColorScheme)
         }
     }
 }
 
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
-    let modelGraph: ModelGraph = try! ModelGraph.makeGraph()
+    let rootStore: RootStore = try! RootStore.makeStore()
     
     func application(
         _ application: UIApplication,

@@ -10,6 +10,16 @@
 		B31E240F2CA1468600424C55 /* Algorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E240E2CA1468200424C55 /* Algorithms.swift */; };
 		B3231F6A2CA33CDA00B37C4D /* HabitDayStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3231F692CA33CCC00B37C4D /* HabitDayStatus.swift */; };
 		B3231F782CA3C65800B37C4D /* HabitDetailsSelectYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3231F772CA3C64F00B37C4D /* HabitDetailsSelectYear.swift */; };
+		B368763A2CB404C7004C695F /* RootStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36876392CB404C2004C695F /* RootStore.swift */; };
+		B368763F2CB406A8004C695F /* HabitTaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B368763E2CB406A1004C695F /* HabitTaskStore.swift */; };
+		B36876412CB406C1004C695F /* HabitGroupStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36876402CB406B8004C695F /* HabitGroupStore.swift */; };
+		B36876432CB407DF004C695F /* TaskCompletionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36876422CB407D3004C695F /* TaskCompletionStore.swift */; };
+		B36876452CB40807004C695F /* HabitReminderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36876442CB407F6004C695F /* HabitReminderStore.swift */; };
+		B36876472CB40829004C695F /* HabitGroupItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36876462CB40819004C695F /* HabitGroupItemStore.swift */; };
+		B36876492CB408B0004C695F /* ReminderNotificationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36876482CB408A5004C695F /* ReminderNotificationsStore.swift */; };
+		B368764B2CB411F0004C695F /* HabitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B368764A2CB411EB004C695F /* HabitStore.swift */; };
+		B36876522CB41BD5004C695F /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36876512CB41BD2004C695F /* Store.swift */; };
+		B36876542CB420CB004C695F /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36876532CB420C6004C695F /* SettingsStore.swift */; };
 		B3B38AB32C9D5E580037D58E /* HabitIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB22C9D5E540037D58E /* HabitIcon.swift */; };
 		B3B38AB52C9EB6210037D58E /* HabitReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB42C9EB61D0037D58E /* HabitReminder.swift */; };
 		B3B38AB72C9EB79B0037D58E /* HabitReminderRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB62C9EB7940037D58E /* HabitReminderRecord.swift */; };
@@ -43,7 +53,6 @@
 		B3D3C81C2C9720A4005D28E1 /* FP.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8032C9720A4005D28E1 /* FP.swift */; };
 		B3D3C81D2C9720A4005D28E1 /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8042C9720A4005D28E1 /* Frequency.swift */; };
 		B3D3C81E2C9720A4005D28E1 /* SortOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8052C9720A4005D28E1 /* SortOrder.swift */; };
-		B3D3C81F2C9720A4005D28E1 /* ModelGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8072C9720A4005D28E1 /* ModelGraph.swift */; };
 		B3D3C8502C9720AA005D28E1 /* AppHabitCardCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8202C9720AA005D28E1 /* AppHabitCardCalendar.swift */; };
 		B3D3C8512C9720AA005D28E1 /* AppHabitCardContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8212C9720AA005D28E1 /* AppHabitCardContextMenu.swift */; };
 		B3D3C8522C9720AA005D28E1 /* AppHabitCardHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8222C9720AA005D28E1 /* AppHabitCardHeader.swift */; };
@@ -89,6 +98,16 @@
 		B31E240E2CA1468200424C55 /* Algorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithms.swift; sourceTree = "<group>"; };
 		B3231F692CA33CCC00B37C4D /* HabitDayStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDayStatus.swift; sourceTree = "<group>"; };
 		B3231F772CA3C64F00B37C4D /* HabitDetailsSelectYear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsSelectYear.swift; sourceTree = "<group>"; };
+		B36876392CB404C2004C695F /* RootStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootStore.swift; sourceTree = "<group>"; };
+		B368763E2CB406A1004C695F /* HabitTaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTaskStore.swift; sourceTree = "<group>"; };
+		B36876402CB406B8004C695F /* HabitGroupStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitGroupStore.swift; sourceTree = "<group>"; };
+		B36876422CB407D3004C695F /* TaskCompletionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCompletionStore.swift; sourceTree = "<group>"; };
+		B36876442CB407F6004C695F /* HabitReminderStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitReminderStore.swift; sourceTree = "<group>"; };
+		B36876462CB40819004C695F /* HabitGroupItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitGroupItemStore.swift; sourceTree = "<group>"; };
+		B36876482CB408A5004C695F /* ReminderNotificationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderNotificationsStore.swift; sourceTree = "<group>"; };
+		B368764A2CB411EB004C695F /* HabitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitStore.swift; sourceTree = "<group>"; };
+		B36876512CB41BD2004C695F /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		B36876532CB420C6004C695F /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		B3B38AB22C9D5E540037D58E /* HabitIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitIcon.swift; sourceTree = "<group>"; };
 		B3B38AB42C9EB61D0037D58E /* HabitReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitReminder.swift; sourceTree = "<group>"; };
 		B3B38AB62C9EB7940037D58E /* HabitReminderRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitReminderRecord.swift; sourceTree = "<group>"; };
@@ -123,7 +142,6 @@
 		B3D3C8032C9720A4005D28E1 /* FP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FP.swift; sourceTree = "<group>"; };
 		B3D3C8042C9720A4005D28E1 /* Frequency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
 		B3D3C8052C9720A4005D28E1 /* SortOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortOrder.swift; sourceTree = "<group>"; };
-		B3D3C8072C9720A4005D28E1 /* ModelGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelGraph.swift; sourceTree = "<group>"; };
 		B3D3C8202C9720AA005D28E1 /* AppHabitCardCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppHabitCardCalendar.swift; sourceTree = "<group>"; };
 		B3D3C8212C9720AA005D28E1 /* AppHabitCardContextMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppHabitCardContextMenu.swift; sourceTree = "<group>"; };
 		B3D3C8222C9720AA005D28E1 /* AppHabitCardHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppHabitCardHeader.swift; sourceTree = "<group>"; };
@@ -180,17 +198,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B36876372CB3D4ED004C695F /* Store */ = {
+		B36876372CB3D4ED004C695F /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				B36876502CB41BCC004C695F /* Base */,
+				B36876392CB404C2004C695F /* RootStore.swift */,
+				B368764A2CB411EB004C695F /* HabitStore.swift */,
+				B368763E2CB406A1004C695F /* HabitTaskStore.swift */,
+				B36876402CB406B8004C695F /* HabitGroupStore.swift */,
+				B36876462CB40819004C695F /* HabitGroupItemStore.swift */,
+				B36876422CB407D3004C695F /* TaskCompletionStore.swift */,
+				B36876442CB407F6004C695F /* HabitReminderStore.swift */,
+				B36876482CB408A5004C695F /* ReminderNotificationsStore.swift */,
+				B36876532CB420C6004C695F /* SettingsStore.swift */,
 			);
-			path = Store;
+			path = Stores;
 			sourceTree = "<group>";
 		};
 		B36876382CB3DB85004C695F /* Base */ = {
 			isa = PBXGroup;
 			children = (
 				B3D3C7F12C9720A4005D28E1 /* Model.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		B36876502CB41BCC004C695F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B36876512CB41BD2004C695F /* Store.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -215,7 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				B3D3C84F2C9720AA005D28E1 /* Views */,
-				B36876372CB3D4ED004C695F /* Store */,
+				B36876372CB3D4ED004C695F /* Stores */,
 				B3D3C8082C9720A4005D28E1 /* Models */,
 				B3D3C7E92C97209D005D28E1 /* Database */,
 				B3D3C8062C9720A4005D28E1 /* Utils */,
@@ -294,7 +330,6 @@
 				B3B38AB82C9EB8FF0037D58E /* HabitReminderModel.swift */,
 				B3B38AC02CA04D400037D58E /* ReminderNotificationModel.swift */,
 				B3D3C8902C9C79ED005D28E1 /* SettingsModel.swift */,
-				B3D3C8072C9720A4005D28E1 /* ModelGraph.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -501,6 +536,7 @@
 				B3D3C8172C9720A4005D28E1 /* HabitTaskRecord.swift in Sources */,
 				B3B38ABD2CA046530037D58E /* ReminderNotification.swift in Sources */,
 				B3D3C81E2C9720A4005D28E1 /* SortOrder.swift in Sources */,
+				B36876472CB40829004C695F /* HabitGroupItemStore.swift in Sources */,
 				B3D3C8592C9720AA005D28E1 /* EditHabitSectionHabit.swift in Sources */,
 				B3D3C86F2C9720AA005D28E1 /* AppView.swift in Sources */,
 				B3D3C80C2C9720A4005D28E1 /* HabitTaskModel.swift in Sources */,
@@ -518,22 +554,28 @@
 				B3D3C80B2C9720A4005D28E1 /* HabitModel.swift in Sources */,
 				B3231F782CA3C65800B37C4D /* HabitDetailsSelectYear.swift in Sources */,
 				B3D3C86B2C9720AA005D28E1 /* EditHabitHistory.swift in Sources */,
+				B36876412CB406C1004C695F /* HabitGroupStore.swift in Sources */,
+				B36876432CB407DF004C695F /* TaskCompletionStore.swift in Sources */,
 				B3D3C8752C9720AA005D28E1 /* ProfileView.swift in Sources */,
 				B3D3C85D2C9720AA005D28E1 /* EditHabitSetReminders.swift in Sources */,
 				B3D3C8102C9720A4005D28E1 /* HabitGroup.swift in Sources */,
+				B36876492CB408B0004C695F /* ReminderNotificationsStore.swift in Sources */,
 				B3B38ABB2CA038ED0037D58E /* ArchivedHabits.swift in Sources */,
 				B3B38AB72C9EB79B0037D58E /* HabitReminderRecord.swift in Sources */,
+				B36876542CB420CB004C695F /* SettingsStore.swift in Sources */,
 				B3D3C8502C9720AA005D28E1 /* AppHabitCardCalendar.swift in Sources */,
 				B3D3C8912C9C79ED005D28E1 /* SettingsModel.swift in Sources */,
 				B3D3C8672C9720AA005D28E1 /* HabitDetailsCard.swift in Sources */,
 				B3D3C8562C9720AA005D28E1 /* EditHabitSectionChecklist.swift in Sources */,
 				B3D3C8842C9A9DED005D28E1 /* ProfileSectionApp.swift in Sources */,
+				B36876452CB40807004C695F /* HabitReminderStore.swift in Sources */,
+				B368763F2CB406A8004C695F /* HabitTaskStore.swift in Sources */,
+				B368764B2CB411F0004C695F /* HabitStore.swift in Sources */,
 				B3D3C8182C9720A4005D28E1 /* TaskCompletionRecord.swift in Sources */,
 				B3D3C88B2C9AF6EA005D28E1 /* EditHabitOrderGroups.swift in Sources */,
 				B3D3C8532C9720AA005D28E1 /* AppHabitCard.swift in Sources */,
 				B3D3C8662C9720AA005D28E1 /* HabitDetailsCalendar.swift in Sources */,
 				B3D3C8892C9AF6D8005D28E1 /* EditHabitOrderHabits.swift in Sources */,
-				B3D3C81F2C9720A4005D28E1 /* ModelGraph.swift in Sources */,
 				B3D3C8142C9720A4005D28E1 /* HabitGroupItemRecord.swift in Sources */,
 				B3D3C7D92C972089005D28E1 /* eachdayApp.swift in Sources */,
 				B3D3C8742C9720AA005D28E1 /* HabitDetailsView.swift in Sources */,
@@ -563,6 +605,8 @@
 				B3D3C81C2C9720A4005D28E1 /* FP.swift in Sources */,
 				B3D3C85E2C9720AA005D28E1 /* EditHabitUtils.swift in Sources */,
 				B3D3C88D2C9B2E24005D28E1 /* Settings.swift in Sources */,
+				B368763A2CB404C7004C695F /* RootStore.swift in Sources */,
+				B36876522CB41BD5004C695F /* Store.swift in Sources */,
 				B3D3C81D2C9720A4005D28E1 /* Frequency.swift in Sources */,
 				B3D3C81B2C9720A4005D28E1 /* HabitColor.swift in Sources */,
 				B3D3C8512C9720AA005D28E1 /* AppHabitCardContextMenu.swift in Sources */,

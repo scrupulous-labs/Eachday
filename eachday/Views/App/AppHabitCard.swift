@@ -5,7 +5,7 @@ struct HabitCard: View {
     let editHabit: () -> ()
     let editHabitHistory: () -> ()
     
-    @Environment(ModelGraph.self) var modelGraph: ModelGraph
+    @Environment(RootStore.self) var rootStore: RootStore
     @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {

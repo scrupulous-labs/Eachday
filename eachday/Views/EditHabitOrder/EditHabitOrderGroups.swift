@@ -2,16 +2,16 @@ import SwiftUI
 
 struct EditHabitOrderGroups: View {
     @Environment(\.colorScheme) var colorScheme
-    @Environment(ModelGraph.self) var modelGraph
+    @Environment(RootStore.self) var rootStore
     
     var body: some View {
         Section {
-            if modelGraph.habitsUI.isEmpty {
+            if rootStore.habits.sorted.isEmpty {
                 Text("No groups")
                     .padding(.vertical, 32)
                     .frame(maxWidth: .infinity, alignment: .center)
             }
-            ForEach(modelGraph.habitGroupsUI, id: \.id) { group in
+            ForEach(rootStore.habitGroups.sorted, id: \.id) { group in
                 HStack {
                     Text(group.name)
                         .foregroundColor(colorScheme == .light ? .black : .white)
@@ -34,7 +34,7 @@ struct EditHabitOrderGroups: View {
     }
     
     func moveGroup(offsets: IndexSet, to: Int) {
-        var copy = modelGraph.habitGroupsUI
+        var copy = rootStore.habitGroups.sorted
         let count = copy.count
         let from = Array(offsets).first
         

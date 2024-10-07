@@ -8,11 +8,11 @@ struct EditHabitSetReminders: View {
     var cellCornerRadius = 6.0
     var daysOfWeek: [WeekDay] {
         Week.allDays(
-            startOfWeek: modelGraph.settingsUI.startOfWeek
+            startOfWeek: rootStore.settings.value.startOfWeek
         )
     }
     @Environment(\.colorScheme) var colorScheme
-    @Environment(ModelGraph.self) var modelGraph
+    @Environment(RootStore.self) var rootStore
     
     var body: some View {
         List {
@@ -57,7 +57,7 @@ struct EditHabitSetReminders: View {
             }
             
             Button {
-                _ = HabitReminderModel(modelGraph, habitId: habit.id)
+                _ = HabitReminderModel(rootStore, habitId: habit.id)
                 onFieldChange()
             } label: {
                 Text("NEW REMINDER")

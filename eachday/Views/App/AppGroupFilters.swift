@@ -7,14 +7,14 @@ struct AppGroupFilters: View {
     var onTapGroup: (HabitGroupModel) -> Void
     
     @Environment(\.colorScheme) var colorScheme
-    @Environment(ModelGraph.self) var modelGraph
+    @Environment(RootStore.self) var rootStore
     
     var body: some View {
         ScrollView(.horizontal) {
             HStack(spacing: 6) {
                 if leadingGap != nil { Spacer().frame(width: leadingGap! - 6) }
                 ForEach(
-                    modelGraph.habitGroupsUI.filter { !$0.habitGroupItemsUI.isEmpty },
+                    rootStore.habitGroups.sorted.filter { !$0.habitGroupItemsUI.isEmpty },
                     id: \.id
                 ) { habitGroup in
                     let isActive = activeGroupIds.contains(habitGroup.id)

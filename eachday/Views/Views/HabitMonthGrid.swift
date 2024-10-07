@@ -11,7 +11,7 @@ struct HabitMonthGrid: View {
     var cellSize = 8.0
     var cellCornerRadius = 2.0
     @Environment(\.colorScheme) private var colorScheme
-    @Environment(ModelGraph.self) private var modelGraph
+    @Environment(RootStore.self) private var rootStore
     
     var body: some View {
         LazyVGrid(
@@ -21,7 +21,7 @@ struct HabitMonthGrid: View {
             ),
             spacing: gridVerticalSpacing
         ) {
-            let startDay = modelGraph.settingsUI.startOfWeek
+            let startDay = rootStore.settings.value.startOfWeek
             ForEach(Array(month.daysGrid(startOfWeek: startDay).enumerated()), id: \.offset) { (_, maybeDay) in
                 switch maybeDay {
                 case Maybe.nothing:

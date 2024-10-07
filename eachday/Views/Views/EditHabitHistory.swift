@@ -9,7 +9,7 @@ struct EditHabitHistory: View {
     @State private var calendarViewProxy = CalendarViewProxy()
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme
-    @Environment(ModelGraph.self) private var modelGraph
+    @Environment(RootStore.self) private var rootStore
     
     let cellPadding = 5.0
     let cellCornerRadius = 5.0
@@ -20,7 +20,7 @@ struct EditHabitHistory: View {
         .startDay.toDate()
     var customCalendar: Calendar {
         var cal = Calendar.current
-        cal.firstWeekday = modelGraph.settingsUI.startOfWeek.rawValue
+        cal.firstWeekday = rootStore.settings.value.startOfWeek.rawValue
         return cal
     }
     

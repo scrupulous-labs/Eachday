@@ -96,7 +96,7 @@ struct RemindersMinimap: View {
     
     var daysOfWeek: [WeekDay] {
         Week.allDays(
-            startOfWeek: modelGraph.settingsUI.startOfWeek
+            startOfWeek: rootStore.settings.value.startOfWeek
         )
     }
     var activeDaysOfWeek: Set<WeekDay> {
@@ -126,7 +126,7 @@ struct RemindersMinimap: View {
         return result
     }
     @Environment(\.colorScheme) var colorScheme
-    @Environment(ModelGraph.self) var modelGraph
+    @Environment(RootStore.self) var rootStore
     
     var body: some View {
         HStack(spacing: 6) {

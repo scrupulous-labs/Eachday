@@ -10,12 +10,12 @@ enum ModelStatus {
 @Observable
 class Model<R: GRDB.Record>: ModelNode {
     var record: R?
-    let modelGraph: ModelGraph
+    let rootStore: RootStore
     private var markedForDeletion: Bool
 
-    init(_ modelGraph: ModelGraph, fromRecord: R?, markForDeletion: Bool) {
+    init(_ rootStore: RootStore, fromRecord: R?, markForDeletion: Bool) {
         self.record = fromRecord
-        self.modelGraph = modelGraph
+        self.rootStore = rootStore
         self.markedForDeletion = markForDeletion
         super.init()
         onCreate()
@@ -23,7 +23,7 @@ class Model<R: GRDB.Record>: ModelNode {
     
     var showInUI: Bool { !markedForDeletion }
     var isModified: Bool { fatalError("subclass must override") }
-    override var db: Database { return modelGraph.database }
+    override var db: Database { return rootStore.database }
     override var children: [ModelNode] { fatalError("subclass must override") }
     override var isValid: Bool { fatalError("subclass must override") }
     override var isMarkedForDeletion: Bool { markedForDeletion }

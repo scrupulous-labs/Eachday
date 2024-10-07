@@ -25,7 +25,7 @@ class HabitModel: Model<HabitRecord>, Habit {
         habitGroupItems.filter { $0.showInUI }
     }
     
-    init(_ modelGraph: ModelGraph, fromRecord: HabitRecord) {
+    init(_ rootStore: RootStore, fromRecord: HabitRecord) {
         self.id = fromRecord.id
         self.name = fromRecord.name
         self.icon = fromRecord.icon
@@ -33,11 +33,11 @@ class HabitModel: Model<HabitRecord>, Habit {
         self.archived = fromRecord.archived
         self.frequency = fromRecord.frequency
         self.sortOrder = fromRecord.sortOrder
-        super.init(modelGraph, fromRecord: fromRecord, markForDeletion: false)
+        super.init(rootStore, fromRecord: fromRecord, markForDeletion: false)
         deriveCompletionsByDay(); registerCompletionsByDay()
     }
     
-    init(_ modelGraph: ModelGraph, sortOrder: SortOrder, markForDeletion: Bool = false) {
+    init(_ rootStore: RootStore, sortOrder: SortOrder, markForDeletion: Bool = false) {
         self.id = UUID()
         self.name = ""
         self.icon = HabitIcon.briefcase
@@ -45,7 +45,7 @@ class HabitModel: Model<HabitRecord>, Habit {
         self.archived = false
         self.frequency = Frequency.daily(times: 1)
         self.sortOrder = sortOrder
-        super.init(modelGraph, fromRecord: nil, markForDeletion: markForDeletion)
+        super.init(rootStore, fromRecord: nil, markForDeletion: markForDeletion)
         deriveCompletionsByDay(); registerCompletionsByDay()
     }
     
@@ -77,7 +77,7 @@ class HabitModel: Model<HabitRecord>, Habit {
 
     @discardableResult
     func addToGroup(group: HabitGroupModel) -> HabitGroupItemModel {
-        return HabitGroupItemModel(modelGraph, habitId: id, groupId: group.id)
+        return HabitGroupItemModel(rootStore, habitId: id, groupId: group.id)
     }
     
     func removeFromGroup(group: HabitGroupModel) {
@@ -119,7 +119,7 @@ class HabitModel: Model<HabitRecord>, Habit {
     func markNextTask(day: Day) {
         let nextTask = nextTaskToComplete(day: day)
         if nextTask != nil {
-            _ = TaskCompletionModel(modelGraph, taskId: nextTask!.id, day: day)
+            _ = TaskCompletionModel(rootStore, taskId: nextTask!.id, day: day)
         }
     }
     
@@ -127,7 +127,7 @@ class HabitModel: Model<HabitRecord>, Habit {
         let nextTask = nextTaskToComplete(day: day)
         let repetition = repetition ?? repetitionsCompleted(day: day)
         if nextTask != nil && repetitionsCompleted(day: day) < repetition + 1 {
-            _ = TaskCompletionModel(modelGraph, taskId: nextTask!.id, day: day)
+            _ = TaskCompletionModel(rootStore, taskId: nextTask!.id, day: day)
             DispatchQueue.main.async { [self] in
                 markNextRepetition(day: day, repetition: repetition)
             }
@@ -181,7 +181,7 @@ class HabitModel: Model<HabitRecord>, Habit {
         let lastTask = habitTasksUI.last
         let sortOrder = lastTask == nil ? SortOrder.new() : lastTask!.sortOrder.next()
         let task = HabitTaskModel(
-            modelGraph, habitId: id,
+            rootStore, habitId: id,
             sortOrder: sortOrder, markForDeletion: true
         )
         
@@ -189,7 +189,7 @@ class HabitModel: Model<HabitRecord>, Habit {
             let repetitionsDone = repetitionsCompleted(day: day)
             for _ in 0..<repetitionsDone {
                 _ = TaskCompletionModel(
-                    modelGraph, taskId: task.id,
+                    rootStore, taskId: task.id,
                     day: day, markForDeletion: true
                 )
             }
@@ -238,19 +238,19 @@ class HabitModel: Model<HabitRecord>, Habit {
     override func toRecord() -> HabitRecord { HabitRecord(fromModel: self) }
     override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
     override func onCreate() {
-        habitTasks = modelGraph.habitTasks.filter { $0.habitId == id }
-        habitGroupItems = modelGraph.habitGroupItems.filter { $0.habitId == id }
-        habitReminders = modelGraph.habitReminders.filter { $0.habitId == id }
+        habitTasks = rootStore.habitTasks.all.filter { $0.habitId == id }
+        habitGroupItems = rootStore.habitGroupItems.all.filter { $0.habitId == id }
+        habitReminders = rootStore.habitReminders.all.filter { $0.habitId == id }
         
         habitTasks.forEach { $0.habit = self }
         habitGroupItems.forEach { $0.habit = self }
         habitReminders.forEach { $0.habit = self }
-        modelGraph.habits.append(self)
+        rootStore.habits.all.append(self)
     }
     override func onDelete() {
         habitTasks.forEach { $0.habit = nil }
         habitGroupItems.forEach { $0.habit = nil }
         habitReminders.forEach { $0.habit = nil }
-        modelGraph.habits.removeAll { $0.id == id }
+        rootStore.habits.all.removeAll { $0.id == id }
     }
 }

@@ -2,13 +2,13 @@ import SwiftUI
 
 struct ProfileSectionSettings: View {
     @Environment(\.colorScheme) var colorScheme
-    @Environment(ModelGraph.self) var modelGraph
+    @Environment(RootStore.self) var rootStore
     
     let iconHeight = 28.0
     let iconCornerRadius = 6.0
     
     var body: some View {
-        @Bindable var settings = modelGraph.settingsUI
+        @Bindable var settings = rootStore.settings.value
         Section {
             Picker(selection: $settings.theme) {
                 Text("Light").tag(Theme.light)

@@ -2,17 +2,17 @@ import SwiftUI
 
 struct EditHabitOrderHabits: View {
     @Environment(\.colorScheme) var colorScheme
-    @Environment(ModelGraph.self) var modelGraph
+    @Environment(RootStore.self) var rootStore
     
     var body: some View {
         Section {
-            if modelGraph.habitsUI.isEmpty {
+            if rootStore.habits.sorted.isEmpty {
                 Text("No Habits")
                     .padding(.vertical, 32)
                     .frame(maxWidth: .infinity, alignment: .center)
             }
             
-            ForEach(modelGraph.habitsUI, id: \.id) { habit in
+            ForEach(rootStore.habits.sorted, id: \.id) { habit in
                 HStack {
                     Text(habit.name)
                         .foregroundColor(colorScheme == .light ? .black : .white)
@@ -36,7 +36,7 @@ struct EditHabitOrderHabits: View {
     }
     
     func moveHabit(offsets: IndexSet, to: Int) {
-        var copy = modelGraph.habitsUI
+        var copy = rootStore.habits.sorted
         let count = copy.count
         let from = Array(offsets).first
         

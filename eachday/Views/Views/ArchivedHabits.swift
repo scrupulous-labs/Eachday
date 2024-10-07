@@ -10,12 +10,12 @@ struct ArchivedHabits: View {
         : Color.white
     }
     @Environment(\.colorScheme) private var colorScheme
-    @Environment(ModelGraph.self) var modelGraph
+    @Environment(RootStore.self) var rootStore
     
     var body: some View {
         List {
             Section {
-                let archivedHabits = modelGraph.habits.filter { $0.showInUI && $0.archived }
+                let archivedHabits = rootStore.habits.archived
                 if archivedHabits.isEmpty {
                     Text("No archived habits")
                         .padding(.vertical, 32)

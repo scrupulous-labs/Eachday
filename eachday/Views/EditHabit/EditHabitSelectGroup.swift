@@ -9,19 +9,19 @@ struct EditHabitSelectGroup: View {
     var cellSize = 40.0
     var cellCornerRadius = 6.0
     @Environment(\.colorScheme) var colorScheme
-    @Environment(ModelGraph.self) var modelGraph
+    @Environment(RootStore.self) var rootStore
     
     var body: some View {
         List {
             Section {
-                if modelGraph.habitGroupsUI.isEmpty {
+                if rootStore.habitGroups.sorted.isEmpty {
                     Text("No groups")
                         .padding(.vertical, 32)
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
                 
                 
-                ForEach(modelGraph.habitGroupsUI, id: \.id) { group in
+                ForEach(rootStore.habitGroups.sorted, id: \.id) { group in
                     let habitInGroup = habit.belongsToGroup(group: group)
                     let iconName: String = habitInGroup ? "checkmark.circle.fill" : "circle"
                     let iconColor: Color = habitInGroup ? .green : .gray

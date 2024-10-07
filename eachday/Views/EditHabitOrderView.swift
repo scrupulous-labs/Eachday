@@ -2,7 +2,7 @@ import SwiftUI
 
 struct EditHabitOrderView: View {
     @Bindable var ui = EditHabitOrderViewModel.instance
-    @Environment(ModelGraph.self) var modelGraph: ModelGraph
+    @Environment(RootStore.self) var rootStore: RootStore
 
     var body: some View {
         VStack(spacing: 0) {
