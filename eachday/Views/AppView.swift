@@ -168,7 +168,9 @@ class AppViewModel {
     }
     
     func openNewHabitSheet(_ modelGraph: ModelGraph) {
-        let habitToEdit = HabitModel(modelGraph, markForDeletion: true)
+        let lastHabit = modelGraph.habitsUI.last
+        let sortOrder = lastHabit?.sortOrder.next() ?? SortOrder.new()
+        let habitToEdit = HabitModel(modelGraph, sortOrder: sortOrder, markForDeletion: true)
         habitToEdit.addEmptyTask()
         openEditHabitSheet(modelGraph, habit: habitToEdit)
     }

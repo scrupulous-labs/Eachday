@@ -44,15 +44,15 @@ class ReminderNotificationModel: Model<ReminderNotificationRecord>, ReminderNoti
     override var isValid: Bool { validate() }
     
     override func toRecord() -> ReminderNotificationRecord { ReminderNotificationRecord(fromModel: self) }
-    override func addToGraph() {
+    override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
+    override func onCreate() {
         habitReminder = modelGraph.habitReminders.first { $0.id == reminderId }
         
         habitReminder?.notification = self
         modelGraph.reminderNotifications.append(self)
     }
-    override func removeFromGraph() {
+    override func onDelete() {
         habitReminder?.notification = nil
         modelGraph.reminderNotifications.removeAll { $0.reminderId == reminderId }
     }
-    override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
 }

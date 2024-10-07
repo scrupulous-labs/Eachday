@@ -47,7 +47,8 @@ class HabitTaskModel: Model<HabitTaskRecord>, HabitTask {
     }
 
     override func toRecord() -> HabitTaskRecord { HabitTaskRecord(fromModel: self) }
-    override func addToGraph() {
+    override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
+    override func onCreate() {
         habit = modelGraph.habits.first { $0.id == habitId }
         completions = modelGraph.completions.filter { $0.taskId == id }
         
@@ -55,10 +56,9 @@ class HabitTaskModel: Model<HabitTaskRecord>, HabitTask {
         completions.forEach { $0.habitTask = self }
         modelGraph.habitTasks.append(self)
     }
-    override func removeFromGraph() {
+    override func onDelete() {
         habit?.habitTasks.removeAll { $0.id == id }
         completions.forEach { $0.habitTask = nil }
         modelGraph.habitTasks.removeAll { $0.id == id }
     }
-    override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
 }

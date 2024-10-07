@@ -37,14 +37,14 @@ class HabitModel: Model<HabitRecord>, Habit {
         deriveCompletionsByDay(); registerCompletionsByDay()
     }
     
-    init(_ modelGraph: ModelGraph, markForDeletion: Bool = false) {
+    init(_ modelGraph: ModelGraph, sortOrder: SortOrder, markForDeletion: Bool = false) {
         self.id = UUID()
         self.name = ""
         self.icon = HabitIcon.briefcase
         self.color = HabitColor.blue
         self.archived = false
         self.frequency = Frequency.daily(times: 1)
-        self.sortOrder = SortOrder.new()
+        self.sortOrder = sortOrder
         super.init(modelGraph, fromRecord: nil, markForDeletion: markForDeletion)
         deriveCompletionsByDay(); registerCompletionsByDay()
     }
@@ -236,7 +236,8 @@ class HabitModel: Model<HabitRecord>, Habit {
     override var isValid: Bool { validate() }
 
     override func toRecord() -> HabitRecord { HabitRecord(fromModel: self) }
-    override func addToGraph() {
+    override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
+    override func onCreate() {
         habitTasks = modelGraph.habitTasks.filter { $0.habitId == id }
         habitGroupItems = modelGraph.habitGroupItems.filter { $0.habitId == id }
         habitReminders = modelGraph.habitReminders.filter { $0.habitId == id }
@@ -246,11 +247,10 @@ class HabitModel: Model<HabitRecord>, Habit {
         habitReminders.forEach { $0.habit = self }
         modelGraph.habits.append(self)
     }
-    override func removeFromGraph() {
+    override func onDelete() {
         habitTasks.forEach { $0.habit = nil }
         habitGroupItems.forEach { $0.habit = nil }
         habitReminders.forEach { $0.habit = nil }
         modelGraph.habits.removeAll { $0.id == id }
     }
-    override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
 }

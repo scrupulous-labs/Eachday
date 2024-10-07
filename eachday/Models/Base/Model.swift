@@ -10,15 +10,15 @@ enum ModelStatus {
 @Observable
 class Model<R: GRDB.Record>: ModelNode {
     var record: R?
-    var markedForDeletion: Bool
     let modelGraph: ModelGraph
+    private var markedForDeletion: Bool
 
     init(_ modelGraph: ModelGraph, fromRecord: R?, markForDeletion: Bool) {
         self.record = fromRecord
-        self.markedForDeletion = markForDeletion
         self.modelGraph = modelGraph
+        self.markedForDeletion = markForDeletion
         super.init()
-        addToGraph()
+        onCreate()
     }
     
     var showInUI: Bool { !markedForDeletion }
@@ -41,8 +41,6 @@ class Model<R: GRDB.Record>: ModelNode {
     override func insertToDb(db: GRDB.Database) throws { record = try toRecord().inserted(db) }
     override func updateToDb(db: GRDB.Database) throws { record = try toRecord().updateAndFetch(db) }
     override func deleteFromDb(db: GRDB.Database) throws { try record?.delete(db); record = nil }
-    override func addToGraph() { fatalError("subclass must override") }
-    override func removeFromGraph() { fatalError("subclass must override") }
     override func resetToDbRecord() { fatalError("subclass must override") }
     override func unmarkForDeletion() { markedForDeletion = false }
 }
@@ -66,14 +64,13 @@ class ModelNode {
     func insertToDb(db: GRDB.Database) throws { fatalError("subclass must override") }
     func updateToDb(db: GRDB.Database) throws { fatalError("subclass must override") }
     func deleteFromDb(db: GRDB.Database) throws { fatalError("subclass must override") }
-    func addToGraph() { fatalError("subclass must override") }
-    func removeFromGraph() { fatalError("subclass must override") }
     func resetToDbRecord() { fatalError("subclass must override") }
     func unmarkForDeletion() { fatalError("subclass must override") }
     
-    func preSave() { }
-    func preUpdate() { }
-    func preDelete() { }
+    func onCreate() { }
+    func onSave() { }
+    func onUpdate() { }
+    func onDelete() { }
     
     /*
      Reset model's graph to it's Database state
@@ -84,7 +81,7 @@ class ModelNode {
             let model = queue.removeFirst()
             switch model.status {
             case ModelStatus.transient:
-                model.removeFromGraph()
+                model.onDelete()
 
             case ModelStatus.changed where model.isMarkedForDeletion:
                 model.resetToDbRecord()
@@ -123,30 +120,31 @@ class ModelNode {
     func save() {
         var queue: [ModelNode] = [self]
         var dbOps: [(GRDB.Database) throws -> Void] = []
+        var postOps: [() -> Void] = []
         while !queue.isEmpty {
             let model = queue.removeFirst()
             switch model.status {
             case ModelStatus.transient where model.isMarkedForDeletion || !model.isValid:
-                model.delete(dbOps: &dbOps)
+                model.delete(dbOps: &dbOps, postOps: &postOps)
                 continue
                 
             case ModelStatus.transient:
-                model.preSave()
                 dbOps.append(model.insertToDb)
+                postOps.append(model.onSave)
                 
             case ModelStatus.changed where model.isMarkedForDeletion:
-                model.delete(dbOps: &dbOps)
+                model.delete(dbOps: &dbOps, postOps: &postOps)
                 continue
                 
             case ModelStatus.changed where !model.isValid:
                 model.resetToDbRecord()
                 
             case ModelStatus.changed:
-                model.preUpdate()
                 dbOps.append(model.updateToDb)
+                postOps.append(model.onUpdate)
                 
             case ModelStatus.unChanged where model.isMarkedForDeletion:
-                model.delete(dbOps: &dbOps)
+                model.delete(dbOps: &dbOps, postOps: &postOps)
                 continue
                 
             default:
@@ -160,6 +158,9 @@ class ModelNode {
             if !dbOps.isEmpty {
                 try db.writer.write { for dbOp in dbOps { try dbOp($0) } }
             }
+            if !postOps.isEmpty {
+                for postOp in postOps { postOp() }
+            }
         } catch let error {
             print(error)
         }
@@ -168,23 +169,24 @@ class ModelNode {
     /*
      Delete model's graph from Database
      */
-    private func delete(dbOps: inout [(GRDB.Database) throws -> Void]) {
+    private func delete(
+        dbOps: inout [(GRDB.Database) throws -> Void],
+        postOps: inout [() -> Void]
+    ) {
         var queue: [ModelNode] = [self]
         while !queue.isEmpty {
             let model = queue.removeFirst()
             switch model.status {
             case .transient:
-                model.removeFromGraph()
+                postOps.append(model.onDelete)
                 
             case .changed:
-                model.preDelete()
-                model.removeFromGraph()
                 dbOps.append(model.deleteFromDb)
+                postOps.append(model.onDelete)
                 
             case .unChanged:
-                model.preDelete()
-                model.removeFromGraph()
                 dbOps.append(model.deleteFromDb)
+                postOps.append(model.onDelete)
             }
             
             queue.append(contentsOf: model.children)

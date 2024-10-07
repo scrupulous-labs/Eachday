@@ -35,7 +35,8 @@ class HabitGroupItemModel: Model<HabitGroupItemRecord>, HabitGroupItem {
     override var isValid: Bool { validate() }
 
     override func toRecord() -> HabitGroupItemRecord { HabitGroupItemRecord(fromModel: self) }
-    override func addToGraph() {
+    override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
+    override func onCreate() {
         habit = modelGraph.habits.first { $0.id == habitId }
         habitGroup = modelGraph.habitGroups.first { $0.id == groupId }
         
@@ -43,10 +44,9 @@ class HabitGroupItemModel: Model<HabitGroupItemRecord>, HabitGroupItem {
         habitGroup?.habitGroupItems.append(self)
         modelGraph.habitGroupItems.append(self)
     }
-    override func removeFromGraph() {
+    override func onDelete() {
         habit?.habitGroupItems.removeAll { $0.id == id }
         habitGroup?.habitGroupItems.removeAll { $0.id == id }
         modelGraph.habitGroupItems.removeAll { $0.id == id}
     }
-    override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
 }

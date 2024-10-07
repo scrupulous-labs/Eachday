@@ -30,15 +30,15 @@ class TaskCompletionModel: Model<TaskCompletionRecord>, TaskCompletion {
     override var isValid: Bool { validate() }
     
     override func toRecord() -> TaskCompletionRecord { TaskCompletionRecord(fromModel: self) }
-    override func addToGraph() {
+    override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
+    override func onCreate() {
         habitTask = modelGraph.habitTasks.first { $0.id == taskId }
         
         habitTask?.completions.append(self)
         modelGraph.completions.append(self)
     }
-    override func removeFromGraph() {
+    override func onDelete() {
         habitTask?.completions.removeAll { $0.id == id }
         modelGraph.completions.removeAll { $0.id == id }
     }
-    override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
 }

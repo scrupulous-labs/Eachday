@@ -20,7 +20,6 @@
 		B3B38AC12CA04D480037D58E /* ReminderNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AC02CA04D400037D58E /* ReminderNotificationModel.swift */; };
 		B3D3C7D92C972089005D28E1 /* eachdayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C7D82C972089005D28E1 /* eachdayApp.swift */; };
 		B3D3C7DD2C97208A005D28E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3D3C7DC2C97208A005D28E1 /* Assets.xcassets */; };
-		B3D3C7E02C97208A005D28E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3D3C7DF2C97208A005D28E1 /* Preview Assets.xcassets */; };
 		B3D3C7EA2C97209D005D28E1 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C7E62C97209D005D28E1 /* Database.swift */; };
 		B3D3C7EB2C97209D005D28E1 /* Database+Migrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C7E72C97209D005D28E1 /* Database+Migrator.swift */; };
 		B3D3C7EC2C97209D005D28E1 /* Database+Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C7E82C97209D005D28E1 /* Database+Persistence.swift */; };
@@ -101,7 +100,6 @@
 		B3D3C7D52C972089005D28E1 /* eachday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eachday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D3C7D82C972089005D28E1 /* eachdayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eachdayApp.swift; sourceTree = "<group>"; };
 		B3D3C7DC2C97208A005D28E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B3D3C7DF2C97208A005D28E1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B3D3C7E62C97209D005D28E1 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		B3D3C7E72C97209D005D28E1 /* Database+Migrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Database+Migrator.swift"; sourceTree = "<group>"; };
 		B3D3C7E82C97209D005D28E1 /* Database+Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Database+Persistence.swift"; sourceTree = "<group>"; };
@@ -182,6 +180,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B36876372CB3D4ED004C695F /* Store */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		B36876382CB3DB85004C695F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B3D3C7F12C9720A4005D28E1 /* Model.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		B3D3C7CC2C972089005D28E1 = {
 			isa = PBXGroup;
 			children = (
@@ -202,22 +215,14 @@
 			isa = PBXGroup;
 			children = (
 				B3D3C84F2C9720AA005D28E1 /* Views */,
-				B3D3C8082C9720A4005D28E1 /* ModelGraph */,
+				B36876372CB3D4ED004C695F /* Store */,
+				B3D3C8082C9720A4005D28E1 /* Models */,
 				B3D3C7E92C97209D005D28E1 /* Database */,
 				B3D3C8062C9720A4005D28E1 /* Utils */,
 				B3D3C7DC2C97208A005D28E1 /* Assets.xcassets */,
 				B3D3C7D82C972089005D28E1 /* eachdayApp.swift */,
-				B3D3C7DE2C97208A005D28E1 /* Preview Content */,
 			);
 			path = eachday;
-			sourceTree = "<group>";
-		};
-		B3D3C7DE2C97208A005D28E1 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				B3D3C7DF2C97208A005D28E1 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		B3D3C7E92C97209D005D28E1 /* Database */ = {
@@ -228,22 +233,6 @@
 				B3D3C7E82C97209D005D28E1 /* Database+Persistence.swift */,
 			);
 			path = Database;
-			sourceTree = "<group>";
-		};
-		B3D3C7F32C9720A4005D28E1 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				B3D3C7F12C9720A4005D28E1 /* Model.swift */,
-				B3D3C7EF2C9720A4005D28E1 /* HabitModel.swift */,
-				B3D3C7F02C9720A4005D28E1 /* HabitTaskModel.swift */,
-				B3D3C7EE2C9720A4005D28E1 /* HabitGroupModel.swift */,
-				B3D3C7ED2C9720A4005D28E1 /* HabitGroupItemModel.swift */,
-				B3D3C7F22C9720A4005D28E1 /* TaskCompletionModel.swift */,
-				B3B38AB82C9EB8FF0037D58E /* HabitReminderModel.swift */,
-				B3B38AC02CA04D400037D58E /* ReminderNotificationModel.swift */,
-				B3D3C8902C9C79ED005D28E1 /* SettingsModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		B3D3C7F92C9720A4005D28E1 /* Protocols */ = {
@@ -291,15 +280,23 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		B3D3C8082C9720A4005D28E1 /* ModelGraph */ = {
+		B3D3C8082C9720A4005D28E1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B3D3C7F32C9720A4005D28E1 /* Models */,
+				B36876382CB3DB85004C695F /* Base */,
 				B3D3C7FF2C9720A4005D28E1 /* Records */,
 				B3D3C7F92C9720A4005D28E1 /* Protocols */,
+				B3D3C7EF2C9720A4005D28E1 /* HabitModel.swift */,
+				B3D3C7F02C9720A4005D28E1 /* HabitTaskModel.swift */,
+				B3D3C7EE2C9720A4005D28E1 /* HabitGroupModel.swift */,
+				B3D3C7ED2C9720A4005D28E1 /* HabitGroupItemModel.swift */,
+				B3D3C7F22C9720A4005D28E1 /* TaskCompletionModel.swift */,
+				B3B38AB82C9EB8FF0037D58E /* HabitReminderModel.swift */,
+				B3B38AC02CA04D400037D58E /* ReminderNotificationModel.swift */,
+				B3D3C8902C9C79ED005D28E1 /* SettingsModel.swift */,
 				B3D3C8072C9720A4005D28E1 /* ModelGraph.swift */,
 			);
-			path = ModelGraph;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B3D3C8232C9720AA005D28E1 /* AppHabitCard */ = {
@@ -486,7 +483,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3D3C7E02C97208A005D28E1 /* Preview Assets.xcassets in Resources */,
 				B3D3C7DD2C97208A005D28E1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -703,7 +699,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_ASSET_PATHS = "\"eachday/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = R38A358N7Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -740,7 +736,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_ASSET_PATHS = "\"eachday/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = R38A358N7Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

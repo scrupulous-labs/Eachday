@@ -41,7 +41,7 @@ class SettingsModel: Model<SettingsRecord>, Settings {
     override var isValid: Bool { validate() }
     
     override func toRecord() -> SettingsRecord { SettingsRecord(fromModel: self) }
-    override func addToGraph() { modelGraph.settings = self }
-    override func removeFromGraph() { modelGraph.settings = nil }
     override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
+    override func onCreate() { modelGraph.settings = self }
+    override func onDelete() { modelGraph.settings = nil }
 }
