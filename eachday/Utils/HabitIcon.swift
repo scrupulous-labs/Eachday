@@ -358,7 +358,7 @@ enum HabitIcon: String {
         case .cardio: "figure.mixed.cardio"
         case .yoga: "figure.yoga"
         case .meditation: "figure.mind.and.body"
-        case .dumbbell: "dumbbell.fill"
+        case .dumbbell: "dumbbell"
         case .weightLifting: "figure.strengthtraining.traditional"
         case .soccerball: "soccerball"
         case .baseball: "baseball"

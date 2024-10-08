@@ -23,7 +23,7 @@ struct HabitDetailsCompletionCount: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 12) {
             Text("Completed a total of \(completionCountString)")
                 .font(Font.subheadline.weight(.regular))
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -33,7 +33,7 @@ struct HabitDetailsCompletionCount: View {
             VStack(spacing: 16) {
                 Text("Times completed per month")
                     .font(Font.caption.weight(.light))
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Chart(year.allMonths, id: \.self) { month in
                     BarMark(
@@ -43,10 +43,18 @@ struct HabitDetailsCompletionCount: View {
                 }
                 .foregroundColor(habit.color.shade5)
             }
-            .padding(.all, 16)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 16)
         }
-        .background(Color(hex: colorScheme == .light ? "#FFFFFF" : "#1C1C1E"))
+        .background(Color(hex: colorScheme == .light ? "#FFFFFF" : "#000000"))
         .cornerRadius(10)
+        .overlay {
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(
+                    colorScheme == .light ? .black.opacity(0.25) : Color(hex: "#909090"),
+                    lineWidth: 0.25
+                )
+        }
     }
     
     func compeletionCountPerMonth(_ month: Month) -> Int {

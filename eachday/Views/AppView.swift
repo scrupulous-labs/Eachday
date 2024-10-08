@@ -10,11 +10,9 @@ struct AppView: View {
             ScrollView {                
                 if rootStore.habits.sorted.isEmpty {
                     VStack {
-                        Button { ui.openNewHabitSheet(rootStore) } label: {
-                            Text("NEW HABIT")
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .padding(.top, 76)
+                        Button { ui.openNewHabitSheet(rootStore) } label: { Text("NEW HABIT") }
+                            .buttonStyle(.borderedProminent)
+                            .padding(.top, 76)
                     }
                     .frame(maxWidth: .infinity)
                 } else {

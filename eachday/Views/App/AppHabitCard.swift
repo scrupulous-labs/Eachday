@@ -15,7 +15,7 @@ struct HabitCard: View {
             AppViewHabitCardCalendar(habit: habit)
                 .padding(EdgeInsets(top: 0, leading: 12, bottom: 6, trailing: 12))
         }
-        .background(Color(hex: colorScheme == .light ? "#FFFFFF" : "#1C1C1E"))
+        .background(Color(hex: colorScheme == .light ? "#FFFFFF" : "#000000"))
         .cornerRadius(10)
         .contextMenu {
             AppViewHabitCardContextMenu(
@@ -26,7 +26,10 @@ struct HabitCard: View {
         }
         .overlay {
             RoundedRectangle(cornerRadius: 10)
-                .stroke(.black.opacity(0.25), lineWidth: 0.25)
+                .stroke(
+                    colorScheme == .light ? .black.opacity(0.25) : Color(hex: "#909090"),
+                    lineWidth: 0.25
+                )
         }
     }
 }

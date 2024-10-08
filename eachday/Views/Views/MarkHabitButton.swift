@@ -76,7 +76,7 @@ struct MarkHabitButton: View {
             }
             .frame(width: size, height: size)
             .onTapGesture {
-                let impactHeavy = UIImpactFeedbackGenerator(style: .rigid); impactHeavy.impactOccurred()
+                UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                 if habit.isCompleted(day: today) {
                     confirmCompletionReset.toggle()
                 } else {

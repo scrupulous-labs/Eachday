@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AppGroupFilters: View {
-    var leadingGap: Double? = 18
+    var leadingGap: Double? = 16
     var trailingGap: Double? = 16
     
     @Environment(\.colorScheme) var colorScheme
@@ -25,10 +25,11 @@ struct AppGroupFilters: View {
                         .padding(EdgeInsets(top: 5, leading: 11, bottom: 5, trailing: 11))
                         .background(isActive
                             ? Color(hex: colorScheme == .light ? "#111827" : "#E5E7EB")
-                            : Color(hex: colorScheme == .light ? "#e7e5e4" : "#262626")
+                            : Color(hex: colorScheme == .light ? "#E7E5E4" : "#202020")
                         )
                         .cornerRadius(18)
                         .onTapGesture {
+                            UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
                             if rootStore.habitGroups.selected.contains(habitGroup.id) {
                                 rootStore.habitGroups.selected.remove(habitGroup.id)
                             } else {
