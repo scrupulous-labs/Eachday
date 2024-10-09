@@ -1,8 +1,18 @@
 import SwiftUI
+import RevenueCat
 
 @main
 struct eachdayApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+    
+    init() {
+        Purchases.configure(
+          with: Configuration.Builder(withAPIKey: "appl_wGmJhBUKzuUgmEbccKOWFFVHCkR")
+            .with(appUserID: String(appDelegate.rootStore.settings.value.startOfWeek.rawValue))
+            .build()
+        )
+        Purchases.logLevel = .verbose
+    }
     
     var body: some Scene {
         WindowGroup {
@@ -12,7 +22,6 @@ struct eachdayApp: App {
         }
     }
 }
-
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
     let rootStore: RootStore = try! RootStore.makeStore()

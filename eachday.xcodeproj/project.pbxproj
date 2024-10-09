@@ -10,6 +10,9 @@
 		B31E240F2CA1468600424C55 /* Algorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E240E2CA1468200424C55 /* Algorithms.swift */; };
 		B3231F6A2CA33CDA00B37C4D /* HabitDayStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3231F692CA33CCC00B37C4D /* HabitDayStatus.swift */; };
 		B3231F782CA3C65800B37C4D /* HabitDetailsSelectYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3231F772CA3C64F00B37C4D /* HabitDetailsSelectYear.swift */; };
+		B357B6F22CB663D400B23B21 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B357B6F12CB663D400B23B21 /* StoreKit.framework */; };
+		B357B6FF2CB6F19600B23B21 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = B357B6FE2CB6F19600B23B21 /* RevenueCat */; };
+		B357B7012CB6F19600B23B21 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = B357B7002CB6F19600B23B21 /* RevenueCatUI */; };
 		B368763A2CB404C7004C695F /* RootStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36876392CB404C2004C695F /* RootStore.swift */; };
 		B368763F2CB406A8004C695F /* HabitTaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B368763E2CB406A1004C695F /* HabitTaskStore.swift */; };
 		B36876412CB406C1004C695F /* HabitGroupStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36876402CB406B8004C695F /* HabitGroupStore.swift */; };
@@ -98,6 +101,7 @@
 		B31E240E2CA1468200424C55 /* Algorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithms.swift; sourceTree = "<group>"; };
 		B3231F692CA33CCC00B37C4D /* HabitDayStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDayStatus.swift; sourceTree = "<group>"; };
 		B3231F772CA3C64F00B37C4D /* HabitDetailsSelectYear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsSelectYear.swift; sourceTree = "<group>"; };
+		B357B6F12CB663D400B23B21 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B36876392CB404C2004C695F /* RootStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootStore.swift; sourceTree = "<group>"; };
 		B368763E2CB406A1004C695F /* HabitTaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTaskStore.swift; sourceTree = "<group>"; };
 		B36876402CB406B8004C695F /* HabitGroupStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitGroupStore.swift; sourceTree = "<group>"; };
@@ -190,7 +194,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B357B6FF2CB6F19600B23B21 /* RevenueCat in Frameworks */,
+				B357B6F22CB663D400B23B21 /* StoreKit.framework in Frameworks */,
 				B3D3C87B2C9721CB005D28E1 /* HorizonCalendar in Frameworks */,
+				B357B7012CB6F19600B23B21 /* RevenueCatUI in Frameworks */,
 				B3D3C8782C9721B6005D28E1 /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,6 +205,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B357B6F02CB663D400B23B21 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B357B6F12CB663D400B23B21 /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B36876372CB3D4ED004C695F /* Stores */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				B3D3C7D72C972089005D28E1 /* eachday */,
+				B357B6F02CB663D400B23B21 /* Frameworks */,
 				B3D3C7D62C972089005D28E1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -471,6 +487,8 @@
 			packageProductDependencies = (
 				B3D3C8772C9721B6005D28E1 /* GRDB */,
 				B3D3C87A2C9721CB005D28E1 /* HorizonCalendar */,
+				B357B6FE2CB6F19600B23B21 /* RevenueCat */,
+				B357B7002CB6F19600B23B21 /* RevenueCatUI */,
 			);
 			productName = eachday;
 			productReference = B3D3C7D52C972089005D28E1 /* eachday.app */;
@@ -503,6 +521,7 @@
 			packageReferences = (
 				B3D3C8762C9721B6005D28E1 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 				B3D3C8792C9721CB005D28E1 /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
+				B357B6FD2CB6F19600B23B21 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
 			);
 			productRefGroup = B3D3C7D62C972089005D28E1 /* Products */;
 			projectDirPath = "";
@@ -834,6 +853,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B357B6FD2CB6F19600B23B21 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
 		B3D3C8762C9721B6005D28E1 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/groue/GRDB.swift.git";
@@ -853,6 +880,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B357B6FE2CB6F19600B23B21 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B357B6FD2CB6F19600B23B21 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+		B357B7002CB6F19600B23B21 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B357B6FD2CB6F19600B23B21 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCatUI;
+		};
 		B3D3C8772C9721B6005D28E1 /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B3D3C8762C9721B6005D28E1 /* XCRemoteSwiftPackageReference "GRDB.swift" */;

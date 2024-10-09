@@ -19,7 +19,7 @@ struct AppView: View {
                     LazyVStack(spacing: 0) {
                         AppGroupFilters()
                             .padding(.top, 8)
-                            .padding(.bottom, 12)
+                            .padding(.bottom, 16)
                         
                         ForEach(rootStore.habits.filtered, id: \.id) { habit in
                             HabitCard(
