@@ -9,7 +9,6 @@ struct HabitDetailsCompletionCount: View {
     var completionCountString: AttributedString {
         var text = AttributedString("\(completionCount) times")
         text.font = .subheadline.weight(.bold)
-        text.underlineStyle = .single
         text.foregroundColor = habit.color.shade5
         return text
     }
@@ -30,7 +29,7 @@ struct HabitDetailsCompletionCount: View {
                 .padding(.horizontal, 16)
                 .padding(.top, 16)
             
-            VStack(spacing: 16) {
+            VStack(spacing: 14) {
                 Text("Times completed per month")
                     .font(Font.caption.weight(.light))
                     .frame(maxWidth: .infinity, alignment: .leading)

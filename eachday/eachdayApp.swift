@@ -6,12 +6,12 @@ struct eachdayApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     
     init() {
-        Purchases.configure(
-          with: Configuration.Builder(withAPIKey: "appl_wGmJhBUKzuUgmEbccKOWFFVHCkR")
-            .with(appUserID: String(appDelegate.rootStore.settings.value.startOfWeek.rawValue))
+        let config = Configuration
+            .Builder(withAPIKey: Constants.revenueCatApiKey)
+            .with(storeKitVersion: .storeKit2)
             .build()
-        )
-        Purchases.logLevel = .verbose
+        Purchases.configure(with: config)
+        Purchases.logLevel = .debug
     }
     
     var body: some Scene {

@@ -45,9 +45,9 @@ struct HabitMonthGrid: View {
                             
                             if day == Day.today() {
                                 RoundedRectangle(cornerRadius: cellCornerRadius + 1, style: .continuous)
-                                    .size(width: cellSize + 2, height: cellSize + 2)
-                                    .stroke(colorScheme == .light ? .black : .white, lineWidth: 1)
-                                    .offset(x: -1, y: -1)
+                                    .size(width: cellSize + 2.5, height: cellSize + 2.5)
+                                    .stroke(colorScheme == .light ? .black : .white, lineWidth: 1.25)
+                                    .offset(x: -1.25, y: -1.25)
                             }
                         }
                 }

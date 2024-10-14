@@ -13,6 +13,7 @@
 		B357B6F22CB663D400B23B21 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B357B6F12CB663D400B23B21 /* StoreKit.framework */; };
 		B357B6FF2CB6F19600B23B21 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = B357B6FE2CB6F19600B23B21 /* RevenueCat */; };
 		B357B7012CB6F19600B23B21 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = B357B7002CB6F19600B23B21 /* RevenueCatUI */; };
+		B357B7062CB8484B00B23B21 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B357B7052CB8484800B23B21 /* Constants.swift */; };
 		B368763A2CB404C7004C695F /* RootStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36876392CB404C2004C695F /* RootStore.swift */; };
 		B368763F2CB406A8004C695F /* HabitTaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B368763E2CB406A1004C695F /* HabitTaskStore.swift */; };
 		B36876412CB406C1004C695F /* HabitGroupStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36876402CB406B8004C695F /* HabitGroupStore.swift */; };
@@ -102,6 +103,7 @@
 		B3231F692CA33CCC00B37C4D /* HabitDayStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDayStatus.swift; sourceTree = "<group>"; };
 		B3231F772CA3C64F00B37C4D /* HabitDetailsSelectYear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsSelectYear.swift; sourceTree = "<group>"; };
 		B357B6F12CB663D400B23B21 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B357B7052CB8484800B23B21 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B36876392CB404C2004C695F /* RootStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootStore.swift; sourceTree = "<group>"; };
 		B368763E2CB406A1004C695F /* HabitTaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTaskStore.swift; sourceTree = "<group>"; };
 		B36876402CB406B8004C695F /* HabitGroupStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitGroupStore.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				B3231F692CA33CCC00B37C4D /* HabitDayStatus.swift */,
 				B3D3C8042C9720A4005D28E1 /* Frequency.swift */,
 				B3D3C8052C9720A4005D28E1 /* SortOrder.swift */,
+				B357B7052CB8484800B23B21 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				B3D3C8122C9720A4005D28E1 /* HabitTask.swift in Sources */,
 				B3D3C8732C9720AA005D28E1 /* EditHabitView.swift in Sources */,
 				B3D3C8112C9720A4005D28E1 /* HabitGroupItem.swift in Sources */,
+				B357B7062CB8484B00B23B21 /* Constants.swift in Sources */,
 				B3D3C8802C9A9D3B005D28E1 /* ProfileSectionGeneral.swift in Sources */,
 				B3D3C8692C9720AA005D28E1 /* HabitDetailsStreaks.swift in Sources */,
 				B3231F6A2CA33CDA00B37C4D /* HabitDayStatus.swift in Sources */,

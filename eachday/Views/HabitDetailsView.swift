@@ -8,23 +8,17 @@ struct HabitDetailsView: View {
 
     var body: some View {
         ScrollView {
-            let completionsByDay = completionsForYear(year: ui.year)
+            let completionsByDay = habit.completionsByDay.filter {
+                $0.0.month.year == ui.year
+            }
+            
             VStack(spacing: 0) {
-                HabitDetailsCard(
-                    habit: habit
-                )
-                .padding(.bottom, 30)
-                
-                HabitDetailsSelectYear(
-                    year: ui.year,
-                    onYearChange: ui.setYear
-                ).padding(.bottom, 16)
-                
-                HabitDetailsCalendar(
-                    year: ui.year,
-                    habit: habit
-                )
-                .padding(.bottom, 16)
+                HabitDetailsCard(habit: habit)
+                    .padding(.bottom, 30)
+                HabitDetailsSelectYear(year: ui.year, onYearChange: ui.setYear)
+                    .padding(.bottom, 16)
+                HabitDetailsCalendar(year: ui.year, habit: habit)
+                    .padding(.bottom, 16)
                 
                 HabitDetailsStreaks(
                     habit: habit,
@@ -54,9 +48,6 @@ struct HabitDetailsView: View {
                     Button { ui.activeSheet = HabitDetailsSheet.editHabitHistorySheet } label: {
                         Label("Mark Previous Days", systemImage: "clock.arrow.circlepath")
                     }
-                    Button { } label: {
-                        Label("Delete", systemImage: "trash").background(.red)
-                    }
                 } label: {
                     Image(systemName: "ellipsis.circle")
                         .resizable()
@@ -80,12 +71,6 @@ struct HabitDetailsView: View {
                     attemptedToCancel: $ui.userAttemptedToDismissSheet
                 )
             }
-        }
-    }
-    
-    func completionsForYear(year: Year) -> [Day: [TaskCompletionModel]] {
-        return habit.completionsByDay.filter { (day, _) in
-            day.month.year == year
         }
     }
 }

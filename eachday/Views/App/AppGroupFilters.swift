@@ -15,25 +15,25 @@ struct AppGroupFilters: View {
                     rootStore.habitGroups.sorted.filter { !$0.habitGroupItemsUI.isEmpty },
                     id: \.id
                 ) { habitGroup in
-                    let isActive = rootStore.habitGroups.selected.contains(habitGroup.id)
+                    let isFiltered = rootStore.habitGroups.filtered.contains(habitGroup.id)
                     Text(habitGroup.name)
                         .font(Font.subheadline.weight(.medium))
-                        .foregroundColor(isActive
+                        .foregroundColor(isFiltered
                             ? (colorScheme == .light ? .white : .black)
                             : (colorScheme == .light ? .black : .white)
                         )
                         .padding(EdgeInsets(top: 5, leading: 11, bottom: 5, trailing: 11))
-                        .background(isActive
+                        .background(isFiltered
                             ? Color(hex: colorScheme == .light ? "#111827" : "#E5E7EB")
                             : Color(hex: colorScheme == .light ? "#E7E7E7" : "#202020")
                         )
                         .cornerRadius(18)
                         .onTapGesture {
                             UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
-                            if rootStore.habitGroups.selected.contains(habitGroup.id) {
-                                rootStore.habitGroups.selected.remove(habitGroup.id)
+                            if rootStore.habitGroups.filtered.contains(habitGroup.id) {
+                                rootStore.habitGroups.filtered.remove(habitGroup.id)
                             } else {
-                                rootStore.habitGroups.selected.insert(habitGroup.id)
+                                rootStore.habitGroups.filtered.insert(habitGroup.id)
                             }
                         }
                         .contextMenu {
