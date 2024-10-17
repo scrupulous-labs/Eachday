@@ -1,12 +1,12 @@
 import Foundation
 
 enum ProfileViewScreen: Hashable {
-    case editHabitOrder
+    case reorderHabits
     case archivedHabits
     
     static func == (lhs: ProfileViewScreen, rhs: ProfileViewScreen) -> Bool {
         switch (lhs, rhs) {
-        case (.editHabitOrder, .editHabitOrder):
+        case (.reorderHabits, .reorderHabits):
             return true
         case (.archivedHabits, .archivedHabits):
             return true
@@ -17,8 +17,8 @@ enum ProfileViewScreen: Hashable {
     
     func hash(into hasher: inout Hasher) {
         switch self {
-        case .editHabitOrder:
-            hasher.combine("editHabitOrder")
+        case .reorderHabits:
+            hasher.combine("reorderHabits")
         case .archivedHabits:
             hasher.combine("archivedHabits")
         }

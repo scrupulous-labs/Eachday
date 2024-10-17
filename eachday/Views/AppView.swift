@@ -76,9 +76,6 @@ struct AppView: View {
                 case AppViewSheet.profileSheet:
                     ProfileView()
                     
-                case AppViewSheet.editHabitOrderSheet:
-                    EditHabitOrderView()
-                    
                 case AppViewSheet.editHabitSheet(let habit):
                     EditHabitView(
                         habit: habit,
@@ -148,10 +145,6 @@ class AppViewModel {
     
     func openProfileSheet() {
         activeSheet = AppViewSheet.profileSheet
-    }
-    
-    func openEditHabitOrderSheet() {
-        activeSheet = AppViewSheet.editHabitOrderSheet
     }
     
     func openNewHabitSheet(_ rootStore: RootStore) {

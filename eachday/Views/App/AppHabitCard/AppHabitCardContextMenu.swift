@@ -13,7 +13,7 @@ struct AppViewHabitCardContextMenu: View {
             Label("Mark Previous Days", systemImage: "clock.arrow.circlepath")
         }
         Divider()
-        Button { habit.archived = true; habit.save() } label: {
+        Button { habit.archive() } label: {
             Label("Archive", systemImage: "archivebox")
         }
     }

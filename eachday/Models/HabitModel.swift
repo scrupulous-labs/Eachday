@@ -221,7 +221,20 @@ class HabitModel: Model<HabitRecord>, Habit {
             }
         }
     }
+    
+    func archive() {
+        archived = true; save()
+        habitReminders.forEach { reminder in
+            reminder.cancelAllNotifications()
+        }
+    }
 
+    func unarchive() {
+        archived = false; save()
+        habitReminders.forEach { reminder in
+            Task { await reminder.registerNotifications() }
+        }
+    }
 
 //
 // MARK - OVERRIDES

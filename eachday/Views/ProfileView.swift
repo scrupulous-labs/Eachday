@@ -8,6 +8,7 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack(path: $ui.navigationPath) {
             List {
+                ProfileSectionPro()
                 ProfileSectionApp(
                     onReorderHabits: ui.openEditHabitOrder,
                     onArchivedHabits: ui.openArchivedHabits
@@ -20,17 +21,15 @@ struct ProfileView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button { dismiss() } label: {
-                        Text("Done")
-                    }
+                    Button { dismiss() } label: { Text("Done") }
                 }
             }
             .navigationDestination(for: ProfileViewScreen.self) { destination in
                 switch destination {
-                case ProfileViewScreen.editHabitOrder:
-                    EditHabitOrderView()
+                case ProfileViewScreen.reorderHabits:
+                    ProfileReorderHabits()
                 case ProfileViewScreen.archivedHabits:
-                    ArchivedHabits()
+                    ProfileArchivedHabits()
                 }
             }
         }
@@ -45,7 +44,7 @@ class ProfileViewModel {
     var navigationPath: NavigationPath = NavigationPath()
     
     func openEditHabitOrder() {
-        navigationPath.append(ProfileViewScreen.editHabitOrder)
+        navigationPath.append(ProfileViewScreen.reorderHabits)
     }
     
     func openArchivedHabits() {

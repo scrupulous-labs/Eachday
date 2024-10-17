@@ -14,6 +14,7 @@
 		B357B6FF2CB6F19600B23B21 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = B357B6FE2CB6F19600B23B21 /* RevenueCat */; };
 		B357B7012CB6F19600B23B21 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = B357B7002CB6F19600B23B21 /* RevenueCatUI */; };
 		B357B7062CB8484B00B23B21 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B357B7052CB8484800B23B21 /* Constants.swift */; };
+		B357B7082CBE410A00B23B21 /* ProfileSectionPro.swift in Sources */ = {isa = PBXBuildFile; fileRef = B357B7072CBE410400B23B21 /* ProfileSectionPro.swift */; };
 		B368763A2CB404C7004C695F /* RootStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36876392CB404C2004C695F /* RootStore.swift */; };
 		B368763F2CB406A8004C695F /* HabitTaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B368763E2CB406A1004C695F /* HabitTaskStore.swift */; };
 		B36876412CB406C1004C695F /* HabitGroupStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36876402CB406B8004C695F /* HabitGroupStore.swift */; };
@@ -28,7 +29,7 @@
 		B3B38AB52C9EB6210037D58E /* HabitReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB42C9EB61D0037D58E /* HabitReminder.swift */; };
 		B3B38AB72C9EB79B0037D58E /* HabitReminderRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB62C9EB7940037D58E /* HabitReminderRecord.swift */; };
 		B3B38AB92C9EB9040037D58E /* HabitReminderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AB82C9EB8FF0037D58E /* HabitReminderModel.swift */; };
-		B3B38ABB2CA038ED0037D58E /* ArchivedHabits.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38ABA2CA038E50037D58E /* ArchivedHabits.swift */; };
+		B3B38ABB2CA038ED0037D58E /* ProfileArchivedHabits.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38ABA2CA038E50037D58E /* ProfileArchivedHabits.swift */; };
 		B3B38ABD2CA046530037D58E /* ReminderNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38ABC2CA0464D0037D58E /* ReminderNotification.swift */; };
 		B3B38ABF2CA048710037D58E /* ReminderNotificationRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38ABE2CA048690037D58E /* ReminderNotificationRecord.swift */; };
 		B3B38AC12CA04D480037D58E /* ReminderNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38AC02CA04D400037D58E /* ReminderNotificationModel.swift */; };
@@ -81,7 +82,7 @@
 		B3D3C86D2C9720AA005D28E1 /* HabitMonthGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8452C9720AA005D28E1 /* HabitMonthGrid.swift */; };
 		B3D3C86E2C9720AA005D28E1 /* MarkHabitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8462C9720AA005D28E1 /* MarkHabitButton.swift */; };
 		B3D3C86F2C9720AA005D28E1 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8482C9720AA005D28E1 /* AppView.swift */; };
-		B3D3C8722C9720AA005D28E1 /* EditHabitOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C84B2C9720AA005D28E1 /* EditHabitOrderView.swift */; };
+		B3D3C8722C9720AA005D28E1 /* ProfileReorderHabits.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C84B2C9720AA005D28E1 /* ProfileReorderHabits.swift */; };
 		B3D3C8732C9720AA005D28E1 /* EditHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C84C2C9720AA005D28E1 /* EditHabitView.swift */; };
 		B3D3C8742C9720AA005D28E1 /* HabitDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C84D2C9720AA005D28E1 /* HabitDetailsView.swift */; };
 		B3D3C8752C9720AA005D28E1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C84E2C9720AA005D28E1 /* ProfileView.swift */; };
@@ -91,8 +92,6 @@
 		B3D3C8822C9A9DAB005D28E1 /* ProfileSectionSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8812C9A9DAB005D28E1 /* ProfileSectionSettings.swift */; };
 		B3D3C8842C9A9DED005D28E1 /* ProfileSectionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8832C9A9DED005D28E1 /* ProfileSectionApp.swift */; };
 		B3D3C8872C9ACC8C005D28E1 /* ProfileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8862C9ACC8C005D28E1 /* ProfileUtils.swift */; };
-		B3D3C8892C9AF6D8005D28E1 /* EditHabitOrderHabits.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8882C9AF6D8005D28E1 /* EditHabitOrderHabits.swift */; };
-		B3D3C88B2C9AF6EA005D28E1 /* EditHabitOrderGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C88A2C9AF6EA005D28E1 /* EditHabitOrderGroups.swift */; };
 		B3D3C88D2C9B2E24005D28E1 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C88C2C9B2E24005D28E1 /* Settings.swift */; };
 		B3D3C88F2C9C6C04005D28E1 /* SettingsRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C88E2C9C6C04005D28E1 /* SettingsRecord.swift */; };
 		B3D3C8912C9C79ED005D28E1 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3C8902C9C79ED005D28E1 /* SettingsModel.swift */; };
@@ -104,6 +103,7 @@
 		B3231F772CA3C64F00B37C4D /* HabitDetailsSelectYear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsSelectYear.swift; sourceTree = "<group>"; };
 		B357B6F12CB663D400B23B21 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B357B7052CB8484800B23B21 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B357B7072CBE410400B23B21 /* ProfileSectionPro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionPro.swift; sourceTree = "<group>"; };
 		B36876392CB404C2004C695F /* RootStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootStore.swift; sourceTree = "<group>"; };
 		B368763E2CB406A1004C695F /* HabitTaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTaskStore.swift; sourceTree = "<group>"; };
 		B36876402CB406B8004C695F /* HabitGroupStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitGroupStore.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 		B3B38AB42C9EB61D0037D58E /* HabitReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitReminder.swift; sourceTree = "<group>"; };
 		B3B38AB62C9EB7940037D58E /* HabitReminderRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitReminderRecord.swift; sourceTree = "<group>"; };
 		B3B38AB82C9EB8FF0037D58E /* HabitReminderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitReminderModel.swift; sourceTree = "<group>"; };
-		B3B38ABA2CA038E50037D58E /* ArchivedHabits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedHabits.swift; sourceTree = "<group>"; };
+		B3B38ABA2CA038E50037D58E /* ProfileArchivedHabits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileArchivedHabits.swift; sourceTree = "<group>"; };
 		B3B38ABC2CA0464D0037D58E /* ReminderNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderNotification.swift; sourceTree = "<group>"; };
 		B3B38ABE2CA048690037D58E /* ReminderNotificationRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderNotificationRecord.swift; sourceTree = "<group>"; };
 		B3B38AC02CA04D400037D58E /* ReminderNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderNotificationModel.swift; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 		B3D3C8452C9720AA005D28E1 /* HabitMonthGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitMonthGrid.swift; sourceTree = "<group>"; };
 		B3D3C8462C9720AA005D28E1 /* MarkHabitButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkHabitButton.swift; sourceTree = "<group>"; };
 		B3D3C8482C9720AA005D28E1 /* AppView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
-		B3D3C84B2C9720AA005D28E1 /* EditHabitOrderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitOrderView.swift; sourceTree = "<group>"; };
+		B3D3C84B2C9720AA005D28E1 /* ProfileReorderHabits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileReorderHabits.swift; sourceTree = "<group>"; };
 		B3D3C84C2C9720AA005D28E1 /* EditHabitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitView.swift; sourceTree = "<group>"; };
 		B3D3C84D2C9720AA005D28E1 /* HabitDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitDetailsView.swift; sourceTree = "<group>"; };
 		B3D3C84E2C9720AA005D28E1 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -180,8 +180,6 @@
 		B3D3C8812C9A9DAB005D28E1 /* ProfileSectionSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionSettings.swift; sourceTree = "<group>"; };
 		B3D3C8832C9A9DED005D28E1 /* ProfileSectionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionApp.swift; sourceTree = "<group>"; };
 		B3D3C8862C9ACC8C005D28E1 /* ProfileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUtils.swift; sourceTree = "<group>"; };
-		B3D3C8882C9AF6D8005D28E1 /* EditHabitOrderHabits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitOrderHabits.swift; sourceTree = "<group>"; };
-		B3D3C88A2C9AF6EA005D28E1 /* EditHabitOrderGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitOrderGroups.swift; sourceTree = "<group>"; };
 		B3D3C88C2C9B2E24005D28E1 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		B3D3C88E2C9C6C04005D28E1 /* SettingsRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRecord.swift; sourceTree = "<group>"; };
 		B3D3C8902C9C79ED005D28E1 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
@@ -398,15 +396,6 @@
 			path = EditHabit;
 			sourceTree = "<group>";
 		};
-		B3D3C83C2C9720AA005D28E1 /* EditHabitOrder */ = {
-			isa = PBXGroup;
-			children = (
-				B3D3C8882C9AF6D8005D28E1 /* EditHabitOrderHabits.swift */,
-				B3D3C88A2C9AF6EA005D28E1 /* EditHabitOrderGroups.swift */,
-			);
-			path = EditHabitOrder;
-			sourceTree = "<group>";
-		};
 		B3D3C8422C9720AA005D28E1 /* HabitDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,7 +412,6 @@
 		B3D3C8472C9720AA005D28E1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B3B38ABA2CA038E50037D58E /* ArchivedHabits.swift */,
 				B3D3C8432C9720AA005D28E1 /* EditHabitHistory.swift */,
 				B3D3C8452C9720AA005D28E1 /* HabitMonthGrid.swift */,
 				B3D3C8462C9720AA005D28E1 /* MarkHabitButton.swift */,
@@ -439,8 +427,6 @@
 				B3D3C8482C9720AA005D28E1 /* AppView.swift */,
 				B3D3C8322C9720AA005D28E1 /* EditHabit */,
 				B3D3C84C2C9720AA005D28E1 /* EditHabitView.swift */,
-				B3D3C83C2C9720AA005D28E1 /* EditHabitOrder */,
-				B3D3C84B2C9720AA005D28E1 /* EditHabitOrderView.swift */,
 				B3D3C8422C9720AA005D28E1 /* HabitDetails */,
 				B3D3C84D2C9720AA005D28E1 /* HabitDetailsView.swift */,
 				B3D3C87E2C9A9CE3005D28E1 /* Profile */,
@@ -453,6 +439,8 @@
 			isa = PBXGroup;
 			children = (
 				B3D3C8852C9AC5C7005D28E1 /* ProfileSection */,
+				B3D3C84B2C9720AA005D28E1 /* ProfileReorderHabits.swift */,
+				B3B38ABA2CA038E50037D58E /* ProfileArchivedHabits.swift */,
 				B3D3C8862C9ACC8C005D28E1 /* ProfileUtils.swift */,
 			);
 			path = Profile;
@@ -461,6 +449,7 @@
 		B3D3C8852C9AC5C7005D28E1 /* ProfileSection */ = {
 			isa = PBXGroup;
 			children = (
+				B357B7072CBE410400B23B21 /* ProfileSectionPro.swift */,
 				B3D3C8832C9A9DED005D28E1 /* ProfileSectionApp.swift */,
 				B3D3C8812C9A9DAB005D28E1 /* ProfileSectionSettings.swift */,
 				B3D3C87F2C9A9D3B005D28E1 /* ProfileSectionGeneral.swift */,
@@ -568,7 +557,7 @@
 				B3D3C80D2C9720A4005D28E1 /* Model.swift in Sources */,
 				B3D3C8522C9720AA005D28E1 /* AppHabitCardHeader.swift in Sources */,
 				B3D3C8822C9A9DAB005D28E1 /* ProfileSectionSettings.swift in Sources */,
-				B3D3C8722C9720AA005D28E1 /* EditHabitOrderView.swift in Sources */,
+				B3D3C8722C9720AA005D28E1 /* ProfileReorderHabits.swift in Sources */,
 				B3D3C80F2C9720A4005D28E1 /* Habit.swift in Sources */,
 				B3B38AB92C9EB9040037D58E /* HabitReminderModel.swift in Sources */,
 				B3D3C8152C9720A4005D28E1 /* HabitGroupRecord.swift in Sources */,
@@ -578,11 +567,12 @@
 				B3D3C86B2C9720AA005D28E1 /* EditHabitHistory.swift in Sources */,
 				B36876412CB406C1004C695F /* HabitGroupStore.swift in Sources */,
 				B36876432CB407DF004C695F /* TaskCompletionStore.swift in Sources */,
+				B357B7082CBE410A00B23B21 /* ProfileSectionPro.swift in Sources */,
 				B3D3C8752C9720AA005D28E1 /* ProfileView.swift in Sources */,
 				B3D3C85D2C9720AA005D28E1 /* EditHabitSetReminders.swift in Sources */,
 				B3D3C8102C9720A4005D28E1 /* HabitGroup.swift in Sources */,
 				B36876492CB408B0004C695F /* ReminderNotificationsStore.swift in Sources */,
-				B3B38ABB2CA038ED0037D58E /* ArchivedHabits.swift in Sources */,
+				B3B38ABB2CA038ED0037D58E /* ProfileArchivedHabits.swift in Sources */,
 				B3B38AB72C9EB79B0037D58E /* HabitReminderRecord.swift in Sources */,
 				B36876542CB420CB004C695F /* SettingsStore.swift in Sources */,
 				B3D3C8502C9720AA005D28E1 /* AppHabitCardCalendar.swift in Sources */,
@@ -594,10 +584,8 @@
 				B368763F2CB406A8004C695F /* HabitTaskStore.swift in Sources */,
 				B368764B2CB411F0004C695F /* HabitStore.swift in Sources */,
 				B3D3C8182C9720A4005D28E1 /* TaskCompletionRecord.swift in Sources */,
-				B3D3C88B2C9AF6EA005D28E1 /* EditHabitOrderGroups.swift in Sources */,
 				B3D3C8532C9720AA005D28E1 /* AppHabitCard.swift in Sources */,
 				B3D3C8662C9720AA005D28E1 /* HabitDetailsCalendar.swift in Sources */,
-				B3D3C8892C9AF6D8005D28E1 /* EditHabitOrderHabits.swift in Sources */,
 				B3D3C8142C9720A4005D28E1 /* HabitGroupItemRecord.swift in Sources */,
 				B3D3C7D92C972089005D28E1 /* eachdayApp.swift in Sources */,
 				B3D3C8742C9720AA005D28E1 /* HabitDetailsView.swift in Sources */,

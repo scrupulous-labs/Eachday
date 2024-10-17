@@ -10,7 +10,6 @@ class TaskCompletionRecord: Record, TaskCompletion {
     
     enum Columns: String, ColumnExpression {
         case id
-        case habitId
         case taskId
         case day
     }

@@ -2,9 +2,9 @@ import SwiftUI
 import GRDB
 
 enum ModelStatus {
-    case changed   //model has changes to its db row
-    case unChanged //model is same as in db
-    case transient //model is not in db
+    case changed   // model has changes to its db row
+    case unChanged // model is same as in db
+    case transient // model is not in db
 }
 
 @Observable
@@ -118,33 +118,33 @@ class ModelNode {
      to their initial state
      */
     func save() {
-        var queue: [ModelNode] = [self]
+        var ops: [() -> Void] = []
         var dbOps: [(GRDB.Database) throws -> Void] = []
-        var postOps: [() -> Void] = []
+        var queue: [ModelNode] = [self]
         while !queue.isEmpty {
             let model = queue.removeFirst()
             switch model.status {
             case ModelStatus.transient where model.isMarkedForDeletion || !model.isValid:
-                model.delete(dbOps: &dbOps, postOps: &postOps)
+                model.delete(ops: &ops, dbOps: &dbOps)
                 continue
                 
             case ModelStatus.transient:
+                ops.append(model.onSave)
                 dbOps.append(model.insertToDb)
-                postOps.append(model.onSave)
                 
             case ModelStatus.changed where model.isMarkedForDeletion:
-                model.delete(dbOps: &dbOps, postOps: &postOps)
+                model.delete(ops: &ops, dbOps: &dbOps)
                 continue
                 
             case ModelStatus.changed where !model.isValid:
                 model.resetToDbRecord()
                 
             case ModelStatus.changed:
+                ops.append(model.onUpdate)
                 dbOps.append(model.updateToDb)
-                postOps.append(model.onUpdate)
                 
             case ModelStatus.unChanged where model.isMarkedForDeletion:
-                model.delete(dbOps: &dbOps, postOps: &postOps)
+                model.delete(ops: &ops, dbOps: &dbOps)
                 continue
                 
             default:
@@ -158,8 +158,8 @@ class ModelNode {
             if !dbOps.isEmpty {
                 try db.writer.write { for dbOp in dbOps { try dbOp($0) } }
             }
-            if !postOps.isEmpty {
-                for postOp in postOps { postOp() }
+            if !ops.isEmpty {
+                for op in ops { op() }
             }
         } catch let error {
             print(error)
@@ -170,23 +170,23 @@ class ModelNode {
      Delete model's graph from Database
      */
     private func delete(
-        dbOps: inout [(GRDB.Database) throws -> Void],
-        postOps: inout [() -> Void]
+        ops: inout [() -> Void],
+        dbOps: inout [(GRDB.Database) throws -> Void]
     ) {
         var queue: [ModelNode] = [self]
         while !queue.isEmpty {
             let model = queue.removeFirst()
             switch model.status {
             case .transient:
-                postOps.append(model.onDelete)
+                ops.append(model.onDelete)
                 
             case .changed:
+                ops.append(model.onDelete)
                 dbOps.append(model.deleteFromDb)
-                postOps.append(model.onDelete)
                 
             case .unChanged:
+                ops.append(model.onDelete)
                 dbOps.append(model.deleteFromDb)
-                postOps.append(model.onDelete)
             }
             
             queue.append(contentsOf: model.children)

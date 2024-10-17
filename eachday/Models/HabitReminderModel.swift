@@ -94,40 +94,9 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
     }
 
 //
-// MARK - OVERRIDES
-//
-    override var children: [ModelNode] { [notificationUI] }
-    override var isModified: Bool { record != nil && !equals(record!) }
-    override var isValid: Bool { validate() }
-    
-    override func toRecord() -> HabitReminderRecord { HabitReminderRecord(fromModel: self) }
-    override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
-    override func onCreate() {
-        habit = rootStore.habits.all.first { $0.id == habitId }
-        notification = rootStore.reminderNotifications.all.first { $0.reminderId == id }
-        
-        habit?.habitReminders.append(self)
-        notification?.habitReminder = self
-        rootStore.habitReminders.all.append(self)
-    }
-    override func onSave() {
-        Task { await registerNotifications() }
-    }
-    override func onUpdate() {
-        Task { await registerNotifications() }
-    }
-    override func onDelete() {
-        habit?.habitReminders.removeAll { $0.id == id }
-        notification?.habitReminder = nil
-        rootStore.habitReminders.all.removeAll { $0.id == id }
-        cancelAllNotifications()
-    }
-
-
-//
 // MARK - NOTIFICATIONS
 //
-    private func registerNotifications() async {
+    func registerNotifications() async {
         let notificationCenter = UNUserNotificationCenter.current()
         let calendar = Calendar.current
         let content = UNMutableNotificationContent()
@@ -154,7 +123,7 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
         }
     }
     
-    private func cancelAllNotifications() {
+    func cancelAllNotifications() {
         let notificationCenter = UNUserNotificationCenter.current()
         let notificationIds = WeekDay.allCases.map(notificationIdentifier)
         notificationCenter.removePendingNotificationRequests(withIdentifiers: notificationIds)
@@ -190,5 +159,35 @@ class HabitReminderModel: Model<HabitReminderRecord>, HabitReminder {
                 notificationUI.saturdayId
         }
         return notificationId.uuidString.lowercased()
+    }
+
+//
+// MARK - OVERRIDES
+//
+    override var children: [ModelNode] { [notificationUI] }
+    override var isModified: Bool { record != nil && !equals(record!) }
+    override var isValid: Bool { validate() }
+    
+    override func toRecord() -> HabitReminderRecord { HabitReminderRecord(fromModel: self) }
+    override func resetToDbRecord() { if record != nil { copyFrom(record!) } }
+    override func onCreate() {
+        habit = rootStore.habits.all.first { $0.id == habitId }
+        notification = rootStore.reminderNotifications.all.first { $0.reminderId == id }
+        
+        habit?.habitReminders.append(self)
+        notification?.habitReminder = self
+        rootStore.habitReminders.all.append(self)
+    }
+    override func onSave() {
+        Task { await registerNotifications() }
+    }
+    override func onUpdate() {
+        Task { await registerNotifications() }
+    }
+    override func onDelete() {
+        habit?.habitReminders.removeAll { $0.id == id }
+        notification?.habitReminder = nil
+        rootStore.habitReminders.all.removeAll { $0.id == id }
+        cancelAllNotifications()
     }
 }
