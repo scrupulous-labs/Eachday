@@ -50,18 +50,17 @@ class HabitModel: Model<HabitRecord>, Habit {
     }
     
     func deriveCompletionsByDay() {
-        self.completionsByDay = habitTasksUI.reduce(into: [:])
-            { res, habitTask in
-                habitTask.completionsByDay.forEach {(day, completions) in
-                    res[day] = (res[day] ?? []) + completions
+        self.completionsByDay =
+            withObservationTracking {
+                habitTasksUI.reduce(into: [:]) { res, habitTask in
+                    habitTask.completionsByDay.forEach { (day, completions) in
+                        res[day] = (res[day] ?? []) + completions
+                    }
                 }
+            } onChange: {
+                DispatchQueue.main.async { [self] in deriveCompletionsByDay() }
             }
-        
-        withObservationTracking({ habitTasksUI.forEach { _ = $0.completionsByDay } }, onChange: {
-            DispatchQueue.main.async { [self] in deriveCompletionsByDay() }
-        })
     }
-
 
 //
 // MARK - FOR UI

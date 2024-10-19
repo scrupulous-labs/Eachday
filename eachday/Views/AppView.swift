@@ -92,9 +92,7 @@ struct AppView: View {
                     .onChange(of: ui.currentSheetDent) { oldVal, newVal in
                         if newVal != .large {
                             ui.currentSheetDent = .large
-                            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-                                ui.userAttemptedToDismissSheet = true
-                            })
+                            DispatchQueue.main.async { ui.userAttemptedToDismissSheet = true }
                         }
                     }
                     
@@ -113,9 +111,7 @@ struct AppView: View {
                     .onChange(of: ui.currentSheetDent) { oldVal, newVal in
                         if newVal != .large {
                             ui.currentSheetDent = .large
-                            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-                                ui.userAttemptedToDismissSheet = true
-                            })
+                            DispatchQueue.main.async { ui.userAttemptedToDismissSheet = true }
                         }
                     }
                 }
