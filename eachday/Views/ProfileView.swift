@@ -8,9 +8,11 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack(path: $ui.navigationPath) {
             List {
-                ProfileSectionPro()
+                ProfileSectionPro(
+                    onPurchasePro: ui.openPurchasePro
+                )
                 ProfileSectionApp(
-                    onReorderHabits: ui.openEditHabitOrder,
+                    onReorderHabits: ui.openReorderHabits,
                     onArchivedHabits: ui.openArchivedHabits
                 )
                 ProfileSectionSettings()
@@ -26,6 +28,8 @@ struct ProfileView: View {
             }
             .navigationDestination(for: ProfileViewScreen.self) { destination in
                 switch destination {
+                case ProfileViewScreen.purchasePro:
+                    Text("")
                 case ProfileViewScreen.reorderHabits:
                     ProfileReorderHabits()
                 case ProfileViewScreen.archivedHabits:
@@ -43,7 +47,11 @@ class ProfileViewModel {
     
     var navigationPath: NavigationPath = NavigationPath()
     
-    func openEditHabitOrder() {
+    func openPurchasePro() {
+        navigationPath.append(ProfileViewScreen.purchasePro)
+    }
+    
+    func openReorderHabits() {
         navigationPath.append(ProfileViewScreen.reorderHabits)
     }
     
@@ -53,6 +61,6 @@ class ProfileViewModel {
     
     func reset() {
         navigationPath = NavigationPath()
-        EditHabitOrderViewModel.instance.reset()
+        ProfileReorderHabitsModel.instance.reset()
     }
 }

@@ -2,8 +2,9 @@ import SwiftUI
 
 struct HabitCard: View {
     let habit: HabitModel
-    let editHabit: () -> ()
-    let editHabitHistory: () -> ()
+    let editHabit: () -> Void
+    let editHabitHistory: () -> Void
+    let reorderHabits: () -> Void
     
     @Environment(RootStore.self) var rootStore: RootStore
     @Environment(\.colorScheme) private var colorScheme
@@ -21,7 +22,8 @@ struct HabitCard: View {
             AppViewHabitCardContextMenu(
                 habit: habit,
                 editHabit: editHabit,
-                editHabitHistory: editHabitHistory
+                editHabitHistory: editHabitHistory,
+                reorderHabits: reorderHabits
             )
         }
         .overlay {

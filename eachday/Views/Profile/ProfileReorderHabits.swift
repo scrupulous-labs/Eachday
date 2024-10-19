@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ProfileReorderHabits: View {
-    @Bindable var ui = EditHabitOrderViewModel.instance
+    @Bindable var ui = ProfileReorderHabitsModel.instance
     @Environment(\.colorScheme) var colorScheme
     @Environment(RootStore.self) var rootStore
 
@@ -81,12 +81,20 @@ struct ProfileReorderHabits: View {
 }
 
 @Observable
-class EditHabitOrderViewModel {
-    static var instance: EditHabitOrderViewModel = EditHabitOrderViewModel()
+class ProfileReorderHabitsModel {
+    static var instance: ProfileReorderHabitsModel = ProfileReorderHabitsModel()
     
     var tab: Int = 0
     
     func reset() {
         tab = 0
+    }
+    
+    func selectHabits() {
+        tab = 0
+    }
+    
+    func selectGroups() {
+        tab = 1
     }
 }

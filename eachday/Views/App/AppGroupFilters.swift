@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct AppGroupFilters: View {
+    var reorderGroups: () -> Void
     var leadingGap: Double? = 16
     var trailingGap: Double? = 16
     
@@ -37,8 +38,8 @@ struct AppGroupFilters: View {
                             }
                         }
                         .contextMenu {
-                            Button { habitGroup.markForDeletion(); habitGroup.save() } label: {
-                                Label("Delete", systemImage: "trash").foregroundColor(.red)
+                            Button { reorderGroups() } label: {
+                                Label("Reorder Groups", systemImage: "arrow.up.arrow.down")
                             }
                         }
                 }

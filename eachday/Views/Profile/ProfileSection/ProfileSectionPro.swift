@@ -2,9 +2,11 @@ import SwiftUI
 import RevenueCat
 
 struct ProfileSectionPro: View {
+    let onPurchasePro: () -> Void
+    
     var body: some View {
         Section {
-            Button { subscribe() } label: { Text("Get Eachday Pro") }
+            Button { onPurchasePro() } label: { Text("Get Eachday Pro") }
         }
     }
     

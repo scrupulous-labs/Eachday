@@ -17,7 +17,7 @@ struct AppView: View {
                     .frame(maxWidth: .infinity)
                 } else {
                     LazyVStack(spacing: 0) {
-                        AppGroupFilters()
+                        AppGroupFilters(reorderGroups: ui.openReorderGroups)
                             .padding(.top, 8)
                             .padding(.bottom, 16)
                         
@@ -25,7 +25,8 @@ struct AppView: View {
                             HabitCard(
                                 habit: habit,
                                 editHabit: { ui.openEditHabitSheet(rootStore, habit: habit) },
-                                editHabitHistory: { ui.openEditHabitHistorySheet(habit: habit) }
+                                editHabitHistory: { ui.openEditHabitHistorySheet(habit: habit) },
+                                reorderHabits: { ui.openReorderHabits() }
                             )
                             .padding([.bottom, .horizontal])
                             .onTapGesture { ui.openHabitDetailsScreen(habit: habit) }
@@ -144,6 +145,18 @@ class AppViewModel {
     var navigationPath: NavigationPath = NavigationPath()
     
     func openProfileSheet() {
+        activeSheet = AppViewSheet.profileSheet
+    }
+    
+    func openReorderGroups() {
+        ProfileViewModel.instance.openReorderHabits()
+        ProfileReorderHabitsModel.instance.selectGroups()
+        activeSheet = AppViewSheet.profileSheet
+    }
+    
+    func openReorderHabits() {
+        ProfileViewModel.instance.openReorderHabits()
+        ProfileReorderHabitsModel.instance.selectHabits()
         activeSheet = AppViewSheet.profileSheet
     }
     
