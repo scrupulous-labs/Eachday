@@ -25,7 +25,6 @@ class HabitGroupItemModel: Model<HabitGroupItemRecord>, HabitGroupItem {
         super.init(rootStore, fromRecord: nil, markForDeletion: markForDeletion)
     }
 
-
 //
 // MARK - OVERRIDES
 //

@@ -25,6 +25,23 @@ class HabitGroupModel: Model<HabitGroupRecord>, HabitGroup {
         super.init(rootStore, fromRecord: nil, markForDeletion: markForDeletion)
     }
 
+//
+// MARK - FOR UI
+//
+    @discardableResult
+    func addHabit(habit: HabitModel) -> HabitGroupItemModel {
+        return HabitGroupItemModel(rootStore, habitId: habit.id, groupId: id)
+    }
+
+    func containsHabit(habit: HabitModel) -> Bool {
+        return habitGroupItemsUI.contains { $0.habitId == habit.id }
+    }
+    
+    func removeHabit(habit: HabitModel) {
+        habitGroupItemsUI.forEach {
+            if $0.habitId == habit.id { $0.markForDeletion() }
+        }
+    }
 
 //
 // MARK - OVERRIDES

@@ -65,21 +65,6 @@ class HabitModel: Model<HabitRecord>, Habit {
 //
 // MARK - FOR UI
 //
-    func belongsToGroup(group: HabitGroupModel) -> Bool {
-        return habitGroupItemsUI.contains { $0.groupId == group.id }
-    }
-
-    @discardableResult
-    func addToGroup(group: HabitGroupModel) -> HabitGroupItemModel {
-        return HabitGroupItemModel(rootStore, habitId: id, groupId: group.id)
-    }
-    
-    func removeFromGroup(group: HabitGroupModel) {
-        habitGroupItemsUI
-            .filter { $0.groupId == group.id }
-            .forEach { $0.markForDeletion() }
-    }
-
     func isCompleted(day: Day) -> Bool {
         dayStatus(day: day) == HabitDayStatus.completed
     }
@@ -120,7 +105,7 @@ class HabitModel: Model<HabitRecord>, Habit {
     func markNextRepetition(day: Day, repetition: Int? = nil) {
         let nextTask = nextTaskToComplete(day: day)
         let repetition = repetition ?? repetitionsCompleted(day: day)
-        if nextTask != nil && repetitionsCompleted(day: day) < repetition + 1 {
+        if nextTask != nil && repetitionsCompleted(day: day) <= repetition {
             _ = TaskCompletionModel(rootStore, taskId: nextTask!.id, day: day)
             DispatchQueue.main.async { [self] in
                 markNextRepetition(day: day, repetition: repetition)

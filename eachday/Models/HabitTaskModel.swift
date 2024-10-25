@@ -34,7 +34,6 @@ class HabitTaskModel: Model<HabitTaskRecord>, HabitTask {
         super.init(rootStore, fromRecord: nil, markForDeletion: markForDeletion)
     }
 
-
 //
 // MARK - OVERRIDES
 //

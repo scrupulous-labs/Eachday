@@ -20,7 +20,6 @@ class TaskCompletionModel: Model<TaskCompletionRecord>, TaskCompletion {
         self.day = day
         super.init(rootStore, fromRecord: nil, markForDeletion: markForDeletion)
     }
-    
 
 //
 // MARK - OVERRIDES

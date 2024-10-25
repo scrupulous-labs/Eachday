@@ -20,17 +20,16 @@ struct EditHabitSelectGroup: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
                 
-                
                 ForEach(rootStore.habitGroups.sorted, id: \.id) { group in
-                    let habitInGroup = habit.belongsToGroup(group: group)
+                    let habitInGroup = group.containsHabit(habit: habit)
                     let iconName: String = habitInGroup ? "checkmark.circle.fill" : "circle"
                     let iconColor: Color = habitInGroup ? .green : .gray
                     Button {
-                        if habit.belongsToGroup(group: group) {
-                            habit.removeFromGroup(group: group)
+                        if group.containsHabit(habit: habit) {
+                            group.removeHabit(habit: habit)
                             onFieldChange()
                         } else {
-                            habit.addToGroup(group: group)
+                            group.addHabit(habit: habit)
                             onFieldChange()
                         }
                     } label: {
