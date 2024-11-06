@@ -74,17 +74,20 @@ class HabitModel: Model<HabitRecord>, Habit {
     }
     
     func repetitionsCompleted(day: Day) -> Int {
-        if habitTasksUI.isEmpty { return 0 }
+        if habitTasksUI.isEmpty { return 0 } // FIXME: This should not happen
         let totalTasks = habitTasksUI.count
         let totalCompletions = (completionsByDay[day] ?? []).count
         return totalCompletions / totalTasks
     }
     
+    // Given a day return tasks completed in last repetition
     func repetitionCompletedTasks(day: Day) -> [HabitTaskModel] {
-        if habitTasksUI.isEmpty { return [] }
+        if habitTasksUI.isEmpty { return [] } // FIXME: This should not happen
         let totalTasks = habitTasksUI.count
         let totalCompletions = (completionsByDay[day] ?? []).count
-        return Array(habitTasksUI[..<(totalCompletions % totalTasks)])
+        return repetitionsToGo(day: day) == 0
+            ? habitTasksUI
+            : Array(habitTasksUI[..<(totalCompletions % totalTasks)])
     }
     
     func nextTaskToComplete(day: Day) -> HabitTaskModel? {
