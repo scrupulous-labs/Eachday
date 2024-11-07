@@ -170,13 +170,10 @@ class HabitModel: Model<HabitRecord>, Habit {
         completionsByDay.forEach { (day, _) in
             let repetitionsDone = repetitionsCompleted(day: day)
             for _ in 0..<repetitionsDone {
-                _ = TaskCompletionModel(
-                    rootStore, taskId: task.id,
-                    day: day, markForDeletion: true
-                )
+                _ = TaskCompletionModel(rootStore, taskId: task.id, day: day)
             }
         }
-        task.graphUmarkForDeletion()
+        task.unmarkForDeletion()
         return task
     }
 

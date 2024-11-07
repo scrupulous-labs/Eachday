@@ -100,18 +100,6 @@ class ModelNode {
             queue.append(contentsOf: model.children)
         }
     }
-    
-    /*
-     unmark for deletion all nodes in graph
-     */
-    func graphUmarkForDeletion() {
-        var queue: [ModelNode] = [self]
-        while !queue.isEmpty {
-            let model = queue.removeFirst()
-            model.unmarkForDeletion()
-            queue.append(contentsOf: model.children)
-        }
-    }
 
     /*
      Save valid nodes of model's graph, delete those markedForDeletion and reset the rest
