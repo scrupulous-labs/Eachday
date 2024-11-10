@@ -24,6 +24,12 @@ class HabitStore: Store {
         super.init(rootStore: rootStore)
     }
     
+    func isLocked(habitId: UUID) -> Bool {
+        if rootStore.purchases.purchasedPro { return false }
+        let ind = sorted.firstIndex{ $0.id == habitId } ?? 0
+        return ind >= 4
+    }
+    
     func moveHabit(offsets: IndexSet, to: Int) {
         var copy = sorted
         let count = copy.count

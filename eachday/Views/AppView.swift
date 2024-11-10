@@ -22,14 +22,19 @@ struct AppView: View {
                             .padding(.bottom, 16)
                         
                         ForEach(rootStore.habits.filtered, id: \.id) { habit in
+                            let locked = rootStore.habits.isLocked(habitId: habit.id)
                             HabitCard(
                                 habit: habit,
+                                locked: locked,
                                 editHabit: { ui.openEditHabitSheet(rootStore, habit: habit) },
                                 editHabitHistory: { ui.openEditHabitHistorySheet(habit: habit) },
-                                reorderHabits: { ui.openReorderHabits() }
+                                reorderHabits: { ui.openReorderHabits() },
+                                openPurchasePro: { ui.openPurchasePro() }
                             )
                             .padding([.bottom, .horizontal])
-                            .onTapGesture { ui.openHabitDetailsScreen(habit: habit) }
+                            .onTapGesture {
+                                if !locked { ui.openHabitDetailsScreen(habit: habit) }
+                            }
                         }
                     }
                 }
@@ -125,9 +130,6 @@ struct AppView: View {
                     }
                 }
             }
-            .onAppear{
-                ui.openPro()
-            }
         }
     }
 }
@@ -143,12 +145,9 @@ class AppViewModel {
     var canInteractivelyDismissSheet: Bool = true
     var navigationPath: NavigationPath = NavigationPath()
     
-    func openProfileSheet() {
-        activeSheet = AppViewSheet.profileSheet
-    }
-    
-    func openPro() {
+    func openPurchasePro() {
         ProfileViewModel.instance.openPurchasePro()
+        ProfilePurchaseProModel.instance.hideBackButton = true
         activeSheet = AppViewSheet.profileSheet
     }
     
@@ -156,6 +155,10 @@ class AppViewModel {
         ProfileViewModel.instance.openReorderHabits()
         ProfileReorderHabitsModel.instance.selectGroups()
         ProfileReorderHabitsModel.instance.hideBackButton = true
+        activeSheet = AppViewSheet.profileSheet
+    }
+    
+    func openProfileSheet() {
         activeSheet = AppViewSheet.profileSheet
     }
     

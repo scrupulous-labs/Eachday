@@ -29,7 +29,7 @@ struct ProfileView: View {
             .navigationDestination(for: ProfileViewScreen.self) { destination in
                 switch destination {
                 case ProfileViewScreen.purchasePro:
-                    ProfileUnlockPro()
+                    ProfilePurchasePro()
                 case ProfileViewScreen.reorderHabits:
                     ProfileReorderHabits(dismiss: dismiss)
                 case ProfileViewScreen.archivedHabits:

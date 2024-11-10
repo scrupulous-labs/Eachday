@@ -1,8 +1,8 @@
 import SwiftUI
 import RevenueCat
 
-struct ProfileUnlockPro: View {
-    @State var selectedPackage: PackageType = .annual
+struct ProfilePurchasePro: View {
+    @Bindable var ui = ProfilePurchaseProModel.instance
     
     @Environment(\.colorScheme) var colorScheme
     @Environment(RootStore.self) var rootStore
@@ -16,11 +16,11 @@ struct ProfileUnlockPro: View {
                     let lifetime = rootStore.purchases.proLifetime
                     if monthly != nil && yearly != nil && lifetime != nil {
                         VStack(spacing: 2) {
-                            ProfileUnlockProPackage(package: monthly!, selectedPackage: $selectedPackage)
+                            ProfilePurchaseProPackage(package: monthly!, selectedPackage: $ui.selectedPackage)
                             Divider().foregroundColor(colorScheme == .light ? .black : .white)
-                            ProfileUnlockProPackage(package: yearly!, selectedPackage: $selectedPackage)
+                            ProfilePurchaseProPackage(package: yearly!, selectedPackage: $ui.selectedPackage)
                             Divider().foregroundColor(colorScheme == .light ? .black : .white)
-                            ProfileUnlockProPackage(package: lifetime!, selectedPackage: $selectedPackage)
+                            ProfilePurchaseProPackage(package: lifetime!, selectedPackage: $ui.selectedPackage)
                         }
                         .background(Color(hex: colorScheme == .light ? "#FFFFFF" : "#000000"))
                         .cornerRadius(12)
@@ -67,7 +67,7 @@ struct ProfileUnlockPro: View {
             
             Button {
                 if !rootStore.purchases.isPurchasing {
-                    switch selectedPackage {
+                    switch ui.selectedPackage {
                     case .monthly:
                         if let monthly = rootStore.purchases.proMonthly {
                             rootStore.purchases.purchase(pkg: monthly)
@@ -100,10 +100,12 @@ struct ProfileUnlockPro: View {
             .padding(.horizontal, 24)
         }
         .navigationTitle("Unlock Eachday Pro")
+        .navigationBarBackButtonHidden(ui.hideBackButton)
+        .onDisappear { ui.hideBackButton = false }
     }
 }
 
-struct ProfileUnlockProPackage: View {
+struct ProfilePurchaseProPackage: View {
     let package: Package
     @Binding var selectedPackage: PackageType
     @Environment(RootStore.self) var rootStore
@@ -184,4 +186,13 @@ struct ProfileUnlockProPackage: View {
         .contentShape(Rectangle())
         .onTapGesture { selectedPackage = package.packageType }
     }
+}
+
+
+@Observable
+class ProfilePurchaseProModel {
+    static let instance: ProfilePurchaseProModel = ProfilePurchaseProModel()
+    
+    var selectedPackage: PackageType = .annual
+    var hideBackButton: Bool = false
 }
