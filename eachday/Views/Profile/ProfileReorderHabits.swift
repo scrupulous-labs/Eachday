@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ProfileReorderHabits: View {
+    let dismiss: DismissAction
     @Bindable var ui = ProfileReorderHabitsModel.instance
     @Environment(\.colorScheme) var colorScheme
     @Environment(RootStore.self) var rootStore
@@ -77,6 +78,15 @@ struct ProfileReorderHabits: View {
         }
         .navigationTitle("Reorder List")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(ui.hideBackButton)
+        .toolbar {
+            if ui.hideBackButton {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { dismiss() } label: { Text("Done") }
+                }
+            }
+        }
+        .onDisappear { ui.hideBackButton = false }
     }
 }
 
@@ -85,10 +95,7 @@ class ProfileReorderHabitsModel {
     static var instance: ProfileReorderHabitsModel = ProfileReorderHabitsModel()
     
     var tab: Int = 0
-    
-    func reset() {
-        tab = 0
-    }
+    var hideBackButton: Bool = false
     
     func selectHabits() {
         tab = 0
@@ -96,5 +103,9 @@ class ProfileReorderHabitsModel {
     
     func selectGroups() {
         tab = 1
+    }
+    
+    func reset() {
+        tab = 0
     }
 }

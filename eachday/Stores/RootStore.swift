@@ -18,6 +18,7 @@ class RootStore {
     private(set) var habitReminders: HabitReminderStore! = nil
     private(set) var reminderNotifications: ReminderNotificationStore! = nil
     private(set) var settings: SettingsStore! = nil
+    private(set) var purchases: PurchaseStore! = nil
     
     init(database: Database) {
         self.database = database
@@ -29,6 +30,7 @@ class RootStore {
         self.habitReminders = HabitReminderStore(self)
         self.reminderNotifications = ReminderNotificationStore(self)
         self.settings = SettingsStore(self)
+        self.purchases = PurchaseStore(self)
     }
     
     func loadFromDb() throws {

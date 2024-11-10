@@ -10,6 +10,8 @@
 		B31E240F2CA1468600424C55 /* Algorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E240E2CA1468200424C55 /* Algorithms.swift */; };
 		B3231F6A2CA33CDA00B37C4D /* HabitDayStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3231F692CA33CCC00B37C4D /* HabitDayStatus.swift */; };
 		B3231F782CA3C65800B37C4D /* HabitDetailsSelectYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3231F772CA3C64F00B37C4D /* HabitDetailsSelectYear.swift */; };
+		B33D32162CDF012B00DCCA95 /* PurchaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33D32152CDF011E00DCCA95 /* PurchaseStore.swift */; };
+		B33D32182CDF249200DCCA95 /* ProfileUnlockPro.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33D32172CDF248C00DCCA95 /* ProfileUnlockPro.swift */; };
 		B357B6F22CB663D400B23B21 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B357B6F12CB663D400B23B21 /* StoreKit.framework */; };
 		B357B6FF2CB6F19600B23B21 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = B357B6FE2CB6F19600B23B21 /* RevenueCat */; };
 		B357B7012CB6F19600B23B21 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = B357B7002CB6F19600B23B21 /* RevenueCatUI */; };
@@ -101,6 +103,8 @@
 		B31E240E2CA1468200424C55 /* Algorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithms.swift; sourceTree = "<group>"; };
 		B3231F692CA33CCC00B37C4D /* HabitDayStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDayStatus.swift; sourceTree = "<group>"; };
 		B3231F772CA3C64F00B37C4D /* HabitDetailsSelectYear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsSelectYear.swift; sourceTree = "<group>"; };
+		B33D32152CDF011E00DCCA95 /* PurchaseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseStore.swift; sourceTree = "<group>"; };
+		B33D32172CDF248C00DCCA95 /* ProfileUnlockPro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUnlockPro.swift; sourceTree = "<group>"; };
 		B357B6F12CB663D400B23B21 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B357B7052CB8484800B23B21 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B357B7072CBE410400B23B21 /* ProfileSectionPro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionPro.swift; sourceTree = "<group>"; };
@@ -226,6 +230,7 @@
 				B36876442CB407F6004C695F /* HabitReminderStore.swift */,
 				B36876482CB408A5004C695F /* ReminderNotificationsStore.swift */,
 				B36876532CB420C6004C695F /* SettingsStore.swift */,
+				B33D32152CDF011E00DCCA95 /* PurchaseStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -439,6 +444,7 @@
 			isa = PBXGroup;
 			children = (
 				B3D3C8852C9AC5C7005D28E1 /* ProfileSection */,
+				B33D32172CDF248C00DCCA95 /* ProfileUnlockPro.swift */,
 				B3D3C84B2C9720AA005D28E1 /* ProfileReorderHabits.swift */,
 				B3B38ABA2CA038E50037D58E /* ProfileArchivedHabits.swift */,
 				B3D3C8862C9ACC8C005D28E1 /* ProfileUtils.swift */,
@@ -607,12 +613,14 @@
 				B3D3C8572C9720AA005D28E1 /* EditHabitSectionColor.swift in Sources */,
 				B3D3C85B2C9720AA005D28E1 /* EditHabitSelectGroup.swift in Sources */,
 				B3D3C8122C9720A4005D28E1 /* HabitTask.swift in Sources */,
+				B33D32182CDF249200DCCA95 /* ProfileUnlockPro.swift in Sources */,
 				B3D3C8732C9720AA005D28E1 /* EditHabitView.swift in Sources */,
 				B3D3C8112C9720A4005D28E1 /* HabitGroupItem.swift in Sources */,
 				B357B7062CB8484B00B23B21 /* Constants.swift in Sources */,
 				B3D3C8802C9A9D3B005D28E1 /* ProfileSectionGeneral.swift in Sources */,
 				B3D3C8692C9720AA005D28E1 /* HabitDetailsStreaks.swift in Sources */,
 				B3231F6A2CA33CDA00B37C4D /* HabitDayStatus.swift in Sources */,
+				B33D32162CDF012B00DCCA95 /* PurchaseStore.swift in Sources */,
 				B3D3C81C2C9720A4005D28E1 /* FP.swift in Sources */,
 				B3D3C85E2C9720AA005D28E1 /* EditHabitUtils.swift in Sources */,
 				B3D3C88D2C9B2E24005D28E1 /* Settings.swift in Sources */,

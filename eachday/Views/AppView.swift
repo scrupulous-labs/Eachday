@@ -18,7 +18,7 @@ struct AppView: View {
                 } else {
                     LazyVStack(spacing: 0) {
                         AppGroupFilters(reorderGroups: ui.openReorderGroups)
-                            .padding(.top, 8)
+                            .padding(.top, 12)
                             .padding(.bottom, 16)
                         
                         ForEach(rootStore.habits.filtered, id: \.id) { habit in
@@ -40,8 +40,8 @@ struct AppView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Text("Eachday")
-                        .font(Font.system(size: 24))
-                        .fontWeight(.semibold)
+                        .font(Font.system(size: 24, design: .serif))
+                        .fontWeight(.bold)
                         .padding(.leading, 4)
                 }
                 
@@ -52,16 +52,16 @@ struct AppView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 22, height: 22)
-                                .fontWeight(.regular)
-                                .foregroundColor(.blue)
+                                .fontWeight(.light)
+                                .foregroundColor(colorScheme == .light ? .black : .white)
                         }
                         Button { ui.openProfileSheet() } label: {
                             Image(systemName: "person.circle")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 24, height: 24)
-                                .fontWeight(.regular)
-                                .foregroundColor(.blue)
+                                .fontWeight(.light)
+                                .foregroundColor(colorScheme == .light ? .black : .white)
                         }
                     }
                     .padding(.trailing, 2)
@@ -125,6 +125,9 @@ struct AppView: View {
                     }
                 }
             }
+            .onAppear{
+                ui.openPro()
+            }
         }
     }
 }
@@ -144,15 +147,22 @@ class AppViewModel {
         activeSheet = AppViewSheet.profileSheet
     }
     
+    func openPro() {
+        ProfileViewModel.instance.openPurchasePro()
+        activeSheet = AppViewSheet.profileSheet
+    }
+    
     func openReorderGroups() {
         ProfileViewModel.instance.openReorderHabits()
         ProfileReorderHabitsModel.instance.selectGroups()
+        ProfileReorderHabitsModel.instance.hideBackButton = true
         activeSheet = AppViewSheet.profileSheet
     }
     
     func openReorderHabits() {
         ProfileViewModel.instance.openReorderHabits()
         ProfileReorderHabitsModel.instance.selectHabits()
+        ProfileReorderHabitsModel.instance.hideBackButton = true
         activeSheet = AppViewSheet.profileSheet
     }
     

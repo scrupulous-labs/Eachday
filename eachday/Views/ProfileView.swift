@@ -29,9 +29,9 @@ struct ProfileView: View {
             .navigationDestination(for: ProfileViewScreen.self) { destination in
                 switch destination {
                 case ProfileViewScreen.purchasePro:
-                    Text("")
+                    ProfileUnlockPro()
                 case ProfileViewScreen.reorderHabits:
-                    ProfileReorderHabits()
+                    ProfileReorderHabits(dismiss: dismiss)
                 case ProfileViewScreen.archivedHabits:
                     ProfileArchivedHabits()
                 }
