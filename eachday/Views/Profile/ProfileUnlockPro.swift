@@ -110,28 +110,51 @@ struct ProfileUnlockProPackage: View {
     
     var headline: String {
         switch package.packageType {
-        case .monthly: "Monthly - \(package.localizedPriceString)"
-        case .annual: "Yearly - \(package.localizedPriceString)"
-        case .lifetime: "Lifetime - \(package.localizedPriceString)"
-        default: ""
+        case .monthly: 
+            return "Monthly - \(package.localizedPriceString)"
+        case .annual:
+            return "Yearly - \(package.localizedPriceString)"
+        case .lifetime:
+            return "Lifetime - \(package.localizedPriceString)"
+        default:
+            return ""
         }
     }
     
     var subheadline: String {
         switch package.packageType {
-        case .monthly: "Billed monthly"
-        case .annual: "Billed Yearly - Best Value"
-        case .lifetime: "One time payment, yours forever"
-        default: ""
+        case .monthly: 
+            return "Billed monthly"
+        case .annual:
+            let pricePerMonth = package.storeProduct.pricePerMonth ?? 1.0
+            let priceFormatter = package.storeProduct.priceFormatter
+            let localizedPricePerMonth = priceFormatter?.string(from: pricePerMonth)
+            return "\(localizedPricePerMonth ?? "") per month, billed Yearly"
+        case .lifetime:
+            return "One time payment, yours forever"
+        default:
+            return ""
         }
     }
     
     var body: some View {
         HStack() {
-            VStack(spacing: 4) {
-                Text(headline)
-                    .font(Font.system(size: 20).weight(.medium))
-                    .frame(maxWidth: .infinity, alignment: .leading)
+            VStack(spacing: 6) {
+                HStack {
+                    Text(headline)
+                        .font(Font.system(size: 20).weight(.medium))
+                        .padding(.trailing, 2)
+                    if package.packageType == .annual {
+                        Text("BEST VALUE")
+                            .font(Font.caption.weight(.semibold))
+                            .padding(.vertical, 3)
+                            .padding(.horizontal, 8)
+                            .background(Color(hex: "#fef08a"))
+                            .foregroundColor(Color(hex: "#854d0e"))
+                            .cornerRadius(8)
+                    }
+                    Spacer()
+                }
                 
                 Text(subheadline)
                     .foregroundColor(.gray)
