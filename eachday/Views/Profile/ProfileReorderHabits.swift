@@ -45,7 +45,8 @@ struct ProfileReorderHabits: View {
                         }
                         .onMove { offsets, to in
                             let from = Array(offsets).first
-                            if !rootStore.purchases.purchasedPro && from != nil && from! >= 4 {
+                            let onlyForPro = (from != nil && from! >= 4) || to >= 4
+                            if !rootStore.purchases.purchasedPro && onlyForPro {
                                 purchasePro()
                             } else {
                                 rootStore.habits.moveHabit(offsets: offsets, to: to)
