@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ProfileReorderHabits: View {
     let dismiss: DismissAction
+    let purchasePro: () -> Void
     @Bindable var ui = ProfileReorderHabitsModel.instance
     @Environment(\.colorScheme) var colorScheme
     @Environment(RootStore.self) var rootStore
@@ -42,7 +43,14 @@ struct ProfileReorderHabits: View {
                                     .padding(.trailing, 2)
                             }
                         }
-                        .onMove { rootStore.habits.moveHabit(offsets: $0, to: $1) }
+                        .onMove { offsets, to in
+                            let from = Array(offsets).first
+                            if !rootStore.purchases.purchasedPro && from != nil && from! >= 4 {
+                                purchasePro()
+                            } else {
+                                rootStore.habits.moveHabit(offsets: offsets, to: to)
+                            }
+                        }
                     }
                 }
 

@@ -214,7 +214,7 @@ class HabitModel: Model<HabitRecord>, Habit {
     }
 
     func unarchive() {
-        archived = false; save()
+        archived = false
         habitReminders.forEach { reminder in
             Task { await reminder.registerNotifications() }
         }

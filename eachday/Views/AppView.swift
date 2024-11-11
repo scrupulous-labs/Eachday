@@ -158,14 +158,14 @@ class AppViewModel {
         activeSheet = AppViewSheet.profileSheet
     }
     
-    func openProfileSheet() {
-        activeSheet = AppViewSheet.profileSheet
-    }
-    
     func openReorderHabits() {
         ProfileViewModel.instance.openReorderHabits()
         ProfileReorderHabitsModel.instance.selectHabits()
         ProfileReorderHabitsModel.instance.hideBackButton = true
+        activeSheet = AppViewSheet.profileSheet
+    }
+    
+    func openProfileSheet() {
         activeSheet = AppViewSheet.profileSheet
     }
     

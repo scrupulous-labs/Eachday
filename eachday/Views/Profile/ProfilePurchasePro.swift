@@ -2,6 +2,7 @@ import SwiftUI
 import RevenueCat
 
 struct ProfilePurchasePro: View {
+    let dismiss: DismissAction
     @Bindable var ui = ProfilePurchaseProModel.instance
     
     @Environment(\.colorScheme) var colorScheme
@@ -101,6 +102,13 @@ struct ProfilePurchasePro: View {
         }
         .navigationTitle("Unlock Eachday Pro")
         .navigationBarBackButtonHidden(ui.hideBackButton)
+        .toolbar {
+            if ui.hideBackButton {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { dismiss() } label: { Text("close") }
+                }
+            }
+        }
         .onDisappear { ui.hideBackButton = false }
     }
 }
@@ -187,7 +195,6 @@ struct ProfilePurchaseProPackage: View {
         .onTapGesture { selectedPackage = package.packageType }
     }
 }
-
 
 @Observable
 class ProfilePurchaseProModel {

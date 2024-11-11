@@ -29,11 +29,18 @@ struct ProfileView: View {
             .navigationDestination(for: ProfileViewScreen.self) { destination in
                 switch destination {
                 case ProfileViewScreen.purchasePro:
-                    ProfilePurchasePro()
+                    ProfilePurchasePro(
+                        dismiss: dismiss
+                    )
                 case ProfileViewScreen.reorderHabits:
-                    ProfileReorderHabits(dismiss: dismiss)
+                    ProfileReorderHabits(
+                        dismiss: dismiss,
+                        purchasePro: ui.openPurchasePro
+                    )
                 case ProfileViewScreen.archivedHabits:
-                    ProfileArchivedHabits()
+                    ProfileArchivedHabits(
+                        purchasePro: ui.openPurchasePro
+                    )
                 }
             }
         }

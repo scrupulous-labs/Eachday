@@ -31,7 +31,7 @@ struct HabitCard: View {
             if locked {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(.ultraThickMaterial)
-                    .opacity(0.8)
+                    .opacity(0.9)
                 
                 VStack(spacing: 16) {
                     Button { openPurchasePro() } label: { Text("Get Eachday Pro") }

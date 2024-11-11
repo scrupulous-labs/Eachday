@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ProfileArchivedHabits: View {
+    let purchasePro: () -> Void
     let headerHeight = 44.0
     let headerIconHeight = 38.0
     let iconCornerRadius = 6.0
@@ -50,7 +51,13 @@ struct ProfileArchivedHabits: View {
                             .frame(maxWidth: .infinity)
                         
                         Menu {
-                            Button { habit.unarchive() } label: {
+                            Button {
+                                if rootStore.purchases.purchasedPro {
+                                    habit.unarchive(); habit.save()
+                                } else {
+                                    purchasePro()
+                                }
+                            } label: {
                                 Label("Unarchive", systemImage: "archivebox")
                             }
                             Button { habit.markForDeletion(); habit.save()  } label: {
