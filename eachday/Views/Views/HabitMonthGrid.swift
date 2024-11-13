@@ -36,7 +36,7 @@ struct HabitMonthGrid: View {
                         .overlay {
                             RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
                                 .size(width: cellSize, height: cellSize)
-                                .fill(habit.color.shade1)
+                                .fill(colorScheme == .light ? habit.color.shade1 : habit.color.shade1.opacity(0.8))
                                 .overlay {
                                     RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
                                         .size(width: cellSize, height: cellSize)

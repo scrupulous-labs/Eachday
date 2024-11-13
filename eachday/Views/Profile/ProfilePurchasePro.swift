@@ -41,20 +41,16 @@ struct ProfilePurchasePro: View {
                         
                         VStack(spacing: 24) {
                             Text("✓  Unlimited Habits")
-                                .foregroundColor(Color(hex: "#4B5563"))
-                                .font(Font.system(size: 18).weight(.medium))
+                                .font(Font.system(size: 20))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             Text("✓  Restore archived habits")
-                                .foregroundColor(Color(hex: "#4B5563"))
-                                .font(Font.system(size: 18).weight(.medium))
+                                .font(Font.system(size: 20))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             Text("✓  Support an Independent Developer")
-                                .foregroundColor(Color(hex: "#4B5563"))
-                                .font(Font.system(size: 18).weight(.medium))
+                                .font(Font.system(size: 20))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             Text("✓  Widgets and more coming soon")
-                                .foregroundColor(Color(hex: "#4B5563"))
-                                .font(Font.system(size: 18).weight(.medium))
+                                .font(Font.system(size: 20))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .padding(.top, 48)
@@ -101,6 +97,7 @@ struct ProfilePurchasePro: View {
             .padding(.horizontal, 24)
         }
         .navigationTitle("Unlock Eachday Pro")
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(ui.hideBackButton)
         .toolbar {
             if ui.hideBackButton {

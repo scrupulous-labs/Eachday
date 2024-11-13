@@ -18,7 +18,7 @@ struct AppView: View {
                 } else {
                     LazyVStack(spacing: 0) {
                         AppGroupFilters(reorderGroups: ui.openReorderGroups)
-                            .padding(.top, 12)
+                            .padding(.top, 16)
                             .padding(.bottom, 16)
                         
                         ForEach(rootStore.habits.filtered, id: \.id) { habit in
@@ -145,6 +145,32 @@ class AppViewModel {
     var canInteractivelyDismissSheet: Bool = true
     var navigationPath: NavigationPath = NavigationPath()
     
+    func openNewHabitSheet(_ rootStore: RootStore) {
+        if !rootStore.habits.canCreate {
+            openPurchasePro()
+            return
+        }
+        let lastHabit = rootStore.habits.sorted.last
+        let sortOrder = lastHabit?.sortOrder.next() ?? SortOrder.new()
+        let habitToEdit = HabitModel(rootStore, sortOrder: sortOrder, markForDeletion: true)
+        habitToEdit.addEmptyTask()
+        openEditHabitSheet(rootStore, habit: habitToEdit)
+    }
+    
+    func openEditHabitSheet(_ rootStore: RootStore, habit: HabitModel) {
+        activeSheet = AppViewSheet.editHabitSheet(habit)
+        currentSheetDent = .large
+        userAttemptedToDismissSheet = false
+        canInteractivelyDismissSheet = true
+    }
+    
+    func openEditHabitHistorySheet(habit: HabitModel) {
+        activeSheet = AppViewSheet.editHabitHistorySheet(habit)
+        currentSheetDent = .large
+        userAttemptedToDismissSheet = false
+        canInteractivelyDismissSheet = true
+    }
+    
     func openPurchasePro() {
         ProfileViewModel.instance.openPurchasePro()
         ProfilePurchaseProModel.instance.hideBackButton = true
@@ -167,28 +193,6 @@ class AppViewModel {
     
     func openProfileSheet() {
         activeSheet = AppViewSheet.profileSheet
-    }
-    
-    func openNewHabitSheet(_ rootStore: RootStore) {
-        let lastHabit = rootStore.habits.sorted.last
-        let sortOrder = lastHabit?.sortOrder.next() ?? SortOrder.new()
-        let habitToEdit = HabitModel(rootStore, sortOrder: sortOrder, markForDeletion: true)
-        habitToEdit.addEmptyTask()
-        openEditHabitSheet(rootStore, habit: habitToEdit)
-    }
-    
-    func openEditHabitSheet(_ rootStore: RootStore, habit: HabitModel) {
-        activeSheet = AppViewSheet.editHabitSheet(habit)
-        currentSheetDent = .large
-        userAttemptedToDismissSheet = false
-        canInteractivelyDismissSheet = true
-    }
-    
-    func openEditHabitHistorySheet(habit: HabitModel) {
-        activeSheet = AppViewSheet.editHabitHistorySheet(habit)
-        currentSheetDent = .large
-        userAttemptedToDismissSheet = false
-        canInteractivelyDismissSheet = true
     }
     
     func openHabitDetailsScreen(habit: HabitModel) {

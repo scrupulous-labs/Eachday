@@ -128,18 +128,14 @@ class HabitModel: Model<HabitRecord>, Habit {
     
     func dayCalendarColor(day: Day) -> Color {
         switch dayStatus(day: day) {
-            case .completed:
-                return color.shade5
-            case .partiallyCompleted(let value) where value > 0.75:
-                return color.shade4
-            case .partiallyCompleted(let value) where value > 0.5:
-                return color.shade3
-            case .partiallyCompleted(let value) where value > 0.25:
-                return color.shade2
-            case .partiallyCompleted(_):
-                return color.shade1
-            default:
-                return .white.opacity(0)
+        case .completed:
+            return color.shade5
+        case .partiallyCompleted(let value):
+            let minOpacity = 0.5
+            let addOpacity = (1 - minOpacity) * value
+            return color.shade5.opacity(minOpacity + addOpacity)
+        default:
+            return .white.opacity(0)
         }
     }
     

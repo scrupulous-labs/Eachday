@@ -37,7 +37,7 @@ struct AppViewHabitCardHeader: View {
             VStack(spacing: 4) {
                 Text("\(habit.name)")
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(Font.system(size: 17))
+                    .font(Font.system(size: 16))
                     .lineLimit(1)
                     .truncationMode(.tail)
                 

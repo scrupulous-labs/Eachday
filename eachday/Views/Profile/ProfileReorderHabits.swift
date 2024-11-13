@@ -44,13 +44,9 @@ struct ProfileReorderHabits: View {
                             }
                         }
                         .onMove { offsets, to in
-                            let from = Array(offsets).first
-                            let onlyForPro = (from != nil && from! >= 4) || to > 4
-                            if !rootStore.purchases.purchasedPro && onlyForPro {
-                                purchasePro()
-                            } else {
-                                rootStore.habits.moveHabit(offsets: offsets, to: to)
-                            }
+                            rootStore.habits.canMove(offsets: offsets, to: to)
+                                ? rootStore.habits.moveHabit(offsets: offsets, to: to)
+                                : purchasePro()
                         }
                     }
                 }

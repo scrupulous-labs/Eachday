@@ -20,6 +20,11 @@ class HabitStore: Store {
         }
     }
     
+    var canCreate: Bool {
+        let onlyForPro = sorted.count >= Constants.maxHabitsForNonPro
+        return rootStore.purchases.purchasedPro || !onlyForPro
+    }
+    
     init(_ rootStore: RootStore) {
         super.init(rootStore: rootStore)
     }
@@ -27,7 +32,14 @@ class HabitStore: Store {
     func isLocked(habitId: UUID) -> Bool {
         if rootStore.purchases.purchasedPro { return false }
         let ind = sorted.firstIndex{ $0.id == habitId } ?? 0
-        return ind >= 4
+        return ind >= Constants.maxHabitsForNonPro
+    }
+    
+    func canMove(offsets: IndexSet, to: Int) -> Bool {
+        let from = Array(offsets).first
+        let maxHabits = Constants.maxHabitsForNonPro
+        let onlyForPro = (from != nil && from! >= maxHabits) || to > maxHabits
+        return rootStore.purchases.purchasedPro || !onlyForPro
     }
     
     func moveHabit(offsets: IndexSet, to: Int) {
