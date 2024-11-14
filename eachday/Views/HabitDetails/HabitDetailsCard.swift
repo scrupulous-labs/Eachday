@@ -49,13 +49,16 @@ struct HabitDetailsCard: View {
                 .padding([.leading, .bottom, .trailing], 16)
             }
         }
-        .background(Color(hex: colorScheme == .light ? "#FFFFFF" : "#000000"))
+        .background(colorScheme == .light
+            ? AnyShapeStyle(Color(hex: "#FFFFFF"))
+            : AnyShapeStyle(.ultraThinMaterial.opacity(0.6))
+        )
         .cornerRadius(10)
         .overlay {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(
-                    colorScheme == .light ? .black.opacity(0.25) : Color(hex: "#909090"),
-                    lineWidth: 0.25
+                    colorScheme == .light ? .black.opacity(0.25) : .white.opacity(0.2),
+                    lineWidth: colorScheme == .light ? 0.25 : 0.5
                 )
         }
     }
