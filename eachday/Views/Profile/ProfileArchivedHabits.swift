@@ -32,7 +32,7 @@ struct ProfileArchivedHabits: View {
                                 .overlay {
                                     RoundedRectangle(cornerRadius: iconCornerRadius, style: .continuous)
                                         .size(width: headerIconHeight, height: headerIconHeight)
-                                        .fill(habit.color.shade1)
+                                        .fill(habit.color.shadeLight)
                                 }
                             Image(systemName: colorScheme == .light ? habit.icon.symbol : habit.icon.symbolDark)
                                 .resizable()

@@ -37,10 +37,10 @@ struct HabitDetailsStreaks: View {
                     HStack(alignment: .lastTextBaseline, spacing: 4) {
                         Text(doubleToString(currentStreak))
                             .font(Font.system(size: 32).weight(.bold))
-                            .foregroundColor(habit.color.shade5)
+                            .foregroundColor(habit.color.shadeFull)
                         Text(habit.frequency.streakUnit)
                             .font(Font.system(size: 16).weight(.semibold))
-                            .foregroundColor(habit.color.shade5)
+                            .foregroundColor(habit.color.shadeFull)
                     }
                     .padding(.horizontal, 16)
                     .padding(.bottom, 10)
@@ -67,10 +67,10 @@ struct HabitDetailsStreaks: View {
                     HStack(alignment: .lastTextBaseline, spacing: 4) {
                         Text(doubleToString(longestStreak))
                             .font(Font.system(size: 32).weight(.bold))
-                            .foregroundColor(habit.color.shade5)
+                            .foregroundColor(habit.color.shadeFull)
                         Text(habit.frequency.streakUnit)
                             .font(Font.system(size: 16).weight(.semibold))
-                            .foregroundColor(habit.color.shade5)
+                            .foregroundColor(habit.color.shadeFull)
                     }
                     .padding(.horizontal, 16)
                     .padding(.bottom, 10)

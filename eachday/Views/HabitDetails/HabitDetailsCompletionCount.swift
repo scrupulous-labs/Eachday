@@ -9,7 +9,7 @@ struct HabitDetailsCompletionCount: View {
     var completionCountString: AttributedString {
         var text = AttributedString("\(completionCount) times")
         text.font = .subheadline.weight(.bold)
-        text.foregroundColor = habit.color.shade5
+        text.foregroundColor = habit.color.shadeFull
         return text
     }
     var completionCount: Int {
@@ -40,7 +40,7 @@ struct HabitDetailsCompletionCount: View {
                         y: .value("Completion count", compeletionCountPerMonth(month))
                     )
                 }
-                .foregroundColor(habit.color.shade5)
+                .foregroundColor(habit.color.shadeFull)
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 16)

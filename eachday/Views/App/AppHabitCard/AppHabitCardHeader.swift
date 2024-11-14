@@ -19,11 +19,11 @@ struct AppViewHabitCardHeader: View {
             ZStack {
                 RoundedRectangle(cornerRadius: iconCornerRadius, style: .continuous)
                     .size(width: headerIconHeight, height: headerIconHeight)
-                    .fill(Color(hex: colorScheme == .light ? "#F2F2F7" : "#000000"))
+                    .fill(Color(hex: colorScheme == .light ? "#F2F2F7" : "#1f2937"))
                     .overlay {
                         RoundedRectangle(cornerRadius: iconCornerRadius, style: .continuous)
                             .size(width: headerIconHeight, height: headerIconHeight)
-                            .fill(habit.color.shade1)
+                            .fill(habit.color.shadeLight)
                     }
                 Image(systemName: colorScheme == .light ? habit.icon.symbol : habit.icon.symbolDark)
                     .resizable()
@@ -37,7 +37,7 @@ struct AppViewHabitCardHeader: View {
             VStack(spacing: 4) {
                 Text("\(habit.name)")
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(Font.system(size: 16))
+                    .font(Font.system(size: 17))
                     .lineLimit(1)
                     .truncationMode(.tail)
                 

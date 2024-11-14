@@ -126,20 +126,7 @@ class HabitModel: Model<HabitRecord>, Habit {
         }
     }
     
-    func dayCalendarColor(day: Day) -> Color {
-        switch dayStatus(day: day) {
-        case .completed:
-            return color.shade5
-        case .partiallyCompleted(let value):
-            let minOpacity = 0.5
-            let addOpacity = (1 - minOpacity) * value
-            return color.shade5.opacity(minOpacity + addOpacity)
-        default:
-            return .white.opacity(0)
-        }
-    }
-    
-    private func dayStatus(day: Day) -> HabitDayStatus {
+    func dayStatus(day: Day) -> HabitDayStatus {
         let completions = completionsByDay[day] ?? []
         let repetitionsDone = repetitionsCompleted(day: day)
         let repetitionsTotal = frequency.repetitionsPerDay

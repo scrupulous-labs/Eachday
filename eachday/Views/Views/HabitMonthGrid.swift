@@ -4,19 +4,18 @@ struct HabitMonthGrid: View {
     var habit: HabitModel
     var month: Month
 
-    var gridItemWidth = 10.0
     var gridColumnCount = 7
-    var gridVerticalSpacing = 1.0
-    var gridHorizontalSpacing = 1.2
+    var gridVerticalSpacing = 1.2
+    var gridHorizontalSpacing = 2.4
     var cellSize = 8.0
-    var cellCornerRadius = 2.0
+    var cellCornerRadius = 2.5
     @Environment(\.colorScheme) private var colorScheme
     @Environment(RootStore.self) private var rootStore
     
     var body: some View {
         LazyVGrid(
             columns: Array(
-                repeating: GridItem(.fixed(gridItemWidth), spacing: gridHorizontalSpacing),
+                repeating: GridItem(.fixed(cellSize), spacing: gridHorizontalSpacing),
                 count: gridColumnCount
             ),
             spacing: gridVerticalSpacing
@@ -32,20 +31,22 @@ struct HabitMonthGrid: View {
                 case Maybe.just(let day):
                     RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
                         .size(width: cellSize, height: cellSize)
-                        .fill(Color(hex: colorScheme == .light ? "#F2F2F7" : "#000000"))
+                        .fill(Color(hex: colorScheme == .light ? "#f3f4f6" : "#1e293b"))
                         .overlay {
                             RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
                                 .size(width: cellSize, height: cellSize)
-                                .fill(colorScheme == .light ? habit.color.shade1 : habit.color.shade1.opacity(0.8))
+                                .fill(habit.color.shadeLight.opacity(colorScheme == .light ? 0.8 : 0.6))
                                 .overlay {
                                     RoundedRectangle(cornerRadius: cellCornerRadius, style: .continuous)
                                         .size(width: cellSize, height: cellSize)
-                                        .fill(habit.dayCalendarColor(day: day))
+                                        .fill(habit.color.calendarShade(
+                                            percentage: habit.dayStatus(day: day).percentage
+                                        ))
                                 }
                             
                             if day == Day.today() {
                                 RoundedRectangle(cornerRadius: cellCornerRadius + 1, style: .continuous)
-                                    .size(width: cellSize + 2.5, height: cellSize + 2.5)
+                                    .size(width: cellSize + 2.35, height: cellSize + 2.35)
                                     .stroke(colorScheme == .light ? .black : .white, lineWidth: 1.25)
                                     .offset(x: -1.25, y: -1.25)
                             }

@@ -33,37 +33,37 @@ struct MarkHabitButton: View {
             ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                     .size(width: size, height: size)
-                    .fill(Color(hex: colorScheme == .light ? "#F2F2F7" : "#000000"))
+                    .fill(Color(hex: colorScheme == .light ? "#F2F2F7" : "#1f2937"))
                     .overlay {
                         RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                             .size(width: size, height: size)
-                            .fill(habit.color.shade1)
+                            .fill(habit.color.shadeLight)
                             .overlay {
                                 if habit.isCompleted(day: today) {
                                     RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                                         .size(width: size, height: size)
-                                        .fill(habit.color.shade5)
+                                        .fill(habit.color.shadeFull)
                                 }
                             }
                     }
                 
                 if !habit.isCompleted(day: today) && habit.habitTasks.count > 1 {
                     PaintArcs(habit.habitTasks.count, outOf: habit.habitTasks.count)
-                        .fill(habit.color.shade3)
+                        .fill(habit.color.shadeMedium)
                         .frame(width: size, height: size)
                         .cornerRadius(cornerRadius)
                         .clipped()
                     PaintArcs(habit.repetitionCompletedTasks(day: today).count, outOf: habit.habitTasks.count)
-                        .fill(habit.color.shade5)
+                        .fill(habit.color.shadeFull)
                         .frame(width: size, height: size)
                         .cornerRadius(cornerRadius)
                         .clipped()
                     PaintSquare(size: innerSize)
-                        .fill(Color(Color(hex: colorScheme == .light ? "#F2F2F7" : "#000000")))
+                        .fill(Color(Color(hex: colorScheme == .light ? "#F2F2F7" : "#1f2937")))
                         .frame(width: innerSize, height: innerSize)
                         .cornerRadius(innerCornerRadius)
                     PaintSquare(size: innerSize)
-                        .fill(habit.color.shade1)
+                        .fill(habit.color.shadeLight)
                         .frame(width: innerSize, height: innerSize)
                         .cornerRadius(innerCornerRadius)
                 }

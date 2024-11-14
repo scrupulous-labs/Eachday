@@ -2,226 +2,98 @@ import Foundation
 import SwiftUI
 
 enum HabitColor: String, CaseIterable {
-    case blue = "blue"
-    case indigo = "indigo"
+    case lightRed = "lightRed"
     case red = "red"
     case orange = "orange"
+    case lightOrange = "lightOrange"
     case yellow = "yellow"
     case green = "green"
     case emerald = "emerald"
-    case cyan = "cyan" 
+    case teal = "teal"
+    case darkGreen = "darkGreen"
+    case cyan = "cyan"
+    case sky = "sky"
+    case blue = "blue"
+    case indigo = "indigo"
+    case violet = "violet"
     case purple = "purple"
     case fuchsia = "fuchsia"
     case pink = "pink"
     case rose = "rose"
     
-    var shade1: Color { shade200.opacity(0.225) }
-    var shade2: Color { shade400.opacity(0.1) }
-    var shade3: Color { shade500.opacity(0.4) }
-    var shade4: Color { shade500.opacity(0.9) }
-    var shade5: Color { shade600.opacity(0.9) }
+    static var all: [HabitColor] = [
+        .cyan,
+        .sky,
+        .blue,
+        .indigo,
+        .violet,
+        .purple,
+        .fuchsia,
+        .pink,
+        .rose,
+        .lightRed,
+        .red,
+        .orange,
+        .lightOrange,
+        .yellow,
+        .green,
+        .emerald,
+        .teal,
+        .darkGreen
+    ]
     
-    var shade50: Color {
+    var color: Color {
         switch self {
         case .red:
-            return Color(hex: "#fef2f2")
-        case .yellow:
-            return Color(hex: "#fefce8")
-        case .blue:
-            return Color(hex: "#eff6ff")
+            return Color(hex: "#E84C3D")
+        case .lightRed:
+            return Color(r: 221, g: 82, b: 76)
         case .orange:
-            return Color(hex: "#fff7ed")
-        case .indigo:
-            return Color(hex: "#eef2ff")
-        case .cyan:
-            return Color(hex: "#ecfeff")
+            return Color(r: 232, g: 123, b: 54)
+        case .lightOrange:
+            return Color(r: 232, g: 162, b: 59)
+        case .yellow:
+            return Color(r: 226, g: 181, b: 62)
         case .green:
-            return Color(hex: "#f0fdf4")
+            return Color(r: 148, g: 202, b: 66)
         case .emerald:
-            return Color(hex: "#ecfdf5")
+            return Color(r: 94, g: 193, b: 105)
+        case .teal:
+            return Color(r: 84, g: 183, b: 134)
+        case .darkGreen:
+            return Color(r: 84, g: 182, b: 167)
+        case .cyan:
+            return Color(r: 82, g: 180, b: 209)
+        case .sky:
+            return Color(r: 76, g: 163, b: 228)
+        case .blue:
+            return Color(r: 79, g: 128, b: 239)
+        case .indigo:
+            return Color(r: 100, g: 102, b: 233)
+        case .violet:
+            return Color(r: 133, g: 94, b: 238)
         case .purple:
-            return Color(hex: "#faf5ff")
+            return Color(r: 158, g: 90, b: 239)
         case .fuchsia:
-            return Color(hex: "#fdf4ff")
+            return Color(r: 200, g: 83, b: 231)
         case .pink:
-            return Color(hex: "#fdf2f8")
+            return Color(r: 219, g: 86, b: 152)
         case .rose:
-            return Color(hex: "#fff1f2")
+            return Color(r: 225, g: 80, b: 99)
         }
     }
     
-    var shade100: Color {
-        switch self {
-        case .red:
-            return Color(hex: "#fee2e2")
-        case .yellow:
-            return Color(hex: "#fef9c3")
-        case .blue:
-            return Color(hex: "#dbeafe")
-        case .orange:
-            return Color(hex: "#ffedd5")
-        case .indigo:
-            return Color(hex: "#e0e7ff")
-        case .cyan:
-            return Color(hex: "#cffafe")
-        case .green:
-            return Color(hex: "#dcfce7")
-        case .emerald:
-            return Color(hex: "#d1fae5")
-        case .purple:
-            return Color(hex: "#f3e8ff")
-        case .fuchsia:
-            return Color(hex: "#fae8ff")
-        case .pink:
-            return Color(hex: "#fce7f3")
-        case .rose:
-            return Color(hex: "#ffe4e6")
-        }
-    }
-
-    var shade200: Color {
-        switch self {
-        case .red:
-            return Color(hex: "#fecaca")
-        case .yellow:
-            return Color(hex: "#fef08a")
-        case .blue:
-            return Color(hex: "#bfdbfe")
-        case .orange:
-            return Color(hex: "#fed7aa")
-        case .indigo:
-            return Color(hex: "#c7d2fe")
-        case .cyan:
-            return Color(hex: "#a5f3fc")
-        case .green:
-            return Color(hex: "#bbf7d0")
-        case .emerald:
-            return Color(hex: "#a7f3d0")
-        case .purple:
-            return Color(hex: "#e9d5ff")
-        case .fuchsia:
-            return Color(hex: "#f5d0fe")
-        case .pink:
-            return Color(hex: "#fbcfe8")
-        case .rose:
-            return Color(hex: "#fecdd3")
-        }
-    }
+    var shadeLight: Color { color.opacity(0.1) }
+    var shadeMedium: Color { color.opacity(0.6) }
+    var shadeFull: Color { color }
     
-    var shade300: Color {
-        switch self {
-        case .red:
-            return Color(hex: "#fca5a5")
-        case .yellow:
-            return Color(hex: "#fde047")
-        case .blue:
-            return Color(hex: "#93c5fd")
-        case .orange:
-            return Color(hex: "#fcd34d")
-        case .indigo:
-            return Color(hex: "#a5b4fc")
-        case .cyan:
-            return Color(hex: "#67e8f9")
-        case .green:
-            return Color(hex: "#86efac")
-        case .emerald:
-            return Color(hex: "#6ee7b7")
-        case .purple:
-            return Color(hex: "#d8b4fe")
-        case .fuchsia:
-            return Color(hex: "#f0abfc")
-        case .pink:
-            return Color(hex: "#f9a8d4")
-        case .rose:
-            return Color(hex: "#fda4af")
+    func calendarShade(percentage: Double) -> Color {
+        if percentage > 0 {
+            let minOpacity = 0.4
+            let addOpacity = (1 - minOpacity) * percentage
+            return color.opacity(minOpacity + addOpacity)
         }
-    }
-    
-    var shade400: Color {
-        switch self {
-        case .red:
-            return Color(hex: "#f87171")
-        case .yellow:
-            return Color(hex: "#facc15")
-        case .blue:
-            return Color(hex: "#60a5fa")
-        case .orange:
-            return Color(hex: "#fb923c")
-        case .indigo:
-            return Color(hex: "#818cf8")
-        case .cyan:
-            return Color(hex: "#22d3ee")
-        case .green:
-            return Color(hex: "#4ade80")
-        case .emerald:
-            return Color(hex: "#34d399")
-        case .purple:
-            return Color(hex: "#c084fc")
-        case .fuchsia:
-            return Color(hex: "#e879f9")
-        case .pink:
-            return Color(hex: "#f472b6")
-        case .rose:
-            return Color(hex: "#fb7185")
-        }
-    }
-    
-    var shade500: Color {
-        switch self {
-        case .red:
-            return Color(hex: "#ef4444")
-        case .yellow:
-            return Color(hex: "#eab308")
-        case .blue:
-            return Color(hex: "#3b82f6")
-        case .indigo:
-            return Color(hex: "#6366f1")
-        case .cyan:
-            return Color(hex: "#06b6d4")
-        case .orange:
-            return Color(hex: "#f97316")
-        case .green:
-            return Color(hex: "#22c55e")
-        case .emerald:
-            return Color(hex: "#10b981")
-        case .purple:
-            return Color(hex: "#a855f7")
-        case .fuchsia:
-            return Color(hex: "#d946ef")
-        case .pink:
-            return Color(hex: "#ec4899")
-        case .rose:
-            return Color(hex: "#f43f5e")
-        }
-    }
-    
-    var shade600: Color {
-        switch self {
-        case .red:
-            return Color(hex: "#dc2626")
-        case .yellow:
-            return Color(hex: "#ca8a04")
-        case .blue:
-            return Color(hex: "#2563eb")
-        case .indigo:
-            return Color(hex: "#4f46e5")
-        case .cyan:
-            return Color(hex: "#0891b2")
-        case .orange:
-            return Color(hex: "#ea580c")
-        case .green:
-            return Color(hex: "#16a34a")
-        case .emerald:
-            return Color(hex: "#059669")
-        case .purple:
-            return Color(hex: "#9333ea")
-        case .fuchsia:
-            return Color(hex: "#c026d3")
-        case .pink:
-            return Color(hex: "#db2777")
-        case .rose:
-            return Color(hex: "#e11d48")
-        }
+        return .white.opacity(0)
     }
 }
 
@@ -236,6 +108,13 @@ extension Color {
         let redValue = Double((rgb >> 16) & 0xFF) / 255.0
         let greenValue = Double((rgb >> 8) & 0xFF) / 255.0
         let blueValue = Double(rgb & 0xFF) / 255.0
+        self.init(red: redValue, green: greenValue, blue: blueValue)
+    }
+    
+    init(r: Int, g: Int, b: Int) {
+        let redValue = Double(r) / 255.0
+        let greenValue = Double(g) / 255.0
+        let blueValue = Double(b) / 255.0
         self.init(red: redValue, green: greenValue, blue: blueValue)
     }
 }

@@ -35,7 +35,7 @@ struct HabitDetailsCard: View {
                                 .scaledToFit()
                                 .frame(width: 12, height: 12)
                                 .padding(.trailing, 4)
-                                .foregroundColor(habit.color.shade5)
+                                .foregroundColor(habit.color.shadeFull)
                                 .fontWeight(.bold)
                             
                             Text(task.description)

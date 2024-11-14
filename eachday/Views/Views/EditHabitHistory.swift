@@ -53,11 +53,13 @@ struct EditHabitHistory: View {
                         .padding(cellPadding)
                         .overlay {
                             RoundedRectangle(cornerRadius: cellCornerRadius)
-                                .fill(habit.color.shade1)
+                                .fill(habit.color.shadeLight)
                                 .padding(cellPadding)
                                 .overlay {
                                     RoundedRectangle(cornerRadius: cellCornerRadius)
-                                        .fill(habit.dayCalendarColor(day: day))
+                                        .fill(habit.color.calendarShade(
+                                            percentage: habit.dayStatus(day: day).percentage
+                                        ))
                                         .padding(cellPadding)
                                 }
                         }

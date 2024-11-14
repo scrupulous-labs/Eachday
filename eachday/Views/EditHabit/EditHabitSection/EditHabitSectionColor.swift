@@ -15,17 +15,8 @@ struct EditHabitSectionColor: View {
                 columns: Array(repeating: GridItem(.flexible(), spacing: 28), count: 6),
                 spacing:32
             ) {
-                ForEach(
-                    [ HabitColor.blue,
-                      HabitColor.red,
-                      HabitColor.rose,
-                      HabitColor.orange,
-                      HabitColor.emerald,
-                      HabitColor.pink,
-                    ],
-                    id: \.self
-                ) { color in
-                    let fillColor = color.shade500
+                ForEach(HabitColor.all, id: \.self) { color in
+                    let fillColor = color.shadeFull
                     ZStack {
                         GeometryReader { g in
                             let center = CGPoint(x: g.size.width * 0.5, y: g.size.height * 0.5)

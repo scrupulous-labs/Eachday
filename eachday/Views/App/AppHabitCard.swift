@@ -21,7 +21,7 @@ struct HabitCard: View {
             }
             .background(colorScheme == .light
                 ? AnyShapeStyle(Color(hex: "#FFFFFF"))
-                : AnyShapeStyle(.ultraThinMaterial.opacity(0.3))
+                : AnyShapeStyle(.ultraThinMaterial.opacity(0.6))
             )
             .overlay {
                 RoundedRectangle(cornerRadius: 10)
