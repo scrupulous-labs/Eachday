@@ -4,8 +4,9 @@ struct AppViewHabitCardHeader: View {
     let habit: HabitModel
     
     let headerHeight = 44.0
-    let headerIconHeight = 42.0
-    let iconCornerRadius = 8.0
+    let habitIconSize = 22.0
+    let habitIconBgSize = 42.0
+    let habitIconBgCornerRadius = 8.0
     let today = Day.today()
     @Environment(\.colorScheme) private var colorScheme
     
@@ -17,22 +18,22 @@ struct AppViewHabitCardHeader: View {
     var body: some View {
         HStack(spacing: 10) {
             ZStack {
-                RoundedRectangle(cornerRadius: iconCornerRadius, style: .continuous)
-                    .size(width: headerIconHeight, height: headerIconHeight)
+                RoundedRectangle(cornerRadius: habitIconBgCornerRadius, style: .continuous)
+                    .size(width: habitIconBgSize, height: habitIconBgSize)
                     .fill(Color(hex: colorScheme == .light ? "#F2F2F7" : "#1f2937"))
                     .overlay {
-                        RoundedRectangle(cornerRadius: iconCornerRadius, style: .continuous)
-                            .size(width: headerIconHeight, height: headerIconHeight)
+                        RoundedRectangle(cornerRadius: habitIconBgCornerRadius, style: .continuous)
+                            .size(width: habitIconBgSize, height: habitIconBgSize)
                             .fill(habit.color.shadeLight)
                     }
                 Image(systemName: colorScheme == .light ? habit.icon.symbol : habit.icon.symbolDark)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 22, height: 22)
+                    .frame(width: habitIconSize, height: habitIconSize)
                     .foregroundColor(iconForegroundColor)
                     .fontWeight(.light)
             }
-            .frame(width: headerIconHeight, height: headerIconHeight)
+            .frame(width: habitIconBgSize, height: habitIconBgSize)
             
             VStack(spacing: 4) {
                 Text("\(habit.name)")

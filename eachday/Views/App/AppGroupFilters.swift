@@ -23,12 +23,12 @@ struct AppGroupFilters: View {
                             ? (colorScheme == .light ? .white : .black)
                             : (colorScheme == .light ? .black : .white)
                         )
-                        .padding(EdgeInsets(top: 5, leading: 11, bottom: 5, trailing: 11))
+                        .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
                         .background(isFiltered
                             ? Color(hex: colorScheme == .light ? "#111827" : "#E5E7EB")
-                            : Color(hex: colorScheme == .light ? "#E7E7E7" : "#202020")
+                            : Color(hex: colorScheme == .light ? "#e2e2e2" : "#202020")
                         )
-                        .cornerRadius(18)
+                        .cornerRadius(8)
                         .onTapGesture {
                             UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
                             if rootStore.habitGroups.filtered.contains(habitGroup.id) {

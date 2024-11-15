@@ -18,7 +18,7 @@ struct AppView: View {
                 } else {
                     LazyVStack(spacing: 0) {
                         AppGroupFilters(reorderGroups: ui.openReorderGroups)
-                            .padding(.top, 16)
+                            .padding(.top, 14)
                             .padding(.bottom, 16)
                         
                         ForEach(rootStore.habits.filtered, id: \.id) { habit in
