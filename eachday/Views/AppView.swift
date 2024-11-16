@@ -10,10 +10,17 @@ struct AppView: View {
             ScrollView {                
                 if rootStore.habits.sorted.isEmpty {
                     VStack {
-                        Button { ui.openNewHabitSheet(rootStore) } label: { Text("NEW HABIT") }
+                        Image(systemName: "pencil.and.list.clipboard")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 58, height: 58)
+                            .fontWeight(.ultraLight)
+                        Text("Create a new habit and track it's progress")
+                        Button { ui.openNewHabitSheet(rootStore) } label: { Text("Get Started") }
                             .buttonStyle(.borderedProminent)
-                            .padding(.top, 76)
+                            .tint(Color(hex: "#1d4ed8"))
                     }
+                    .padding(.top, 172)
                     .frame(maxWidth: .infinity)
                 } else {
                     LazyVStack(spacing: 0) {

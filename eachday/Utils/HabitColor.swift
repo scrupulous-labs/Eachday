@@ -84,7 +84,7 @@ enum HabitColor: String, CaseIterable {
     }
     
     var shadeLight: Color { color.opacity(0.1) }
-    var shadeMedium: Color { color.opacity(0.6) }
+    var shadeMedium: Color { color.opacity(0.5) }
     var shadeFull: Color { color }
     
     func calendarShade(percentage: Double) -> Color {
