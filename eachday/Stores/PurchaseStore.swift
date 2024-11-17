@@ -10,6 +10,10 @@ class PurchaseStore: Store {
     var purchasedPro: Bool = false
     var isPurchasing: Bool = false
     
+    var showProBesideLogo: Bool {
+        !purchasedPro && rootStore.habits.all.count >= Constants.maxHabitsForNonPro
+    }
+    
     init(_ rootStore: RootStore) {
         super.init(rootStore: rootStore)
         loadCustomerInfo()

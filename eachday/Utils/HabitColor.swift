@@ -93,7 +93,7 @@ enum HabitColor: String, CaseIterable {
             let addOpacity = (1 - minOpacity) * percentage
             return color.opacity(minOpacity + addOpacity)
         }
-        return .white.opacity(0)
+        return .clear
     }
 }
 

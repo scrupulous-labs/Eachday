@@ -53,7 +53,7 @@ struct ProfileReorderHabits: View {
 
                 if ui.tab == 1 {
                     Section {
-                        if rootStore.habits.sorted.isEmpty {
+                        if rootStore.habitGroups.sorted.isEmpty {
                             Text("No groups")
                                 .padding(.vertical, 32)
                                 .frame(maxWidth: .infinity, alignment: .center)
@@ -61,7 +61,10 @@ struct ProfileReorderHabits: View {
                         ForEach(rootStore.habitGroups.sorted, id: \.id) { group in
                             HStack {
                                 Text(group.name)
-                                    .foregroundColor(colorScheme == .light ? .black : .white)
+                                    .foregroundColor(!group.habitGroupItemsUI.isEmpty
+                                        ? (colorScheme == .light ? .black : .white)
+                                        : .gray
+                                    )
                                     .padding(.leading, 10)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 

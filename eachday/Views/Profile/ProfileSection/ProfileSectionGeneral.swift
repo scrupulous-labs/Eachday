@@ -193,8 +193,10 @@ struct ProfileSectionGeneral: View {
         } header: {
             Text("General").padding(.leading, -8)
         } footer: {
-            Text("Made with love")
-                .padding(EdgeInsets(top: 16, leading: -8, bottom: 0, trailing: 8))
+            Text("Made with ❤️ by Pavan Varma")
+                .font(Font.system(size: 14))
+                .foregroundColor(colorScheme == .light ? Color(hex: "#1f2937") : .gray)
+                .padding(EdgeInsets(top: 24, leading: -8, bottom: 0, trailing: 8))
                 .frame(maxWidth: .infinity, alignment: .center)
         }
     }

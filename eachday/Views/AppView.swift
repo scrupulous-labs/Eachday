@@ -29,7 +29,7 @@ struct AppView: View {
                             .padding(.bottom, 16)
                         
                         ForEach(rootStore.habits.filtered, id: \.id) { habit in
-                            let locked = rootStore.habits.isLocked(habitId: habit.id)
+                            let locked = rootStore.habits.isLocked(habit: habit)
                             HabitCard(
                                 habit: habit,
                                 locked: locked,
@@ -51,10 +51,33 @@ struct AppView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Text("Eachday")
-                        .font(Font.system(size: 24, design: .serif))
-                        .fontWeight(.bold)
-                        .padding(.leading, 4)
+                    HStack(spacing: 12) {
+                        Text("Eachday")
+                            .font(Font.system(size: 24, design: .serif))
+                            .fontWeight(.bold)
+                            .padding(.leading, 4)
+                        
+                        if rootStore.purchases.showProBesideLogo {
+                            Button { ui.openPurchasePro() } label: {
+                                Text("Get Pro")
+                                    .foregroundColor(.black)
+                                    .font(Font.system(size: 13).weight(.medium))
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 5)
+                                    .background(
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [
+                                                Color(r: 244, g: 221, b: 130),
+                                                Color(r: 238, g: 208, b: 95)
+                                            ]),
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        )
+                                    )
+                                    .cornerRadius(8)
+                            }
+                        }
+                    }
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
@@ -67,6 +90,7 @@ struct AppView: View {
                                 .fontWeight(.light)
                                 .foregroundColor(colorScheme == .light ? .black : .white)
                         }
+                        
                         Button { ui.openProfileSheet() } label: {
                             Image(systemName: "person.circle")
                                 .resizable()
@@ -154,8 +178,7 @@ class AppViewModel {
     
     func openNewHabitSheet(_ rootStore: RootStore) {
         if !rootStore.habits.canCreate {
-            openPurchasePro()
-            return
+            return openPurchasePro()
         }
         let lastHabit = rootStore.habits.sorted.last
         let sortOrder = lastHabit?.sortOrder.next() ?? SortOrder.new()

@@ -68,17 +68,18 @@ struct EditHabitHistory: View {
                     let repetitionsCompleted = habit.repetitionsCompleted(day: day)
                     VStack(spacing: 0) {
                         Text("\(day.day)")
-                            .font(Font.headline.weight(.regular))
+                            .font(Font.headline.weight(.medium))
                             .frame(maxWidth: .infinity, alignment: .center)
                             .foregroundColor(repetitionsCompleted > 0
                                 ? (colorScheme == .light ? .white : .white)
                                 : (colorScheme == .light ? .black : .white)
                             )
                         if repetitionsPerDay > 1 && repetitionsCompleted > 0 {
-                            Text("x\(repetitionsCompleted)")
-                                .font(Font.system(size: 14))
+                            Text("x\(min(repetitionsPerDay, repetitionsCompleted))")
+                                .font(Font.system(size: 14).weight(.semibold))
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .foregroundColor(.white)
+                                .offset(y: -2)
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

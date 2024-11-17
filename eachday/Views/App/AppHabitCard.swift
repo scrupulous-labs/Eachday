@@ -37,9 +37,20 @@ struct HabitCard: View {
                     .opacity(0.9)
                 
                 VStack(spacing: 16) {
-                    Button { openPurchasePro() } label: { Text("Get Eachday Pro") }
-                        .buttonStyle(.borderedProminent)
-                        .tint(Color(hex: "#2563eb"))
+                    Button { openPurchasePro() } label: {
+                        Text("Get Eachday Pro").foregroundColor(.black)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(
+                        LinearGradient(
+                            gradient: Gradient(colors: [
+                                Color(r: 244, g: 221, b: 130),
+                                Color(r: 238, g: 208, b: 95)
+                            ]),
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
                     Text("Get Eachday Pro to manage more than 4 habits")
                         .font(Font.system(size: 14))
                 }

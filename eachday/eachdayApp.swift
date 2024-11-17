@@ -18,7 +18,9 @@ struct eachdayApp: App {
         WindowGroup {
             AppView()
                 .environment(appDelegate.rootStore)
-                .preferredColorScheme(appDelegate.rootStore.settings.value.prefferedColorScheme)
+                .preferredColorScheme(
+                    appDelegate.rootStore.settings.value.prefferedColorScheme
+                )
         }
     }
 }

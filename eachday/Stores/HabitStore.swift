@@ -29,9 +29,9 @@ class HabitStore: Store {
         super.init(rootStore: rootStore)
     }
     
-    func isLocked(habitId: UUID) -> Bool {
+    func isLocked(habit: HabitModel) -> Bool {
         if rootStore.purchases.purchasedPro { return false }
-        let ind = sorted.firstIndex{ $0.id == habitId } ?? 0
+        let ind = sorted.firstIndex{ $0.id == habit.id } ?? 0
         return ind >= Constants.maxHabitsForNonPro
     }
     
