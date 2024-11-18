@@ -157,10 +157,19 @@ struct ProfilePurchaseProPackage: View {
                     if package.packageType == .annual {
                         Text("BEST VALUE")
                             .font(Font.caption.weight(.semibold))
+                            .foregroundColor(.black)
                             .padding(.vertical, 3)
                             .padding(.horizontal, 8)
-                            .background(Color(hex: "#fef08a"))
-                            .foregroundColor(Color(hex: "#854d0e"))
+                            .background(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [
+                                        Color(r: 244, g: 221, b: 130),
+                                        Color(r: 238, g: 208, b: 95)
+                                    ]),
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
                             .cornerRadius(8)
                     }
                     Spacer()
