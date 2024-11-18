@@ -46,9 +46,9 @@ class PurchaseStore: Store {
             if let proEntitlement = customerInfo?.entitlements.all[proKey], error == nil {
                 purchasedPro = proEntitlement.isActive
             } else if error != nil {
-                print(error!)
+                print("PurchaseStore: loadCustomerInfo error - \(error!)")
             } else {
-                print("loadPurchases: No pro entitlement data")
+                purchasedPro = false
             }
         }
     }
@@ -65,9 +65,9 @@ class PurchaseStore: Store {
                     }
                 }
             } else if error != nil {
-                print(error!)
+                print("PurchaseStore: loadOfferings error - \(error!)")
             } else {
-                print("loadPurchases: No current offerings")
+                print("PurchaseStore: No current offerings found")
             }
         }
     }

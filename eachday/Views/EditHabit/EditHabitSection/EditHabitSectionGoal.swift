@@ -4,7 +4,6 @@ import UserNotifications
 struct EditHabitSectionGoal: View {
     @Bindable var habit: HabitModel
     @FocusState.Binding var focusedField: EditHabitFormField?
-    var onFieldChange: () -> Void
     var onChangeFrequency: () -> Void
     var onChangeReminders: () -> Void
     var onChangeGroup: () -> Void

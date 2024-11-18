@@ -61,9 +61,9 @@ struct AppView: View {
                             Button { ui.openPurchasePro() } label: {
                                 Text("Get Pro")
                                     .foregroundColor(.black)
-                                    .font(Font.system(size: 13).weight(.medium))
+                                    .font(Font.system(size: 14))
                                     .padding(.horizontal, 10)
-                                    .padding(.vertical, 5)
+                                    .padding(.vertical, 4)
                                     .background(
                                         LinearGradient(
                                             gradient: Gradient(colors: [

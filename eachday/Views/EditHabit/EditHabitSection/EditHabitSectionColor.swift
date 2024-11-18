@@ -2,6 +2,7 @@ import SwiftUI
 
 struct EditHabitSectionColor: View {
     let habit: Habit
+    let onFieldChange: () -> ()
     @Environment(\.colorScheme) var colorScheme
     
     let ringColor = Color(hex: "#a3a3a3")
@@ -51,7 +52,10 @@ struct EditHabitSectionColor: View {
                             }
                         }
                     }
-                    .onTapGesture { habit.color = color }
+                    .onTapGesture {
+                        habit.color = color
+                        onFieldChange()
+                    }
                 }
             }
             .padding(.vertical, 14)

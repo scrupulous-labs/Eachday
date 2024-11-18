@@ -27,13 +27,13 @@ struct EditHabitView: View {
                 EditHabitSectionGoal(
                     habit: habit,
                     focusedField: $focusedField,
-                    onFieldChange: onFieldChange,
                     onChangeFrequency: ui.openSelectFrequencySheet,
                     onChangeReminders: { ui.openSetRemindersScreen(rootStore, habit: habit) },
                     onChangeGroup: { ui.openSelectGroupScreen(rootStore) }
                 )
                 EditHabitSectionColor(
-                    habit: habit
+                    habit: habit,
+                    onFieldChange: onFieldChange
                 )
             }
             .padding(.top, 0)
