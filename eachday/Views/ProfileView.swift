@@ -3,6 +3,7 @@ import SwiftUI
 struct ProfileView: View {
     @Bindable var ui: ProfileViewModel = ProfileViewModel.instance
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
     @Environment(RootStore.self) var rootStore
     
     var body: some View {
@@ -68,6 +69,7 @@ class ProfileViewModel {
     
     func reset() {
         navigationPath = NavigationPath()
+        ProfilePurchaseProModel.instance.reset()
         ProfileReorderHabitsModel.instance.reset()
     }
 }

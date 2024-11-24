@@ -10,11 +10,12 @@ struct AppView: View {
             ScrollView {                
                 if rootStore.habits.sorted.isEmpty {
                     VStack {
-                        Image(systemName: "pencil.and.list.clipboard")
+                        Image(systemName: "archivebox")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 58, height: 58)
                             .fontWeight(.ultraLight)
+                            .padding(.bottom, 10)
                         Text("Create a new habit and track it's progress")
                         Button { ui.openNewHabitSheet(rootStore) } label: { Text("Get Started") }
                             .buttonStyle(.borderedProminent)
@@ -55,20 +56,39 @@ struct AppView: View {
                         Text("Eachday")
                             .font(Font.system(size: 24, design: .serif))
                             .fontWeight(.bold)
-                            .padding(.leading, 4)
-                        
-                        if rootStore.purchases.showProBesideLogo {
+                            .padding(.leading, 2)
+                    }
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    HStack(spacing: 14) {
+                        if rootStore.purchases.showGetProButton {
                             Button { ui.openPurchasePro() } label: {
+//                                Text("Get Pro")
+//                                    .foregroundColor(colorScheme == .light ? .black : .white)
+//                                    .font(Font.system(size: 14).weight(.medium))
+//                                    .padding(.horizontal, 8)
+//                                    .padding(.vertical, 4)
+//                                    .overlay {
+//                                        RoundedRectangle(cornerRadius: 8)
+//                                            .stroke(
+//                                                colorScheme == .light ? .black : .white,
+//                                                lineWidth: 1
+//                                            )
+//                                    }
+                                
                                 Text("Get Pro")
-                                    .foregroundColor(.black)
-                                    .font(Font.system(size: 14))
+                                    .font(Font.system(size: 14).weight(.medium))
+                                    .foregroundColor(Color(hex: "#713f12"))
+                                    .padding(.vertical, 5)
                                     .padding(.horizontal, 10)
-                                    .padding(.vertical, 4)
                                     .background(
                                         LinearGradient(
                                             gradient: Gradient(colors: [
                                                 Color(r: 244, g: 221, b: 130),
-                                                Color(r: 238, g: 208, b: 95)
+                                                Color(r: 238, g: 208, b: 95),
+                                                Color(r: 244, g: 221, b: 130),
+                                                Color(r: 238, g: 208, b: 95),
                                             ]),
                                             startPoint: .topLeading,
                                             endPoint: .bottomTrailing
@@ -77,18 +97,13 @@ struct AppView: View {
                                     .cornerRadius(8)
                             }
                         }
-                    }
-                }
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    HStack(spacing: 16) {
+                        
                         Button { ui.openNewHabitSheet(rootStore) } label: {
                             Image(systemName: "plus")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 22, height: 22)
                                 .fontWeight(.light)
-                                .foregroundColor(colorScheme == .light ? .black : .white)
                         }
                         
                         Button { ui.openProfileSheet() } label: {
@@ -97,17 +112,18 @@ struct AppView: View {
                                 .scaledToFit()
                                 .frame(width: 24, height: 24)
                                 .fontWeight(.light)
-                                .foregroundColor(colorScheme == .light ? .black : .white)
                         }
                     }
                     .padding(.trailing, 2)
                 }
             }
             .sheet(item: $ui.activeSheet, onDismiss: {
-                rootStore.habits.all.forEach { $0.graphResetToDb() }
-                rootStore.habitGroups.all.forEach { $0.graphResetToDb() }
-                ProfileViewModel.instance.reset()
-                EditHabitViewModel.instance.reset()
+                DispatchQueue.main.async {
+                    rootStore.habits.all.forEach { $0.graphResetToDb() }
+                    rootStore.habitGroups.all.forEach { $0.graphResetToDb() }
+                    ProfileViewModel.instance.reset()
+                    EditHabitViewModel.instance.reset()
+                }
             }) { item in
                 switch item {
                 case AppViewSheet.profileSheet:
@@ -162,6 +178,7 @@ struct AppView: View {
                 }
             }
         }
+        .tint(colorScheme == .light ? .black : .white)
     }
 }
 

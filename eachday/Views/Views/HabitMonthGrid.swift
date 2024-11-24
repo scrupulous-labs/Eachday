@@ -48,7 +48,7 @@ struct HabitMonthGrid: View {
                                 RoundedRectangle(cornerRadius: cellCornerRadius + 1, style: .continuous)
                                     .size(width: cellSize + 2.35, height: cellSize + 2.35)
                                     .stroke(colorScheme == .light ? .black : .white, lineWidth: 1.25)
-                                    .offset(x: -1.25, y: -1.25)
+                                    .offset(x: -1.18, y: -1.17)
                             }
                         }
                 }

@@ -10,8 +10,9 @@ class PurchaseStore: Store {
     var purchasedPro: Bool = false
     var isPurchasing: Bool = false
     
-    var showProBesideLogo: Bool {
-        !purchasedPro && rootStore.habits.all.count >= Constants.maxHabitsForNonPro
+    var showGetProButton: Bool {
+        let allHabits = rootStore.habits.all.filter { $0.showInUI }
+        return !purchasedPro && allHabits.count >= Constants.maxHabitsForNonPro
     }
     
     init(_ rootStore: RootStore) {

@@ -24,7 +24,10 @@ struct ProfileSectionPro: View {
             LinearGradient(
                 gradient: Gradient(colors: [
                     Color(r: 244, g: 221, b: 130),
-                    Color(r: 238, g: 208, b: 95)
+                    Color(r: 238, g: 208, b: 95),
+                    Color(r: 244, g: 221, b: 130),
+                    Color(r: 238, g: 208, b: 95),
+                    Color(r: 244, g: 221, b: 130),
                 ]),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
