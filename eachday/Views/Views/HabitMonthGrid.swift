@@ -7,7 +7,7 @@ struct HabitMonthGrid: View {
     var gridColumnCount = 7
     var gridVerticalSpacing = 1.2
     var gridHorizontalSpacing = 2.4
-    var cellSize = 8.0
+    var cellSize = 8.6
     var cellCornerRadius = 2.5
     @Environment(\.colorScheme) private var colorScheme
     @Environment(RootStore.self) private var rootStore
@@ -46,9 +46,9 @@ struct HabitMonthGrid: View {
                             
                             if day == Day.today() {
                                 RoundedRectangle(cornerRadius: cellCornerRadius + 1, style: .continuous)
-                                    .size(width: cellSize + 2.35, height: cellSize + 2.35)
-                                    .stroke(colorScheme == .light ? .black : .white, lineWidth: 1.25)
-                                    .offset(x: -1.18, y: -1.17)
+                                    .size(width: cellSize + 2.4, height: cellSize + 2.4)
+                                    .stroke(colorScheme == .light ? .black : .white, lineWidth: 1)
+                                    .offset(x: -1.2, y: -1.2)
                             }
                         }
                 }

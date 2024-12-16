@@ -2,9 +2,9 @@ import SwiftUI
 
 struct EditHabitSelectGroup: View {
     var habit: HabitModel
-    @Bindable var group: HabitGroupModel
+    @Bindable var newGroup: HabitGroupModel
     var onFieldChange: () -> Void
-    var onSaveGroup: () -> Void
+    var onSaveNewGroup: () -> Void
     
     var cellSize = 40.0
     var cellCornerRadius = 6.0
@@ -52,7 +52,7 @@ struct EditHabitSelectGroup: View {
             
             Section {
                 HStack(spacing: 12) {
-                    TextField("New Group", text: $group.name)
+                    TextField("New Group", text: $newGroup.name)
                         .frame(maxWidth: .infinity)
                     
                     ZStack {
@@ -68,7 +68,7 @@ struct EditHabitSelectGroup: View {
                             .fontWeight(.regular)
                     }
                     .frame(width: cellSize, height: cellSize)
-                    .onTapGesture { onSaveGroup() }
+                    .onTapGesture { onSaveNewGroup() }
                 }
                 .padding(.vertical, 8)
                 .listRowInsets(.init(top: 0, leading: 24, bottom: 0, trailing: 10))

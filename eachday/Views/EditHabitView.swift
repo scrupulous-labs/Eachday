@@ -63,12 +63,15 @@ struct EditHabitView: View {
                         habit: habit,
                         onFieldChange: onFieldChange
                     )
-                case EditHabitScreen.selectGroupScreen(let group):
+                case EditHabitScreen.selectGroupScreen(let newGroup):
                     EditHabitSelectGroup(
-                        habit: habit, group: group,
+                        habit: habit,
+                        newGroup: newGroup,
                         onFieldChange: onFieldChange,
-                        onSaveGroup: {
-                            group.unmarkForDeletion(); group.save()
+                        onSaveNewGroup: {
+                            newGroup.addHabit(habit: habit)
+                            newGroup.unmarkForDeletion(); newGroup.save();
+                            onFieldChange()
                             ui.navigationPath.removeLast()
                             ui.openSelectGroupScreen(rootStore)
                         }

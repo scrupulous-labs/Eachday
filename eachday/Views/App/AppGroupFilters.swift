@@ -18,12 +18,12 @@ struct AppGroupFilters: View {
                 ) { habitGroup in
                     let isFiltered = rootStore.habitGroups.filtered.contains(habitGroup.id)
                     Text(habitGroup.name)
-                        .font(Font.system(size: 15))
+                        .font(Font.system(size: 16, weight: .medium))
                         .foregroundColor(isFiltered
                             ? (colorScheme == .light ? .white : .black)
                             : (colorScheme == .light ? .black : .white)
                         )
-                        .padding(EdgeInsets(top: 4.5, leading: 9, bottom: 4.5, trailing: 9))
+                        .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
                         .background(isFiltered
                             ? Color(hex: colorScheme == .light ? "#111827" : "#E5E7EB")
                             : Color(hex: colorScheme == .light ? "#e2e2e2" : "#202020")

@@ -56,7 +56,7 @@ struct HabitDetailsStreaks: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(
                             colorScheme == .light ? .black.opacity(0.25) : .white.opacity(0.2),
-                            lineWidth: colorScheme == .light ? 0.25 : 0.5
+                            lineWidth: 0.25
                         )
                 }
                 
@@ -89,7 +89,7 @@ struct HabitDetailsStreaks: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(
                             colorScheme == .light ? .black.opacity(0.25) : .white.opacity(0.2),
-                            lineWidth: colorScheme == .light ? 0.25 : 0.5
+                            lineWidth: 0.25
                         )
                 }
             }

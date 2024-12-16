@@ -43,7 +43,7 @@ struct ProfilePurchasePro: View {
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(
                                         colorScheme == .light ? .black.opacity(0.25) : .white.opacity(0.2),
-                                        lineWidth: colorScheme == .light ? 0.25 : 0.5
+                                        lineWidth: 0.25
                                     )
                             }
                             .padding(.horizontal, 16)
@@ -155,7 +155,7 @@ struct ProfilePurchaseProPackage: View {
     
     var subheadline: String {
         switch package.packageType {
-        case .monthly: 
+        case .monthly:
             return "Billed monthly"
         case .annual:
             let pricePerMonth = package.storeProduct.pricePerMonth ?? 1.0
@@ -178,8 +178,8 @@ struct ProfilePurchaseProPackage: View {
                         .padding(.trailing, 2)
                     if package.packageType == .annual {
                         Text("BEST VALUE")
-                            .font(Font.system(size: 12).weight(.medium))
-                            .foregroundColor(Color(hex: "#a16207"))
+                            .font(Font.system(size: 13).weight(.medium))
+                            .foregroundColor(Color(hex: "#713f12"))
                             .padding(.vertical, 4)
                             .padding(.horizontal, 8)
                             .background(Color(r: 244, g: 221, b: 130))

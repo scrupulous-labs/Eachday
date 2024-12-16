@@ -26,7 +26,7 @@ struct AppView: View {
                 } else {
                     LazyVStack(spacing: 0) {
                         AppGroupFilters(reorderGroups: ui.openReorderGroups)
-                            .padding(.top, 14)
+                            .padding(.top, 8)
                             .padding(.bottom, 16)
                         
                         ForEach(rootStore.habits.filtered, id: \.id) { habit in
@@ -54,7 +54,7 @@ struct AppView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     HStack(spacing: 12) {
                         Text("Eachday")
-                            .font(Font.system(size: 24, design: .serif))
+                            .font(Font.system(size: 26, design: .serif))
                             .fontWeight(.bold)
                             .padding(.leading, 2)
                     }
@@ -64,19 +64,6 @@ struct AppView: View {
                     HStack(spacing: 14) {
                         if rootStore.purchases.showGetProButton {
                             Button { ui.openPurchasePro() } label: {
-//                                Text("Get Pro")
-//                                    .foregroundColor(colorScheme == .light ? .black : .white)
-//                                    .font(Font.system(size: 14).weight(.medium))
-//                                    .padding(.horizontal, 8)
-//                                    .padding(.vertical, 4)
-//                                    .overlay {
-//                                        RoundedRectangle(cornerRadius: 8)
-//                                            .stroke(
-//                                                colorScheme == .light ? .black : .white,
-//                                                lineWidth: 1
-//                                            )
-//                                    }
-                                
                                 Text("Get Pro")
                                     .font(Font.system(size: 14).weight(.medium))
                                     .foregroundColor(Color(hex: "#713f12"))
