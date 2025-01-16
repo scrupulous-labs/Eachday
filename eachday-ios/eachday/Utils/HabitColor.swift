@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-enum HabitColor: String, CaseIterable {
+enum HabitColor: String {
     case lightRed = "lightRed"
     case red = "red"
     case orange = "orange"
@@ -45,7 +45,7 @@ enum HabitColor: String, CaseIterable {
     var color: Color {
         switch self {
         case .red:
-            return Color(hex: "#E84C3D")
+            return Color(r: 232, g: 76, b: 61)
         case .lightRed:
             return Color(r: 221, g: 82, b: 76)
         case .orange:

@@ -90,15 +90,15 @@ enum Frequency: Hashable {
 }
 
 extension Frequency: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case times
+    }
+
     enum CaseType: String, Codable {
         case daily
         case weekly
         case monthly
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case type
-        case times
     }
     
     init(from decoder: Decoder) throws {
